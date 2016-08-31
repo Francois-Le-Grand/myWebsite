@@ -1,0 +1,447 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill} % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+
+\usepackage{wasysym}
+\usepackage{graphics}
+\usepackage{pgflibraryarrows}
+\usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[clock]{ifsym}
+\usepackage{colortbl}
+\usepackage{pgf}
+\usepackage{color}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+\newcommand{\refg}[1]{({\sc Fig.}~\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue!40!black!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight);
+%\foreach \x in {1,2,...,12}
+% \draw[text=black] (\x,.15) node {\footnotesize \x};
+%\foreach \y in {1,2,...,9}
+% \draw[text=black] (.2,\y) node {\footnotesize \y};
+%\end{tikzpicture} }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\renewcommand{\thesubsection}{\Alph{section}.\,\arabic{subsection}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+ \it #1
+\end{changemargin} }
+
+\begin{document}
+
+
+\EnTete{Séances des 7 et 10 Novembre 2006}{8}{Inefficient foreign borrowing}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{Ti:03}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item International lending,
+	\item Moral Hazard.
+\end{itemize}
+
+%\section{Introduction}
+%D'après:
+%
+%J.\ Tirole, \textquotedblleft Inefficient Foreign Borrowing: A Dual- and
+%Common-Agency Perspective\textquotedblright , \textit{American Economic
+%Review}, 2004\footnote{%
+%http://www.banque-france.fr/gb/fondatio/telechar/papers\_d/inefficient%
+%\_foreign\_b.pdf}
+%
+%Eaton et Fernandez, "Sovereign Debt", 1995.
+
+\section{Introduction}
+
+L'objectif de ce TD est d'étudier la qualité et de le niveau de l'accès d'un pays aux marchés de capitaux internationaux.
+
+\section{Set--up du modèle}
+
+On considère une petite économie ouverte (le taux d'intérêt est ainsi déterminé de manière exogène) peuplée d'un large nombre d'entrepreneurs neutres au risque tous identiques. On normalise leur quantité à 1.
+
+Il existe un bien unique parfaitement échangeable.
+
+\textenitalique{Timing du modèle}
+
+Le timing du modèle est divisé en trois dates~:
+
+\begin{itemize}
+\item {\bf Date 0~:} L'entrepreneur représentatif dispose d'une richesse initiale $A$ et emprunte une quantité $I_{f}$ sur les marchés internationaux (à des investisseurs étrangers) pour réaliser un projet. La taille du projet est donc~: $I=A+I_{f}$. Le marché du capital est parfaitement compétitif et les investisseurs étrangers sont neutres au risque. Le taux d'intérêt mondial est normalisé à zéro (aucun des résultats ne dépend de cette hypothèse). En conséquence, les entrepreneurs domestiques empruntent autant qu'ils veulent dès lors que les investisseurs étrangers espèrent récupérer en période 2 (au moins) la quantité prêtée.
+
+\item {\bf Date 1~:} Le gouvernement du pays choisit une action $\tau \in \mathcal{T}\subseteq \lbrack 0,1\rbrack$ où $\mathcal{T}$ désigne l'ensemble des actions possibles du gouvernement. L'action $\tau $ choisie par le gouvernement augmente la probabilité de succès du projet en période 2 mais coûte $\gamma (\tau )$ aux résidents domestiques par unité d'investissement. $\gamma (\tau )$ est strictement convexe et croissante en $\tau $. $\tau$ peut s'interpréter comme le financement d'infrastructures par les résidents domestiques, et qui profite à tous les entrepreneurs. L'action choisie par le gouvernement est telle qu'elle maximise le bien--être des entrepreneurs domestiques \textit{ex--post.}
+
+\item {\bf Date 2~:} La production à partir de l'investissement de la période $0$ est réalisée. Si l'entrepreneur fournit un effort, le projet de taille $I$ réussit avec probabilité $p+\tau$ et rapporte $R\,I$\:; dans le cas contraire le projet échoue et rapporte $0$. Si l'entrepreneur ne fournit aucun effort (\textquotedblleft shirking\textquotedblright ), le projet réussit avec probabilité $\tau $ et l'entrepreneur touche $B\,I$ comme bénéfices privés. En cas de succès, les entrepreneurs domestiques remboursent leur dette en distribuant $r\,I$ aux investisseurs externes et gardent $\left(R - r\right) I$. Le taux $r$ est déterminé de manière endogène.
+\end{itemize}
+
+\section{Entrepreneurs}
+
+\ques \`A quelle condition sur $r$ l'entrepreneur fournit--il un effort~?
+\medskip
+
+\ques \'Ecrire le pay--off espéré $S_{f}$ des investisseurs étrangers en période $0$. En déduire la taille maximale $\left( I\right) $ d'un investissement à $\left( p,\tau,A,r\right) $ donnés.
+\medskip
+
+On supposera\footnote{Ces hypothèses assurent que l'entrepreneur est plus productif que le marché (quand il fait un effort) mais qu'il ne désire par faire un projet de taille infinie (autrement dit qu'il soit contraint sur le marché du crédit du fait de l'aléa moral).}~: $0<R-\frac{B}{p}<\frac{1}{p+\tau }$ et $R>\frac{1}{p+\tau }$
+
+\medskip
+
+\ques Déduire des question précédentes la taille de l'investissement $I$ et le taux d'intérêt $r$ à l'équilibre.\ Commenter.
+
+\section{Gouvernement}
+
+\textenitalique{Commitment policy}
+
+Commençons par supposer que le gouvernement peut s'engager en période 0 (avant que le projet soit lancé) à mettre en \oe{}uvre en période 1 la politique $\tau ^{com}$ qui maximise le bien--être global (entrepreneurs domestiques et investisseurs étrangers).
+
+\medskip
+
+\ques \'Ecrire la fonction objectif du gouvernement dans ce cas. En déduire l'équation qui régit l'action choisie par le gouvernement. Pourquoi cette politique n'est pas cohérente temporellement~? Quelle est la politique menée une fois que le capital étranger est en place (notée $\tau ^{\ast }$)~?
+\medskip
+
+\ques En déduire la taille des projets $(I^{\ast })$ si les investisseurs étrangers anticipent que l'engagement du gouvernement \textit{ex--ante} n'est pas crédible.
+
+\section{Applications et extensions}
+
+\subsection{Investissement domestique}
+
+On suppose que le projet peut non seulement être financé par des investisseurs étrangers à la hauteur de $I_f$ mais aussi par des épargnants domestiques pour un montant supposé constant de $I_{d}$. Les investisseurs domestiques sont également neutres au risque et disposent de la même technologie alternative de stockage que les étrangers, qui leur permet de placer au taux $0$ et de ne pas être obligés de prêter aux entrepreneurs.
+\medskip
+
+\ques Quelle est la part du surplus versé aux investisseurs domestiques et étrangers~~?
+\medskip
+
+\ques \'Ecrire l'objectif du gouvernement en période 1. On notera que le bien--être des investisseurs domestiques entre dans sa fonction objectif.
+
+En déduire la politique $\tau ^{\ast \ast }$ cohérente temporellement choisie par le gouvernement. Commenter. Quel est l'impact de l'épargne domestique sur la quantité prêtée par les investisseurs étrangers~?
+
+\subsection{Short--term vs. Long--term Debt Composition}
+
+On suppose à nouveau que $I_{d}=0.$
+
+\textenitalique{Timing du modèle}
+
+On suppose qu'il existe une étape intermédiaire par rapport au set--up précédent. Cette étape supplémentaire ajoute une dimension au mode de financement des firmes. Elles peuvent s'endetter à court--terme en quantité $d\,I$. Une partie de leur dette sera donc remboursée à cette étape intermédiaire. Le nouveau timing du modèle est présenté à la figure \refg{fig:01}.
+
+\medskip
+\begin{figure}[htpb]
+\begin{tikzpicture}
+	\draw[->] (0,0) -- (12,0) ;%node[above][pos=0.5]{\small date $1$}; %node[right] {\small leisure $x$}
+	\node (zero) at (1.5,0) [coordinate] {} ; 
+	\node (un) at (6,0) [coordinate] {} ; 
+	\node (deux) at (10.5,0) [coordinate] {} ; 
+	\node at (zero) {$\times$} ; 
+	\node[above] at (zero) {0} ; 
+	\node at (un) {$\times$} ; 
+	\node[above] at (un) {1} ;
+	\node at (deux) {$\times$} ; %\textbullet
+	\node[above] at (deux) {2} ;
+	\draw[-] (3,0.5) -- (3,-5.0) ;
+	\draw[-] (9,0.5) -- (9,-5.0) ;
+	\node (unm) at (4.5,0) [coordinate] {} ; 
+	\node (unp) at (7.5,0) [coordinate] {} ; 
+	\node[below, text width=2.9cm] at (zero) {\textbullet\: L'entrepreneur représentatif a une richesse $A$, emprunte $I-A$ et investit $I$.\medskip\linebreak \textbullet\:Le contrat financier: $d\,I$ est dû à la date 1 et si la firme continue et réussit à la date 2, $r\,I$ doit être payé à la date 2.\linebreak} ;
+	\node[below, text width=2.9cm] at (unm) {\textbullet\:Le gouvernement choisit la politique $\tau$.\linebreak} ;
+	\node[below, text width=2.9cm] at (unp) {\textbullet\:Revenus $s\,I$ et paiement de la dette $d\,I$.\medskip\linebreak \textbullet\:Choc de liqui\-dité $\rho\,I$. \medskip\linebreak \textbullet\: Le marché observe $\tau$. \medskip\linebreak \textbullet\: La firme continue si le choc de liquidité est bon.} ;
+	\node[below, text width=2.9cm] at (deux) {\textbullet\quad (Si la firme a continué à la date 1:) Réalisation d'un profit $R\,I$ avec proba. $p+\tau$ ou 0.\medskip\linebreak \textbullet\:Partage des profits selon le contrat de la date 0. \linebreak} ;
+%	\draw[dashed, color=blue] (4.1,3.65)--(4.1,0) node[below] {\small {\textcolor{blue}{$x_2$}}}; ;
+%	\draw[line width=0.04cm, color=red] (1,-1) .. controls (4,5) .. (7,0);
+\end{tikzpicture}
+\caption{Nouveau timing}
+\label{fig:01}
+\end{figure}
+
+\medskip
+
+Le nouvel ingrédient est le management des liquidités en période 1. La firme re\c{c}oit le niveau de revenus (déterministe) $s\,I$ à partir duquel elle paie sa dette à court--terme $d\,I$ ($s\,I\geq d\,I$) et fait face au choc de liquidité qui lui coûte $\rho\,I$. Le choc de liquidité est stochastique et suit une loi uniforme sur $\left[ 0,\overline{\rho }\right] $. Si l'entreprise ne peut faire face à ce choc de liquidité, le projet est abandonné et rien n'est produit en période 2 (liquidation). On note $\rho ^{\ast }<\overline{\rho }$ le seuil au delà duquel l'entreprise ne peut faire face à son choc de liquidité. Le seuil $\rho ^{\ast }$ sera déterminé à l'équilibre. 
+
+Si $\rho >\rho ^{\ast }$, l'entreprise est liquidée et les revenus de période 1 sont versés au créanciers.
+
+L'entrepreneur, une fois le choc de liquidité observé, peut demander des \textquotedblleft fonds neufs\textquotedblright\ pour se refinancer plutôt que de liquider l'entreprise (si bien qu'on peut avoir à l'équi\-li\-bre $\rho ^{\ast }>s - d^{\ast }$). 
+
+\medskip 
+
+On admet que le contrat optimal spécifie les termes suivants $(\rho ^{\ast },I)$~: 
+\renewcommand{\labelitemi}{--}
+\begin{itemize}
+	\item l'entrepreneur emprunte $I-A$ en période $0$.
+	\item l'entrepreneur donne $s\,I$ en première période à l'investisseur. En échange, l'investisseur finance tout choc de liquidité tel que $\rho \leq \rho ^{\ast }$.
+	\item en cas de continuation $\rho \leq \rho ^{\ast }$, l'entre\-preneur touche $(R - r)\,I$ et l'investis\-seur $r\,I$.
+\end{itemize}
+
+\medskip
+
+Ce contrat optimal sera mis en \oe{}uvre par l'émission de dette à court--terme.
+
+On suppose toujours que $r$ peut être pris comme fixe du fait de l'aléa moral (égal à $R-\frac{B}{p}$).\ On supposera que les paramètres sont tels que $\rho ^{\ast }<\overline{\rho }$.
+\medskip
+
+\ques \'Ecrire l'espérance du surplus dégagé $(S)$  en période 2 en fonction de $(\rho ^{\ast },I)$. À quelle condition les investisseurs étrangers acceptent le contrat de financement proposé~?
+\medskip
+
+\ques En déduire le contrat de financement $(\rho ^{\ast },I^{\ast })$ optimal proposé par l'entre\-preneur.
+
+\textenitalique{Optimal debt--maturity management.}
+
+Nous cherchons à savoir comment ce contrat $\left( \rho^{\ast},I(\rho^{\ast})\right) $ peut être simplement mis en place avec de la dette à court--terme $(d^{\ast })$. En effet, il faut que lorsque $\rho >\rho ^{\ast} $, l'entreprise soit effectivement liquidée. Pour ce faire, il suffit que l'entrepreneur ait une certaine somme à payer en période 1 (dette à CT). 
+\medskip
+
+\ques Pourquoi en absence de dette à court--terme, le contrat optimal décidé \textit{ex--ante} en période $0$ n'est pas nécessairement mis en place \textit{ex--post }une fois le choc de liquidité observé.
+
+À quelle condition sur $d^{\ast }$, l'entrepreneur est-il refinancé lorsque $\rho \leq \rho ^{\ast }$~? En déduire la structure de la dette $d^{\ast }$.
+
+\textenitalique{Impact sur l'action du Gouvernement.}
+
+\ques Quelle est la part des entreprises qui ne sont pas liquidées en période 1 en fonction de $\tau $ et $d^{\ast }$~? Quelle est la politique du gouvernement en période 1 (on supposera que le coût $\gamma (\tau)$ est supportée par les entreprises non liquidées)~? Commenter. En particulier, quel est l'impact d'un niveau élevé de dette à court--terme contractée par les firmes sur la politique choisie par le gouvernement~?
+
+\subsection{Dollarisation du passif}
+
+Dans cette section, on étudie l'impact du choix de la dénomination du passif. Il y a deux biens (un tradable repéré par un $^\star$ et un non--tradable) et deux économies (une domestique et une étrangère). 
+
+Comme précédemment, il y a trois périodes 0,1 et 2. La date 0 correspond à la date de financement, la date 2 à la date de retour des investissements et la date 1 à la période intermédiaire où le gouvernement choisit sa politique. 
+
+On note $W^f$ l'utilité des étrangers et $W^h$ celle des résidents. Les étrangers valorisent de façon égale les biens tradables de la date 0 et de la date 1 avec un taux d'intérêt à nouveau nul~:
+\begin{eqnarray*}
+	W^f = c_0^\star + c_2^\star
+\end{eqnarray*}
+
+Les domestiques valorise les consommations de la période 2 tradables et non--tradables ainsi que le bien public $g^\star$ ($u$ et $v$ sont strictement croissantes et concaves)~: 
+\begin{eqnarray*}
+	W^h = c_2 + u_2(c_2^\star) + v(g^\star) 
+\end{eqnarray*}
+
+\ques Déterminer $e_2$, le prix en $t=2$ du tradable exprimé en non--tradable. Interpréter $e_2$. 
+\medskip
+
+Le résident domestique représentatif est un entrepreneur qui transforme un input tradable $I_f^\star$ en un output non--tradable $y(I_f^\star)$ ($y$ est strictement concave et vérifie les conditions d'Inada\footnote{Rappels sur les conditions d'Inada~: $y$ est dérivable et vérifie $y(0) = 0$, $y'(0) = \infty$ et $y'(\infty) = 0$.}). L'input $I_f^\star$ est emprunté à la date 0 aux étrangers et l'entrepreneur ne dispose d'aucune dotation initiale.
+
+L'entrepreneur s'engage à rembourser à la date 2 $d_2^\star$ en tradables et $d_2$ en non--tradables. Si $d_2$ est payé directement à partir de $y$ aux investisseurs, l'entrepreneur doit convertir sa production non--tradable pour payer $d^\star_2$. 
+
+À la date 1, le gouvernement choisit le niveau de dépenses publiques $g^\star \in[0\,,\,R^\star]$. L'idée est que des dépenses publiques élevées ($g \uparrow$) se fait au prix d'une diminution des tradables disponibles en seconde période ($R^\star-g^\star \downarrow$). $R^\star$ est la dotation initiale du gouvernement en tradables. 
+
+\textenitalique{La politique de premier rang}
+
+\ques Exprimer l'utilité de l'agent représentatif à l'aide des contraintes de ressources et des équilibres offre--demande en fonction de $R^\star$, $g^\star$ et $I_f^\star$.
+\medskip
+
+\ques Quelle est l'optimum de premier rang en $I_f^\star$ et $g^\star$~? 
+
+\medskip
+\ques \'Ecrire l'équilibre offre/demande sur le marché des tradables en fonction notamment de $c^\star_2$, $d_2$, $d^\star_2$ et $e_2$. Commenter l'impact de $g\star$ sur le taux de change et sur la consommation.
+
+\medskip
+\ques Quelle est la politique optimale du gouvernement à la date 1~? À quelle condition coïncide--t--elle avec la politique de premier rang~? Commenter.
+%\medskip
+%
+%\ques On suppose dans cette question que le pays domestique est peuplé d'entre\-preneurs (part $k$) et de consommateurs (part $1-k$) qui peuvent être affectés de façon différente par une dépréciation ($e_2 \uparrow$). On suppose que le surplus de tradables $R^\star- g^\star$ est réparti uniformément au sein de la population. 
+%\medskip
+%
+%\subques Montrer que le surplus $S^d$ de la population domestique s'exprime sous la forme suivante. On a noté $K = 2(1-k)$. 
+%\begin{eqnarray*}
+%	S^d &=& \Bigl\{ K\bigl(y - (d_2 + d_2^\star\,e_2)\bigr) + e_2\bigl(R^\star - g^\star\bigr)\\
+%	&&\quad \bigl(u(c_2^\star) - e_2\,c_2^\star\bigr)+ v(g^\star) \Bigr\}
+%\end{eqnarray*}
+%\correction{
+%La consommation de tradables des entrepreneurs et des consommateurs est la même et ils la valorise tous les deux de la même façon. Pour les tradables, l'utilité totale est~: $k\,\bigl(u(c^\star_2) + v(g^\star)\bigr) + (1-k)\,\bigl(u(c^\star_2) + v(g^\star)\bigr) = u(c^\star_2) + v(g^\star)$.
+%
+%
+%}
+%
+%\medskip
+%
+%\subques \'Ecrire le programme du gouvernement et le résoudre. Commenter les aspects de la redistribution ($K\neq1$). 
+%\correction{
+%Le programme du gouvernement est d'après la question précédente~: 
+%\begin{eqnarray*}
+%	\max_{g^\star} &&\Bigl\{ K\bigl(y - (d_2 + d_2^\star\,e_2)\bigr) + e_2\bigl(R^\star - g^\star\bigr)\\
+%	&&\qquad \bigl(u(c_2^\star) - e_2\,c_2^\star\bigr)+ v(g^\star) \Bigr\}
+%\end{eqnarray*}
+%
+%La dérivée première fournit~:
+%\begin{eqnarray*}
+%	v' = u'_2\,\left|\frac{d c^\star_2}{d g^\star}\right| + (K-1)\, d_2^\star\, \frac{d e_2}{d g^\star}
+%\end{eqnarray*}
+%
+%Comparé au cas précédent, les incitations à consommer les réserves $R^\star$ sont affectées par deux canaux~:
+%\begin{enumerate}[(i)~]
+%	\item $K=1$ et si $d_2>0$~: la moindre disponibilité des tradables touche à la fois les résidents et les étrangers, ce qui se traduit par une dépréciation excessive du point de vue de la date 0. 	 
+%	\item Le deuxième effet est spécifique à la politique redistributive ($K\neq1$). La consommation de bien public déprécie la monnaie (les non--tradables vis--à--vis des tradables) $\frac{d e_2}{d g^\star}>0$, ce qui accroît la charge de la dette sur les entrepreneurs si $d^\star_2>0$. Ainsi si le gouvernement favorise les entrepreneurs relativement aux consommateurs ($K>1$ ou $k>1/2$), le gouvernement doit apprécier la monnaie et inversement la déprécier davantage s'il favorise les consommateurs ($K<1$). 
+%\end{enumerate}
+%}
+
+
+%\section{Eaton et Fernandez~: Dette souveraine}
+%
+%Nous considérons une petite économie qui emprunte $L$. Le pay-off
+%associé est $W(L)$ (avec $\frac{dW}{dL}>0$ et $\frac{d^{2}W}{dL^{2}}<0$)
+%
+%En cas de défaut, le pays est pénalisé d'un montant $H>0$. On
+%suppose que ex--ante, $H$ n'est pas connu du prêteur et distribué
+%selon $f(H)$. On note $\overset{-}{H}=\int_{0}^{\infty }Hf(H)dH$
+%
+%Pour toute la suite, on considèrera la fonction de densité suivante~:%
+%\begin{equation*}
+%f(x)=\lambda e^{-\lambda x}
+%\end{equation*}
+%
+%Par ailleurs, on note $r$ le taux d'intérêt international et on
+%assume que les créditeurs internationaux sont risque-neutre. Hormis à
+%la première question, on suppose que les contrats de dette ne sont pas
+%"enforceable".
+%
+%\medskip
+%
+%\textbf{A.\ Questions préliminaires}
+%
+%\textbf{1. }Calculer $\overset{-}{H}$
+%
+%\textbf{2. }Quelle est la quantité optimale $L^{\ast }$ empruntée
+%(lorsque les contrats sont parfaitement enforceable). Que représente $H$%
+%.\ Que se passe-t-il si $H$ est connu ex--ante du prêteur~?
+%
+%\medskip
+%
+%\textbf{B.\ Renégociation possible}
+%
+%\medskip
+%
+%Nous supposons ici qu'en cas de défaut, les créditeurs se partagent
+%les paiements effectuées proportionnellement à la quantité pr%
+%êtée et que la renégociation est possible (ex--post $H$ est observ%
+%é par le prêteur et donc les prêteurs peuvent exiger $H$ en cas
+%de défaut). Le taux de prêt est noté $R$.
+%
+%\medskip
+%
+%\textbf{3. }Quelle est la probabilité de défaut~?
+%
+%\medskip
+%
+%\textbf{4. }Déterminer la courbe d'offre de fonds des créditeurs au
+%taux $R$. Montrer qu'il existe $L_{\max }$ quantité de prêt maximal
+%qui peut être consentie.
+%
+%\medskip
+%
+%\textbf{5. }Déterminer le surplus de l'emprunteur au taux $R$.
+%
+%\medskip
+%
+%\textbf{6. }Calculer les quantités $L$ et le taux $R$ d'équilibre
+%dans les deux cas suivants~:
+%
+%\begin{itemize}
+%\item Les marchés financiers sont coordonnés~: prêteurs et
+%emprunteur choisissent un contrat de la forme $(R,L)$
+%
+%\item Les marchés financiers ne sont pas coordonnés~: le pays
+%emprunteur prend $R$ comme donné.
+%\end{itemize}
+%
+%\medskip
+%
+%\textbf{C. Renégociation impossible}
+%
+%\medskip
+%
+%Nous supposons ici qu'en cas de défaut, les créditeurs ne peuvent ren%
+%égocier le contrat (une institution telle que le Club de paris n'existe
+%pas).
+%
+%\medskip
+%
+%\textbf{7.\ }Répondre aux mêmes questions que précédement
+%selon si les marchés financiers sont coordonnés ou non.
+
+\end{document}

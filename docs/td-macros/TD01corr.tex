@@ -1,0 +1,620 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+
+\begin{document}
+
+\EnTete{Séances des 3 et 6 Octobre 2006}{1}{Mod\`{e}les dynamiques de \textquotedblleft job-search\textquotedblright\ \`{a} la Mortensen-Pissarides}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Ho:90}\nocite{MoPi:94}\nocite{MoPi:98}\nocite{Pi:90}
+
+\paragraph{\large{Points techniques du TD :}} l'optimisation sous contraintes:
+\begin{itemize}
+	\item Lagrangien
+	\item Hamiltonien
+	\item \'Equation de Bellman
+\end{itemize}
+
+\section{Description du modèle}
+On consid\`{e}re le mod\`{e}le standard \`{a} la Mortensen-Pissarides, où les travailleurs et firmes sont neutres au risque. 
+
+\textenitalique{Les travailleurs}
+
+Les travailleurs maximisent  la fonction suivante o\`{u} $r$ d\'{e}signe le taux d'escompte et $y(s)$ le revenu net \`{a} la p\'{e}riode $s$:
+\begin{equation*}
+V_{t}=\int_{t}^{\infty }e^{-rs}y(s)ds
+\end{equation*}
+
+Les travailleurs employ\'{e}s sont r\'{e}mun\'{e}r\'{e}s au salaire $w$. Un
+travailleur au ch\^{o}mage touche le salaire de r\'{e}serve $b$ ($b$ peut 
+\^{e}tre interpr\'{e}t\'{e} comme une allocation ch\^{o}mage ou comme le
+gain du loisir).
+
+\textenitalique{Les firmes}
+
+Il existe un large nombre d'entreprises, toutes identiques (libre-entr\'{e}e
+de firmes). Une firme qui emploie un travailleur produit $x$ ($\equiv$ productivit\'{e} du travail).
+
+
+\textenitalique{ Matching function }
+
+On d\'{e}signe par $v$ le nombre de postes vacants dans les entreprises. Le
+co\^{u}t \`{a} chaque p\'{e}riode pour une firme qui cherche \`{a} remplir
+un poste vacant est $\gamma $.
+
+On normalise \`{a} 1 la taille de la population active, de sorte que $u$\ d%
+\'{e}signe \`{a} la fois le taux de ch\^{o}mage et le nombre de ch\^{o}meurs.
+
+A chaque p\'{e}riode, un travailleur employ\'{e} a une probabilit\'{e}
+instantan\'{e}e $s$ constante de se retrouver au ch\^{o}mage.
+
+On suppose que le nombre d'embauches \`{a} une p\'{e}riode donn\'{e}e\ est
+une fonction du nombre de personnes au ch\^{o}mage $\left( u\right) $\ et du
+nombre de postes vacants $\left( v\right) $:%
+\begin{equation*}
+m(u,v)
+\end{equation*}
+
+On supposera que\ la fonction $m$\ est \`{a} rendements constants, du type : 
+$m(u,v)=u^{\alpha }v^{1-\alpha }$.
+
+\section{Résolution}
+
+\ques Exprimer la probabilit\'{e} instantan\'{e}e $h$ pour un ch\^{o}meur de trouver un emploi.
+
+\correction{
+Elle s'écrit simplement: $h = \dfrac{m(u,v)}{u}$.
+}
+
+\medskip
+
+\ques Montrer que $h$\ peut s'\'{e}crire $\theta q(\theta )$, avec $\theta
+\equiv \frac{v}{u}$ et $q$ une fonction d\'{e}croissante. Que repr\'{e}sente 
+$q$~? Les travailleurs ont-ils int\'{e}r\^{e}t \`{a} ce que $\theta $\ soit 
+\'{e}lev\'{e} ou faible~? Exprimer la dur\'{e}e moyenne de vacance d'un poste
+en fonction de $q(\theta )$.
+
+\correction{
+Comme $m(u,v)=u^{\alpha }v^{1-\alpha }$, on a :%
+\begin{eqnarray*}
+&& h =\frac{1}{u}u^{\alpha }v^{1-\alpha } = \left( \frac{v}{u}\right) ^{1-\alpha } = \theta q(\theta ) \\
+&& \textrm{avec :}\quad \theta =\frac{v}{u} \textrm{ et }q(\theta )=\theta ^{-\alpha }.
+\end{eqnarray*}
+
+La probabilit\'{e} qu'un poste vacant soit affect\'{e} est donn\'{e}e par $%
+\frac{m(u,v)}{v}$. 
+\begin{equation*}
+\frac{m(u,v)}{v}=\frac{1}{v}u^{\alpha }v^{1-\alpha }=q(\theta )
+\end{equation*}
+
+donc $q$ est la proba. qu'un poste vacant soit combl\'{e}.
+
+\bigskip
+
+Les travailleurs ont int\'{e}r\^{e}t \`{a} ce que $\theta $\ soit \'{e}lev%
+\'{e}. La "tension" du march\'{e} du travail est d\'{e}croissante en $\frac{v%
+}{u}$ (moindre "arm\'{e}e de r\'{e}serve" -- dans les termes de Marx -- pour
+le nombre de postes \`{a} pourvoir).
+
+La dur\'{e}e moyenne de vacance d'un poste (en fait l'esp\'{e}rance, mais
+loi des grands nombres...) est \'{e}gale \`{a} $1/q(\theta )$.
+}
+
+\medskip
+
+\ques Calculer le taux de ch\^{o}mage \`{a} l'\'{e}quilibre stationnaire en
+fonction de~$\left\{ s,h\right\} $.
+
+\correction{
+\begin{equation*}
+\dot{u}=s(1-u)-hu
+\end{equation*}
+
+A l'\'{e}tat stationnaire: $\dot{u}=0$, donc:%
+\begin{equation*}
+u_{\infty }=\frac{s}{h+s}
+\end{equation*}
+
+Cette courbe est connue comme \'{e}tant la courbe de Beveridge. Le taux de ch%
+\^{o}mage d'\'{e}quilibre (que l'on pourrait qualifier de "frictionnel")\
+est croissant en $s$, le taux de destruction d'emplois (\textit{separation}
+rate) et d\'{e}croissant en $h$, le taux de cr\'{e}ation d'emplois (\textit{%
+hiring} rate).
+}
+
+\medskip
+
+Pour toutes, les questions suivantes, on se place \`{a} l'\'{e}tat
+stationnaire.
+
+On note $J_{F}$ (resp. $J_{V}$) la valeur actualis\'{e}e des revenus pour
+une firme d'une place occup\'{e}e par un travailleur (resp. la valeur
+actualis\'{e}e des revenus pour une firme d'une place vacante).
+
+On note $J_{E}$ (resp. $J_{U}$) la valeur actualis\'{e}e des revenus pour un
+travailleur employ\'{e} (resp. la valeur actualis\'{e}e des revenus pour un
+travailleur en recherche d'emploi).
+
+\medskip
+
+\ques Expliquer pourquoi \`{a} l'\'{e}quilibre stationnaire, $J_{F}$ et $J_{V}$
+v\'{e}rifient:
+
+\begin{equation*}
+rJ_{F}=x-w+s(J_{V}-J_{F})
+\end{equation*}
+
+Exprimer de m\^{e}me $J_{V}$ en fonction $J_{F}$ et des param\`{e}tres du mod%
+\`{e}les.
+
+\correction{
+
+{\it 1ère méthode~:~} On note $T\ge t$ la première date où le poste occupé devient libre. 
+\begin{eqnarray*}
+	J_V(t) &=& \E_t\Bigl[\int^{T}_t\,(x-w)e^{-r\,(s-t)}\,ds + e^{-r\,(T-t)}\,J_F(T)\Bigr] 
+\end{eqnarray*}
+
+On suppose que $T$ suit une loi de Poisson de densité $F\::\:T\mapsto s\,e^{-s\,T}$.
+\begin{eqnarray*}
+J_V(t)	&=& \int_t^\infty \int^{T}_t\,(x-w)e^{-r\,(s-t)}\,ds\, s\,e^{-s\,(T-t)} dT \\
+		 			&&+ \int_t^\infty s\,e^{-(r+s)\,(T-t)}\,J_F(T)  dT \\
+		 		&=&  \frac{x-w}{r}s\int_t^\infty \left(1-e^{-r\,(T-t)}\right)\,e^{-s\,(T-t)} dT \\
+		 			&&+ \int_t^\infty s\,e^{-(r+s)\,(T-t)}\,J_F(T)  dT \\
+		 		&=&  \frac{x-w}{r} \left(1 - \frac{s}{r+s}\right) + \int_t^\infty s\,e^{-(r+s)\,(T-t)}\,J_F(T)  dT \\
+		 		&=&  \frac{x-w}{r+s} + \int_t^\infty s\,e^{-(r+s)\,(T-t)}\,J_F(T)  dT  \\
+\end{eqnarray*}
+
+On dérive par rapport à $t$ pour obtenir~:
+\begin{eqnarray*}
+	\dot{J}_V(t) &=& -\,s\,J_F(t) + (r+s)\int_t^\infty s\,e^{-(r+s)\,(T-t)}\,J_F(T)  dT 
+\end{eqnarray*}
+
+En utilisant l'expression de $J_V$ précédente (avant dérivation), on obtient~:
+\begin{eqnarray*}
+	\dot{J}_V(t) &=& -\,s\,J_F(t) + (r+s)\left(J_V(t)-\frac{x-w}{r+s}\right) \\
+	 &=& r\,J_V(t) - s\,(J_F(t)-J_V(t)) - (x-w)
+\end{eqnarray*}
+
+\`A l'équilibre stationnaire, on a ($\dot{J}_V(t)=0$)~:
+\begin{eqnarray*}
+	 r\,J_V(t) = x-w + s\,(J_F(t)-J_V(t)) 
+\end{eqnarray*}
+
+\bigskip
+{\it 2ème méthode~:~} On raisonne entre $t$ et $t+dt$, où l'on suppose que l'état du poste -- libre ou occupé -- est uniforme. La valeur d'une place occupée en $t$ c'est le bénéfice engendré par ce poste entre $t$ et $t+dt$  ($\equiv (x-w)dt$) augmenté de la valeur du poste en $t+dt$. En $t+dt$, le poste est occupé avec une proba $1-s\,dt$ (valeur = $J_V(t+dt)$) et libre avec une proba $s dt$ (valeur = $J_F(t+dt)$). Rappelons que $s$ est la proba de séparation de la firme et de l'employé. En espérance, le poste en $t+dt$ a la valeur $s\,dt J_V(t+dt) + (1-s\,dt)J_F(t+dt)$. On en déduit alors~:
+\begin{eqnarray*}
+	J_F(t) &=& e^{-r\,dt} \bigl\{(x-w)\,dt + s\,dt J_V(t+dt) + (1-s\,dt)J_F(t+dt)\bigr\}
+\end{eqnarray*}
+
+En admettant que $e^{-r\,dt}\approx \dfrac{1}{1+r\,dt}$, on obtient~:
+\begin{eqnarray*}
+	(1+rdt)J_F(t) &=& (x-w)\,dt + s\,dt J_V(t+dt) + (1-s\,dt)J_F(t+dt)\\
+	r\,dt\,J_F(t) &=& (x-w)\,dt + s\,dt J_V(t+dt) - s\,dt\,J_F(t+dt) \\
+	&&\qquad+ J_F(t+dt) - J_F(t)\\
+	r\,J_F(t) &=& x-w + s\,J_V(t+dt) - s\,J_F(t+dt) \\
+	&&\qquad+ \frac{J_F(t+dt) - J_F(t)}{dt}
+\end{eqnarray*}
+
+A l'équilibre stationnaire $J_F(t+dt) = J_F(t)$ et on en déduit la relation voulue
+
+\medskip
+{\it 3ème méthode~:~}C'est une equation d'arbitrage similaire \`{a} celle que l'on \'{e}crit sur
+les march\'{e}s financiers lorsque les agents sont neutres au risque~: le
+revenu d'un placement sans risque $(rJ_{F})$ doit \^{e}tre \'{e}gal aux
+dividendes vers\'{e}s $(x-w)$ plus la variation espérée du prix du stock. Avec
+proba. instantan\'{e}e $(1-s)$ la valeur est inchang\'{e}e\footnote{%
+Les différentes dates $T$ de changement d'état du poste sont supposées indépendantes, ce qui est le cas lorsque l'on suppose que le proc suit une loi de Poisson.}, avec proba. $s$, le poste est liquid\'{e} et la valeur
+actualis\'{e} du poste devient $J_{V}$.
+
+\begin{equation*}
+rJ_{V}=-\gamma +q(J_{F}-J_{V})
+\end{equation*}
+}
+
+\medskip
+
+\ques Interpr\'{e}ter la condition d'\'{e}quilibre suivante :%
+\begin{equation*}
+\frac{\gamma }{q(\theta )}=\frac{x-w}{r+s}
+\end{equation*}
+
+\correction{
+Si il y a libre entr\'{e}e de firmes, les firmes entrent\ sur le march\'{e}
+du travail tant que le fait d'avoir un poste vacant a une valeur non--nulle;
+donc \`{a} l'\'{e}quilibre on doit avoir $J_{V}=0$. D'o\`{u}:
+
+\begin{equation*}
+\frac{\gamma }{q(\theta )}=J_{F}=\frac{x-w}{r+s}
+\end{equation*}
+
+C'est une \'{e}quation de \textbf{demande de travail} de la part des firmes: 
+$\theta $ (nombre de vacances p.r. au nombre de chômeurs) est d\'{e}croissante du
+salaire.
+
+Le membre de gauche est l'esp\'{e}rance de co\^{u}t li\'{e} \`{a}
+l'ouverture d'un poste (co\^{u}t par unit\'{e} de temps multipli\'{e} par
+l'esp\'{e}rance de dur\'{e}e de vacance).
+
+Le second terme correspond \`{a} l'esp\'{e}rance de profits futurs (tant
+qu'il n'y a pas eu de "s\'{e}paration", un travailleur rapporte $x$ et co%
+\^{u}te $w$) sur un horizon infini, actualis\'{e} en tenant compte de la
+probabilit\'{e} exog\`{e}ne de s\'{e}paration.
+}
+
+\medskip
+
+\ques Exprimer $J_{E}$ en fonction de $J_{U}$ et des param\`{e}tres du mod\`{e}%
+les (resp. $J_{U}$ en fonction de $J_{E}$ et des param\`{e}tres du mod\`{e}%
+les).
+
+\correction{
+\begin{eqnarray}
+rJ_{E} &=&w+s(J_{U}-J_{E}) \label{JE}\\
+rJ_{U} &=&b+h(J_{E}-J_{U}) \nonumber
+\end{eqnarray}
+}
+
+\textenitalique{Nash-Bargaining et \'{e}quation de salaire}
+
+On suppose que le salaire est d\'{e}termin\'{e} de sorte que la fonction
+suivante soit maximis\'{e}e:%
+\begin{equation*}
+\max_{\left( w\right) }J_{F}{}^{\beta }(J_{E}-J_{U})^{1-\beta }
+\end{equation*}
+
+o\`{u} $\beta $ d\'{e}signe le pouvoir de n\'{e}gociation de la firme.
+
+On notera que le salaire d'\'{e}quilibre impacte $J_{U}$ mais que cet effet
+n'est pas internalis\'{e} par le travailleur qui n\'{e}gocie son salaire
+avec une firme donn\'{e}e (prenant le salaire d'\'{e}quilibre comme donn\'{e}%
+).
+
+\medskip
+
+\ques Montrer que: $\beta \left( J_{E}-J_{U}\right) =\left( 1-\beta \right)
+J_{F}$.
+
+Montrer qu'\`{a} l'\'{e}quilibre, $w=\beta b+(1-\beta )(x+\gamma \theta )$.
+Commenter.
+
+\correction{
+\begin{eqnarray*}
+&&\max_{\left( w\right) }(J_{F})^{\beta }(J_{E}-J_{U})^{1-\beta } \\
+&&\max_{\left( w\right) }\left[ \beta \ln (J_{F})+\left( 1-\beta \right) \ln
+(J_{E}-J_{U})\right]
+\end{eqnarray*}
+
+On remarque que $\frac{\partial J_{E}}{\partial w}= -\frac{\partial J_{V}}{\partial w}=-\,1/(s+r)$. Pour cela dériver l'équation (\ref{JE}) en notant que $J_U$ est constante. Autre possibilité~: remarquer que le salaire est un transfert entre la firme et l'employés, tous deux neutres au risque~: ce que gagne (perd) l'employé est perdu (gagné) par la firme, d'où $\frac{\partial J_{E}}{\partial w}= -\frac{\partial J_{V}}{\partial w}$. La maximisation conduit alors à~:
+\begin{eqnarray*}
+-\frac{\beta }{J_{F}}\frac{\partial J_{F}}{\partial w}=\frac{%
+1-\beta }{J_{E}-J_{U}}\frac{\partial J_{E}}{\partial w} \\
+\beta \left( J_{E}-J_{U}\right) =\left( 1-\beta \right) J_{F}
+\end{eqnarray*}
+
+\bigskip
+
+A l'\'{e}quilibre, d'apr\`{e}s la question 5), $\left( J_{E}-J_{U}\right) =%
+\frac{w-b}{r+s+h(\theta )}$ et $J_{F}=\frac{x-w}{r+s}$
+
+Or $h(\theta )=\theta q(\theta )=\theta \gamma (\frac{r+s}{x-w})$. On en déduit~:
+\begin{equation*}
+\beta \frac{w-b}{\left( r+s\right) (1+\frac{\theta \gamma }{x-w})}=\left(
+1-\beta \right) \frac{x-w}{r+s}
+\end{equation*}%
+\begin{eqnarray*}
+&\Leftrightarrow &\beta \left( w-b\right) =\left( 1-\beta \right) (x-w+\theta
+\gamma ) \\
+&\Leftrightarrow &w=\beta b+\left( 1-\beta \right) (x+\gamma \theta )
+\end{eqnarray*}
+
+\textbf{Equation de salaire:} $w$ augmente avec l'outside--option des
+travailleurs, leur productivit\'{e} et le co\^{u}t de recherche pour la
+firmes (si cela lui co\^{u}te bcp \`{a} chaque p\'{e}riode, elle augmente
+les salaires pour faciliter le \textquotedblleft match\textquotedblright . $%
+w $ augmente avec $\theta $ le ratio de places vacantes p.r. au nombre de ch\^{o}%
+meurs.
+}
+
+\textenitalique{Equilibre sur le march\'{e} du travail et statique comparative}
+
+\ques Repr\'{e}senter graphiquement la d\'{e}termination de $(\theta ,w)$ dans
+le plan $(\theta ,w)$.
+
+D\'{e}terminer comment $\theta $, $h$ et $u$ sont affect\'{e}s par :
+
+\begin{itemize}
+	\item une hausse de $b$,
+	\item une hausse de $\gamma $,
+	\item  une baisse de $s$.
+\end{itemize}
+
+\correction{
+(NB : si on veut \'{e}tudier l'impact d'allocations ch\^{o}mage plus g\'{e}n%
+\'{e}reuses, il faut non seulement regarder l'impact sur $u$ qui passe par $%
+b $ mais aussi l'impact qui passe par l'incitation \`{a} chercher un emploi
+qui serait captur\'{e} par un facteur d'efficacit\'{e} dans la fonction de
+matching).
+
+* une hausse de $\gamma $ d\'{e}place LD vers le bas, $\theta $\ diminue
+donc $h$ aussi et $u$ augmente.
+
+* une baisse de $s$ a un impact direct sur le ch\^{o}mage et un impact
+indirect via $h$.
+
+L'effet direct de $\Delta s<0$\ implique une baisse de $u$ (moins de
+destructions d'emploi).
+
+L'effet indirect implique une hausse de $h$ (la courbe LD se d\'{e}place
+vers le haut), donc renforce la baisse de $u$. Ce deuxi\`{e}me effet n'est
+pas tr\`{e}s robuste : si par exemple la diminution de $s$ est cons\'{e}%
+cutive \`{a} une augmentation des co\^{u}ts de licenciement, on s'attend 
+\`{a} ce que le hiring rate $h$\ diminue.
+}
+
+\section{Efficience des mod\`{e}les dynamiques de search: Condition
+d'Hosios}
+
+\medskip
+
+On cherche \`{a} d\'{e}terminer l'allocation optimale de l'emploi et \`{a}
+la comparer \`{a} l'\'{e}quilibre d\'{e}centralis\'{e}. Le planificateur
+cherche \`{a} maximiser la production sous la contrainte d'\'{e}volution de
+l'emploi.
+
+\medskip
+
+\ques Exprimer le surplus $\left( S\right) $ du planificateur \`{a} chaque p%
+\'{e}riode avec $u$ chomeurs et $v$ postes vacants.
+
+\correction{
+Le surplus est la somme des surplus de l'employé, du chômeur et de la firme.
+\begin{eqnarray*}
+S &=& w\,(1-u) + b\,u + (x-w)(1-u) - \gamma \,v \\
+ &=& b\,u + x\,(1-u) - \gamma\,v
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques Ecrire le programme du planificateur sous contrainte. Ecrire le
+Hamiltonien associ\'{e}. En d\'{e}duire les conditions du premier ordre.
+
+On introduira $\eta (\theta )=-\frac{\frac{dq}{d\theta }\theta }{q(\theta )}$
+(Indication: il est conseill\'{e} de prendre $\theta =\frac{v}{u}$ comme
+variable de contr\^{o}le plut\^{o}t que $v$).
+
+\correction{
+\begin{eqnarray*}
+&&\max_{u,v}\left\{ \int_{t}^{\infty }S(\tau )e^{-r\tau }d\tau \right\} \\
+s.c &:&\text{ }\dot{u}=s(1-u)-h(u,v)u
+\end{eqnarray*}
+
+\begin{equation*}
+H=x(1-u)+bu-\gamma v+\lambda \left[ s(1-u)-h(u,v)u\right]
+\end{equation*}
+
+Dans ce pb, $v$ est la variable de contr\^{o}le et $u$ est la variable d'\'{e}tat.
+
+On transforme le probl\`{e}me en $\left\{ u,\theta \right\} $:
+\begin{equation*}
+H=x(1-u)+bu-\gamma \theta u+\lambda \left[ s(1-u)-\theta q(\theta )u\right]
+\end{equation*}
+
+\bigskip
+
+Les CPO sont les suivantes (se reporter aux notes sur l'optimisation dynamique)~:%
+\begin{eqnarray*}
+\frac{\partial H}{\partial \theta } &=&0 \\
+\frac{\partial H}{\partial u} &=&r\lambda -\dot{\lambda }
+\end{eqnarray*}
+
+\begin{eqnarray*}
+-\gamma &=&\lambda \frac{d\theta q(\theta )}{d\theta }=\lambda \left( \theta 
+\frac{dq(\theta )}{d\theta }+q(\theta )\right) =\lambda q(\theta )(1-\eta
+(\theta )) \\
+-x+b-\gamma \theta &=&\left[ r+s+\theta q(\theta )\right] \lambda -\dot{\lambda }
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques Montrer qu'\`{a} l'\'{e}quilibre stationnaire on a:
+
+\begin{equation*}
+(1-\eta (\theta ))(x-b)-\gamma \frac{\left[ r+s+\eta (\theta )\theta
+q(\theta )\right] }{q(\theta )}=0
+\end{equation*}
+
+\correction{
+A l'\'{e}quilibre stationnaire, $\dot{\lambda }=0$ donc:
+
+\begin{equation*}
+\lambda =\frac{-\gamma }{q(\theta )(1-\eta (\theta ))}
+\end{equation*}
+
+\begin{eqnarray*}
+x-b+\gamma \theta -\left[ r+s+\theta q(\theta )\right] \frac{\gamma }{%
+q(\theta )(1-\eta (\theta ))} &=&0 \\
+(1-\eta (\theta )(x-b)-\gamma \frac{\left[ r+s+\theta q(\theta )\right]
+-\theta q(\theta )(1-\eta (\theta ))}{q(\theta )} &=&0 \\
+(1-\eta (\theta )(x-b)-\gamma \frac{r+s+\eta (\theta )\theta q(\theta)}{q(\theta )} &=&0
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques En utilisant les questions 4) et 6), montrer que dans le cas de l'\'{e}%
+quilibre d\'{e}centralis\'{e}, on a la relation suivante:
+
+\correction{
+\begin{equation*}
+\beta (x-b)-\gamma \frac{\left[ r+s+\left( 1-\beta \right) \theta q(\theta )%
+\right] }{q(\theta )}=0
+\end{equation*}
+
+On a dans le cadre de l'\'{e}quilibre d\'{e}centralis\'{e}: $w=\beta
+b+(1-\beta )(x+\gamma \theta )$ et $\frac{\gamma \left( r+s\right) }{%
+q(\theta )}=x-w$
+
+\begin{eqnarray*}
+\beta \left( x-b\right) -\left( 1-\beta \right) \gamma \theta -\frac{\gamma
+\left( r+s\right) }{q(\theta )} &=&0 \\
+\beta \left( x-b\right) -\gamma \frac{\left( r+s\right) -\left( 1-\beta
+\right) \theta q(\theta )}{q(\theta )} &=&0
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques En d\'{e}duire \`{a} quelle condition l'\'{e}quilibre d\'{e}centralis%
+\'{e} est efficient. C'est la {\bf Condition d'Hosios}. Comment s'\'{e}crit cette condition
+lorsque la fonction de matching est Cobb--Douglas. Commenter.
+
+\correction{
+\begin{equation*}
+1-\beta =\eta (\theta )
+\end{equation*}
+
+Si fonction de matching Cobb-Douglas:
+
+\begin{equation*}
+1-\beta =\alpha
+\end{equation*}
+
+L'\'{e}quilibre d\'{e}centralis\'{e} est efficient lorsque le pouvoir de n%
+\'{e}gociation des travailleurs $\left( 1-\beta \right) $ est \'{e}gal \`{a}
+l'\'{e}lasticit\'{e} de la fonction de matching. Pourquoi? Travailleurs et
+entreprises g\'{e}n\`{e}rent des externalit\'{e}s de congestion: lorsque $%
+\eta (\theta )$ est \'{e}lev\'{e}, les entreprises g\'{e}n\`{e}rent des
+externalit\'{e}s n\'{e}gatives importantes sur le processus de matching.
+Ainsi, le planificateur veut limiter l'entr\'{e}e de firmes: une fa\c{c}on
+d'impl\'{e}menter l'optimum est de donner beaucoup de pouvoir de n\'{e}%
+gociations aux travailleurs. L'\'{e}quilibre de laissez-faire, peut g\'{e}n%
+\'{e}rer un niveau trop \'{e}lev\'{e} de ch\^{o}mage (lorsque $1-\beta >\eta
+(\theta )$): les travailleurs ont trop de poids dans la n\'{e}gociation, les
+salaires sont trop \'{e}lev\'{e}s et le niveau de cr\'{e}ation d'emploi est
+trop faible. L'oppos\'{e} advient lorsque $1-\beta <\eta (\theta )$: il y a
+un niveau inefficace d'emploi (trop peu de ch\^{o}mage!) dans cette \'{e}%
+conomie et les salaires sont trop faibles.
+}
+
+\end{document}

@@ -1,0 +1,871 @@
+
+\documentclass[a4paper]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, January 17, 2006 15:15:16}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\input{tcilatex}
+
+\begin{document}
+
+
+{\small Nicolas Coeurdacier}
+
+{\small nicolas.coeurdacier@pse.ens.fr}
+
+{\small Cours de Macro\'{e}conomie 3 (Prof. D.\ Cohen)}
+
+\begin{center}
+TD 8- El\'{e}ments de correction
+
+\textbf{Dette Externe}
+
+\bigskip
+\end{center}
+
+D'apr\`{e}s:
+
+J.\ Tirole, \textquotedblleft Inefficient Foreign Borrowing: A Dual- and
+Common-Agency Perspective\textquotedblright , \textit{American Economic
+Review}, 2004\footnote{%
+http://www.banque-france.fr/gb/fondatio/telechar/papers\_d/inefficient%
+\_foreign\_b.pdf}
+
+Eaton et Fernandez, "Sovereign Debt", 1995.
+
+\section{Inefficient Foreign Borrowing}
+
+\bigskip
+
+\textbf{Set-up du mod\`{e}le}
+
+On consid\`{e}re une petite \'{e}conomie ouverte peupl\'{e}e d'un large
+nombre d'entrepreneurs neutres au risque tous identiques. Il existe un bien
+unique parfaitement \'{e}changeable (num\'{e}raire).
+
+\bigskip
+
+\textit{Timing du mod\`{e}le}
+
+\bigskip
+
+Le timing du mod\`{e}le est divis\'{e} en trois dates:
+
+\begin{itemize}
+\item Date 0: L'entrepreneur repr\'{e}sentatif dispose d'une richesse
+initiale $A$ et emprunte une quantit\'{e} $I_{f}$ sur les march\'{e}s
+internationaux (\`{a} des investisseurs \'{e}trangers) pour r\'{e}aliser un
+projet. La taille du projet est donc: $I=A+I_{f}$. Le march\'{e} du capital
+est parfaitement comp\'{e}titif et les investisseurs \'{e}trangers sont
+neutres au risque. Le taux d'int\'{e}r\^{e}t mondial est normalis\'{e} \`{a}
+z\'{e}ro (aucun des r\'{e}sultats ne d\'{e}pend de cette hypoth\`{e}se). En
+cons\'{e}quence, les entrepreneurs domestiques empruntent autant qu'ils
+veulent d\`{e}s lors que les investisseurs \'{e}trangers esp\`{e}rent r\'{e}%
+cup\'{e}rer en p\'{e}riode 2 (au moins) la quantit\'{e} pr\^{e}t\'{e}e.
+
+\item Date 1: Le gouvernement du pays choisit une action $\tau \in
+T\subseteq \lbrack 0,1]$ o\`{u} $T$ d\'{e}signe l'ensemble des actions
+possibles du gouvernement. L'action $\tau $ choisie par le gouvernement
+augmente la probabilit\'{e} de succ\`{e}s du projet en p\'{e}riode 2 mais co%
+\^{u}te $\gamma (\tau )$ aux r\'{e}sidents domestiques par unit\'{e}
+d'investissement (co\^{u}t pay\'{e} par les r\'{e}sidents comme une lump-sum
+tax). $\gamma (\tau )$ est strictement convexe et croissante en $\tau $.
+Interpr\'{e}ter $\tau $ comme la construction d'infrastructures \`{a}
+financer en taxant les r\'{e}sidents domestiques (toute action publique qui
+augmente le rendement du capital au d\'{e}triment des insiders). L'action
+choisit par le gouvernement est telle qu'elle maximise le bien-\^{e}tre des
+entrepreneurs domestiques \textit{ex-post.}
+
+\item Date 2: La production \`{a} partir de l'investissement en p\'{e}riode $%
+0$ est r\'{e}alis\'{e}e. Si l'entrepreneur fournit un effort, avec une
+probabilit\'{e} $(p+\tau )$, le projet de taille $I$ r\'{e}ussit et rapporte 
+$RI$ , dans le cas contraire le projet \'{e}choue et rapporte $0$. Si
+l'entrepreneur ne fournit aucun effort (\textquotedblleft
+shirking\textquotedblright ), le projet reussit avec probabilit\'{e} $\tau $
+et l'entrepreneur touche $BI$ comme b\'{e}n\'{e}fices priv\'{e}s. En cas de
+succ\`{e}s, les entrepreneurs domestiques remboursent leur dette en
+distribuant $rI$ aux investisseurs externes et gardent $\left( R-r\right) I$.
+
+$r$ est d\'{e}termin\'{e} de mani\`{e}re endog\`{e}ne du fait de l'al\'{e}a
+moral.
+\end{itemize}
+
+\bigskip
+
+\textbf{A. Entrepreneurs}
+
+\bigskip
+
+1) A quelle condition sur $r$, l'entrepreneur fournit un effort?
+
+\begin{eqnarray*}
+(p+\tau )\left( R-r\right) I &\geq &BI+\tau \left( R-r\right) I \\
+p\left( R-r\right) &\geq &B \\
+r &\leq &R-\frac{B}{p}
+\end{eqnarray*}
+
+\bigskip
+
+2) Ecrire le le pay-off $\left( S_{f}\right) $ esp\'{e}r\'{e} par les
+investisseurs \'{e}trangers en p\'{e}riode $0$. En d\'{e}duire la taille
+maximale $\left( I\right) $ d'un investissement \`{a} $\left( p,\tau
+,A,r\right) $ donn\'{e}s.%
+\begin{equation*}
+S_{f}=(p+\tau )rI-I_{f}
+\end{equation*}
+
+$S_{f}\geq 0$ (condition de z\'{e}ro-profit) donc:%
+\begin{eqnarray*}
+(p+\tau )rI &\geq &I-A \\
+I &\leq &\frac{A}{1-(p+\tau )r}
+\end{eqnarray*}
+
+\bigskip
+
+On supposera\footnote{%
+Ces hypoth\`{e}ses assurent que l'entrepreneur soit plus productif que le
+march\'{e} (quand il fait un effort) mais qu'il ne d\'{e}sire par faire un
+projet de taille infinie (autrement dit qu'il soit contraint sur le march%
+\'{e} du cr\'{e}dit du fait de l'al\'{e}a moral).}: $0<R-\frac{B}{p}<\frac{1%
+}{p+\tau }$ et $R>\frac{1}{p+\tau }$
+
+\bigskip
+
+3) Ecrire le programme de maximisation de l'entrepreneur (ignorant le
+lump-sum cost de l'action $\tau $) sous contrainte d'incitation et de
+participation des investisseurs \'{e}trangers (\`{a} politique du
+gouvernement donn\'{e}e). En d\'{e}duire la taille de l'investissement et $r$
+\`{a} l'\'{e}quilibre.\ Commenter.
+
+\begin{eqnarray*}
+&&\max_{\{I,r\}}\left[ (p+\tau )\left( R-r\right) I\right] \\
+s.c &:&R-\frac{B}{p}\geq r \\
+et &:&(p+\tau )rI\geq I-A
+\end{eqnarray*}
+
+On note $\left( \lambda _{1},\lambda _{2}\right) $ les multiplicateurs de
+Lagrange associ\'{e}s
+
+CPO:%
+\begin{eqnarray*}
+\left[ (p+\tau )\left( R-r\right) -\gamma \right] +\lambda _{2}((p+\tau
+)r-1) &=&0 \\
+\left( \lambda _{2}-1\right) (p+\tau )I &=&\lambda _{1}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\lambda _{2} &=&\frac{(p+\tau )\left( R-r\right) }{1-(p+\tau )r}=1+\frac{%
+(p+\tau )R-1}{1-(p+\tau )r} \\
+\lambda _{1} &=&\left( \lambda _{2}-1\right) (p+\tau )I
+\end{eqnarray*}
+
+Du fait des restriction sur les param\`{e}tres $\lambda _{2}>1$ et $\lambda
+_{1}>0$ donc les deux contraintes sont satur\'{e}es.%
+\begin{eqnarray*}
+I &=&\frac{A}{1-(p+\tau )r} \\
+r &=&R-\frac{B}{p}
+\end{eqnarray*}
+
+L'entrepreneur fait mieux que le march\'{e} (en esp\'{e}rance d\`{e}s lors
+qu'il fait un effort): il est donc incit\'{e} \`{a} faire le projet le plus
+grand possible. Afin d'augmenter la taille de son projet il donne \`{a} \
+l'investisseur ext\'{e}rieur la part la + importante possible du surplus (%
+\`{a} condition qu'il soit toujours incit\'{e} \`{a} faire une effort).\
+Plus l'al\'{e}a moral est important ($B\uparrow $), plus il doit conserver
+une part importante du surplus $(r\downarrow )$ et donc plus le projet est
+petit $(I\downarrow )$. Par ailleurs, plus il a de richesse initiale, plus
+le projet qu'il peut lancer est important et la taille du projet augmente +
+que proportionnellement avec sa richesse. Cela r\'{e}sulte de l'al\'{e}a
+moral: sa richesse fait office de collateral et lui permet d'accro\^{\i}tre
+la taille de son projet.
+
+\bigskip
+
+\textbf{B.\ Gouvernement}
+
+\bigskip
+
+\textit{Commitment policy}: Supposons tout d'abord que le gouvernement peut
+s'engager en p\'{e}riode 0 (avant que le projet soit lanc\'{e}) \`{a} mettre
+en oeuvre en p\'{e}riode 1 la politique $\tau ^{com}$ qui maximise le bien-%
+\^{e}tre global (entrepreneurs domestiques et investisseurs \'{e}trangers).
+
+\bigskip
+
+4) Ecrire la fonction objectif du gouvernement.dans ce cas. En d\'{e}duire l'%
+\'{e}quation qui r\'{e}git l'action choisie par le gouvernement. Pourquoi
+cette politique n'est pas coh\'{e}rente temporellement? Quelle est la
+politique men\'{e}e une fois que le capital \'{e}tranger est en place (not%
+\'{e}e $\tau ^{\ast }$)?%
+\begin{eqnarray*}
+&&\max_{\tau }\left[ (p+\tau )R-(1+\gamma (\tau ))\right] I(\tau ) \\
+\text{avec}\text{: } &&I(\tau )=\frac{A}{1-(p+\tau )r}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+RI(\tau ^{com})+(p+\tau ^{com})R\frac{\partial I}{\partial a} &=&\gamma
+^{/}(\tau ^{com})I(\tau ^{com})+\left( 1+\gamma (\tau ^{com})\right) \frac{%
+\partial I}{\partial \tau } \\
+\gamma ^{/}(\tau ^{com}) &=&R+\left[ (p+\tau ^{com})R-(1+\gamma (\tau
+^{com}))\right] \frac{\frac{\partial I}{\partial \tau }}{I(\tau ^{com})}
+\end{eqnarray*}
+
+or $\frac{\partial I}{\partial \tau }=\frac{rA}{\left( 1-(p+\tau )r\right)
+^{2}}=\frac{r}{\left( 1-(p+\tau )r\right) }I(\tau )$%
+\begin{equation*}
+\gamma ^{/}(\tau ^{com})=R+\left[ (p+\tau ^{com})R-\left( 1+\gamma (\tau
+^{com})\right) \right] \frac{r}{1-(p+\tau ^{com})r}>R
+\end{equation*}
+
+Ex-ante, le gouvernement \`{a} int\'{e}r\^{e}t \`{a} mettre en place un
+politique \textquotedblleft investor-friendly\textquotedblright\ pour
+attirer le maximum de capital \'{e}tranger mais une fois que le capital est
+en place, comme le gouvernement ne valorise pas le bien-\^{e}tre des \'{e}%
+trangers, il met en place une politique diff\'{e}rente: incoh\'{e}rence
+temporelle.
+
+En effet, \textit{ex-post}, l'investissement $(I)$ est r\'{e}alis\'{e} et le
+programme du gouvernement est:%
+\begin{equation*}
+\max_{\tau }\left[ (p+\tau )\left( R-r\right) -\left( 1+\gamma (\tau
+)\right) \right] I
+\end{equation*}
+
+et la CPO est:%
+\begin{eqnarray*}
+\left( R-r\right)  &=&\gamma ^{/}(\tau ^{\ast })<R<\gamma ^{/}(\tau ^{com})
+\\
+\gamma ^{/}(\tau ^{com})-\gamma ^{/}(\tau ^{\ast }) &=&r\left( 1+\frac{%
+(p+\tau ^{com})R-\left( 1+\gamma (\tau ^{com})\right) }{1-(p+\tau ^{com})r}%
+\right) >0
+\end{eqnarray*}
+
+donc: $\tau ^{\ast }<\tau ^{com}$. L'al\'{e}a moral du gouvernement le
+pousse ex-post \`{a} mener une politique moins "investor-friendly" et \`{a}
+"exproprier les investisseurs \'{e}trangers\textquotedblright\ au b\'{e}n%
+\'{e}fices des entrepreneurs nationaux. Anticipant cela, les investisseurs 
+\'{e}trangers pr\^{e}tent moins, et les possibilit\'{e}s d'endettement du
+pays sont r\'{e}duites.
+
+\bigskip
+
+5) En d\'{e}duire la taille des projets $(I^{\ast })$ si les investisseurs 
+\'{e}trangers anticipent que l'engagement du gouvernement \textit{ex-ante}
+n'est pas cr\'{e}dible.%
+\begin{eqnarray*}
+I^{\ast } &=&I(\tau ^{\ast })=\frac{A}{1-(p+\tau ^{\ast })r}<I(\tau ^{com})
+\\
+\text{avec}\text{: } &&\gamma ^{/}(\tau ^{\ast })=R-r
+\end{eqnarray*}
+
+\bigskip
+
+\textbf{C.\ Applications et extensions}
+
+\bigskip
+
+\textbf{Investissement domestique}
+
+\bigskip
+
+On suppose que le projet peut \^{e}tre financ\'{e} par de l'\'{e}pargne
+domestique not\'{e}e $\left( I_{d}\right) $ (et toujours des investisseurs 
+\'{e}trangers, $I_{f}$). On consid\`{e}re $I_{d}$ fixe. Les investisseurs
+domestiques sont aussi neutres au risque et disposent de la m\^{e}me
+technologie de stockage que les \'{e}trangers (qui leur permet de placer au
+taux $0$).
+
+\bigskip
+
+6) Quelle est la part du surplus vers\'{e}e aux investisseurs domestiques et 
+\'{e}trangers?
+
+\bigskip
+
+La part du surplus vers\'{e}e aux investisseurs externes est toujours en cas
+de succ\`{e}s $\left( rI\right) $.
+
+Donc en esp\'{e}rance, le surplus vers\'{e} aux investisseurs externes est:$%
+(p+\tau )rI$
+
+Il est partag\'{e}e entre investisseurs domestiques:%
+\begin{equation*}
+V_{d}=\frac{I_{d}}{I_{d}+I_{f}}(p+\tau )rI
+\end{equation*}
+
+et \'{e}trangers:%
+\begin{equation*}
+V_{f}=\frac{I_{f}}{I_{d}+I_{f}}(p+\tau )rI
+\end{equation*}
+
+7) Ecrire l'objectif du gouvernement en p\'{e}riode (1) (sachant que le bien-%
+\^{e}tre des investisseurs domestiques entre dans sa fonction objectif).
+
+En d\'{e}duire la poltique $\tau ^{\ast \ast }$ coh\'{e}rente temporellement
+choisie par le gouvernement. Commenter. Quel est l'impact de l'\'{e}pargne
+domestique sur la quantit\'{e} pr\^{e}t\'{e}e par les investisseurs \'{e}%
+trangers?
+
+\bigskip
+
+\textit{Ex-post}, le programme du gouvernement est (o\`{u} $I$ est pris
+comme donn\'{e} du point de vue de l'Etat du fait de l'incoh\'{e}rence
+temporelle):%
+\begin{eqnarray*}
+&&\max_{\tau }\left[ (p+\tau )\left( R-r\right) +(p+\tau )r\frac{I_{d}}{%
+I_{d}+I_{f}}-\left( 1+\gamma (\tau )\right) \right] I \\
+\gamma ^{/}(\tau ^{\ast \ast }) &=&R-r+r\frac{I_{d}}{I_{d}+I_{f}}>\gamma
+^{/}(\tau ^{\ast }) \\
+\tau ^{\ast \ast } &>&\tau ^{\ast }
+\end{eqnarray*}
+
+La pr\'{e}sence d'\'{e}pargne domestique \textquotedblleft
+discipline\textquotedblright\ l'Etat qui est moins incit\'{e} \`{a}
+exproprier les investisseurs externes en deuxi\`{e}me p\'{e}riode. Cela
+augmente la taille des investissements.
+
+L'\'{e}pargne domestique a un effet ambigu sur la quantit\'{e}
+d'investissement \'{e}tranger. En effet, lorsque l'\'{e}pargne domestique
+augmente, il y a moins besoin de financements \'{e}trangers mais comme la
+part des domestiques dans le projet augmente $(\frac{I_{d}}{I_{d}+I_{f}}%
+\uparrow )$, l'Etat est amen\'{e} \`{a} adopter une politique plus
+\textquotedblleft investor-friendly\textquotedblright\ $(\tau ^{\ast \ast
+}\uparrow )$ et l'entrepreneur peut emprunter + sur les march\'{e}s
+internationaux. Eventuellement ce deuxi\`{e}me effet peut dominer. Ainsi une
+politique visant \`{a} stimuler l'\'{e}pargne domestique (vers des
+entreprises domestiques) peut accro\^{\i}tre les flux de capitaux \'{e}%
+trangers vers le pays.%
+\begin{eqnarray*}
+I_{f}^{\ast \ast }+I_{d} &=&I(\tau ^{\ast \ast })-A=\frac{(p+\tau ^{\ast
+\ast })rA}{1-(p+\tau ^{\ast \ast })r} \\
+I_{f}^{\ast \ast } &=&\frac{(p+\tau ^{\ast \ast })rA}{1-(p+\tau ^{\ast \ast
+})r}-I_{d} \\
+\frac{\partial I_{f}^{\ast \ast }}{\partial I_{d}} &=&\frac{\partial \tau
+^{\ast \ast }}{\partial I_{d}}\frac{rA}{\left( 1-(p+\tau ^{\ast \ast
+})r\right) ^{2}}-1 \\
+&=&\underbrace{\frac{\partial \tau ^{\ast \ast }}{\partial I_{d}}\frac{rI}{%
+1-(p+\tau ^{\ast \ast })r}}-\underbrace{1} \\
+&&\text{Effet Discipline (+)\ \ \ Crowding out(-)}
+\end{eqnarray*}
+
+\textbf{Short-term vs Long-term Debt Composition}
+
+\bigskip
+
+On suppose \`{a} nouveau que $I_{d}=0.$
+
+On suppose qu'il existe une \'{e}tape interm\'{e}diaire par rapport au
+set-up pr\'{e}c\'{e}dent o\`{u} les firmes ont des revenus interm\'{e}%
+diaires (et doivent faire face \`{a} un choc de liquidit\'{e}). Cette \'{e}%
+tape interm\'{e}diaire ajoute une dimension au mode de financement des
+firmes.\ Elles peuvent s'endetter \`{a} court-terme (quantit\'{e} $dI)$: une
+partie de leur dette sera donc rembours\'{e}e \`{a} cette \'{e}tape interm%
+\'{e}diaire. Le nouveau timing du mod\`{e}le est tel que pr\'{e}sent\'{e} 
+\`{a} la figure 1.\FRAME{ftbpFU}{5.5858in}{3.1695in}{0pt}{\Qcb{Timing du mod%
+\`{e}le en pr\'{e}sence de chocs de liquidit\'{e} et de dette \`{a}
+court-terme.}}{}{Figure}{\special{language "Scientific Word";type
+"GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
+5.5858in;height 3.1695in;depth 0pt;original-width 6.9479in;original-height
+3.9271in;cropleft "0";croptop "1";cropright "1";cropbottom "0";tempfilename
+'IQBJQI00.bmp';tempfile-properties "XPR";}}
+
+\bigskip
+
+Le nouvel ingr\'{e}dient est le management des liquidit\'{e}s en p\'{e}riode
+1. La firme re\c{c}oit le niveau de revenus (d\'{e}terministe) $(sI)$ \`{a}
+partir duquel elle paie sa dette \`{a} court-terme $(dI)$ ($sI\geq dI$).
+Elle doit faire face au choc de liquidit\'{e} qui lui co\^{u}te $(\rho I)$.
+Le choc de liquidit\'{e} est stochastique et suit une loi uniforme sur $%
+\left[ 0,\overline{\rho }\right] $. Si l'entreprise ne peut faire face \`{a}
+ce choc de liquidit\'{e}, le projet est abandonn\'{e} et rien n'est produit
+en p\'{e}riode 2 (liquidation). On note $\rho ^{\ast }<\overline{\rho }$ le
+seuil au del\`{a} duquel l'entreprise ne peut faire face \`{a} son choc de
+liquidit\'{e} ($\rho ^{\ast }$ sera d\'{e}termin\'{e} \`{a} l'\'{e}%
+quilibre). Noter que l'entrepreneur, une fois le choc de liquidit\'{e} observ%
+\'{e}, peut demander des \textquotedblleft fonds neufs\textquotedblright\
+pour se refinancer plut\^{o}t que de liquider l'entreprise (si bien qu'\`{a}
+l'\'{e}quilibre, on peut avoir $\rho ^{\ast }>s-d^{\ast }$). Si $\rho >\rho
+^{\ast }$, l'entreprise est liquid\'{e}e et les revenus de p\'{e}riode 1
+sont vers\'{e}s au cr\'{e}anciers.
+
+\bigskip
+
+On admet que le contrat optimal sp\'{e}cifie les termes suivants $(\rho
+^{\ast },I)$:
+
+- l'entrepreneur emprunte $(I-A)$ en p\'{e}riode $0$
+
+- l'entrepreneur donne $(sI)$ en premi\`{e}re p\'{e}riode \`{a}
+l'investisseur. En \'{e}change, l'investisseur finance tout choc de liquidit%
+\'{e} tel que $\rho \leq \rho ^{\ast }$.
+
+- en cas de continutation ($\rho \leq \rho ^{\ast }$), l'entrepreneur touche 
+$(R-r)I$ et l'investisseur $rI$.
+
+\bigskip
+
+Ce contrat optimal sera mis en oeuvre par l'\'{e}mission de dette \`{a}
+court-terme.
+
+On suppose toujours que $r$ peut \^{e}tre pris comme fixe du fait de l'al%
+\'{e}a moral (\'{e}gal \`{a} $R-\frac{B}{p}$).\ On supposera que les param%
+\`{e}tres sont tels que $\rho ^{\ast }<\overline{\rho }$.
+
+\bigskip
+
+8) Ecrire l'esp\'{e}rance du surplus d\'{e}gag\'{e} $(S)$ par l'entrepreneur
+domestique en p\'{e}riode 2 en fonction de $(\rho ^{\ast },I)$. A quelle
+condition les investisseurs \'{e}trangers acceptent le contrat de
+financement propos\'{e}?
+
+\bigskip \pagebreak
+
+L'entrepreneur r\'{e}cup\`{e}re toute la NPV du projet. Le surplus d\'{e}gag%
+\'{e} $(S)$ est (ignorant le lump-sum cost de l'action $\tau $).%
+\begin{eqnarray*}
+S\left( \rho ^{\ast },I\right) &=&\underset{\text{{\small proba de\
+continuation}}}{\underbrace{\frac{\rho ^{\ast }}{\overline{\rho }}}}(p+\tau
+)RI+sI-(I+\underset{\text{{\small paiements des chocs}}}{\underbrace{%
+\int_{0}^{\rho ^{\ast }}\frac{\rho }{\overline{\rho }}d\rho }}) \\
+&=&sI-\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}I+\frac{\rho
+^{\ast }}{\overline{\rho }}(p+\tau )RI-I
+\end{eqnarray*}
+
+Break-even constraint pour les investisseurs \'{e}trangers (sur les deux p%
+\'{e}riodes):%
+\begin{equation*}
+sI-\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}I+\frac{\rho
+^{\ast }}{\overline{\rho }}(p+\tau )rI=I_{f}=I-A
+\end{equation*}
+
+Noter que le terme de gauche \'{e}quivaut \`{a}
+
+$\underset{\text{{\small refinancement}}}{\underbrace{\int_{0}^{\rho ^{\ast
+}}\left[ (s-\rho )I+(p+\tau )rI\right] \frac{d\rho }{\overline{\rho }}}}+%
+\underset{\text{{\small liquidation}}}{\underbrace{\int_{\rho ^{\ast }}^{%
+\overline{\rho }}sI\frac{d\rho }{\overline{\rho }}}}$
+
+donc:%
+\begin{equation*}
+I=\frac{A}{1-s+\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}-%
+\frac{\rho ^{\ast }}{\overline{\rho }}(p+\tau )r}
+\end{equation*}
+
+\bigskip
+
+9) En d\'{e}duire le contrat de financement $(\rho ^{\ast },I^{\ast })$
+optimal propos\'{e} par l'entrepreneur.
+
+En pluggant la contrainte sur $I$ dans la fonction objectif , on obtient:%
+\begin{equation*}
+S\left( \rho ^{\ast }\right) =\left[ s+\frac{\rho ^{\ast }}{\overline{\rho }}%
+(p+\tau )R-1-\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}%
+\right] \frac{A}{1-s+\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho 
+}}-\frac{\rho ^{\ast }}{\overline{\rho }}(p+\tau )r}
+\end{equation*}
+
+On a donc le programme suivant en $\rho ^{\ast }$%
+\begin{equation*}
+\max_{\left\{ \rho ^{\ast }\right\} }S\left( \rho ^{\ast }\right)
+=\max_{\left\{ \rho ^{\ast }\right\} }\frac{s+\frac{\rho ^{\ast }}{\overline{%
+\rho }}(p+\tau )R-1-\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }%
+}}{1-s+\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}-\frac{\rho
+^{\ast }}{\overline{\rho }}(p+\tau )r}A
+\end{equation*}
+
+CPO: $\frac{\partial S}{\partial \rho ^{\ast }}=0$%
+\begin{equation*}
+0=\left[ (p+\tau )R-\rho ^{\ast }\right] \left( 1-s+\frac{\left( \rho ^{\ast
+}\right) ^{2}}{2\overline{\rho }}-\frac{\rho ^{\ast }}{\overline{\rho }}%
+(p+\tau )r\right) -\left[ \rho ^{\ast }-(p+\tau )r\right] \left( s+\frac{%
+\rho ^{\ast }}{\overline{\rho }}(p+\tau )R-1-\frac{\left( \rho ^{\ast
+}\right) ^{2}}{2\overline{\rho }}\right)
+\end{equation*}
+
+En r\'{e}arrangeant les termes, on obtient:%
+\begin{eqnarray*}
+\frac{\left( \rho ^{\ast }\right) ^{2}}{\overline{\rho }}(p+\tau )\left(
+R-r\right) &=&\left[ (p+\tau )\left( R-r\right) \right] \left( 1-s+\frac{%
+\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }}\right) \\
+\frac{\left( \rho ^{\ast }\right) ^{2}}{\overline{\rho }} &=&1-s+\frac{%
+\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }} \\
+\frac{\left( \rho ^{\ast }\right) ^{2}}{2\overline{\rho }} &=&1-s
+\end{eqnarray*}
+
+\bigskip
+
+\textit{Optimal debt-maturity management.}
+
+\bigskip
+
+Nous cherchons \`{a} savoir comment ce contrat $\left( \rho ^{\ast
+},I\right) $ peut \^{e}tre simplement mis en place avec de la dette \`{a}
+court-terme $(d^{\ast })$. En effet, il faut que lorsque $\rho >\rho ^{\ast
+} $, l'entreprise soit effectivement liquid\'{e}e. Pour ce faire, il suffit
+que l'entrepreneur ait une certaine somme \`{a} payer en p\'{e}riode 1
+(dette \`{a} CT).
+
+\bigskip
+
+10) Pourquoi en absence de dette \`{a} court-terme, le contrat optimal d\'{e}%
+cid\'{e} \textit{ex-ante} en p\'{e}riode $0$ n'est pas n\'{e}cessairement
+mis en place \textit{ex-post }une fois le choc de liquidit\'{e} observ\'{e}.
+
+A quelle condition sur $d^{\ast }$, l'entrepreneur est-il refinanc\'{e}
+lorsque $\rho \leq \rho ^{\ast }$? En d\'{e}duire la structure de la dette $%
+(d^{\ast })$.
+
+\bigskip
+
+Si le contrat sign\'{e} \`{a} la forme $(\rho ^{\ast },I)$, une fois en p%
+\'{e}riode $1$, pour un choc de liquidit\'{e} $\rho >\rho ^{\ast }$,
+l'entrepreneur peut toujours aller voir un investisseur et continuer quand m%
+\^{e}me le projet tant que $(p+\tau )r>\rho -s$ (tant que $\rho <s+(p+\tau
+)r $). Le projet peut-\^{e}tre alors continu\'{e}. Le seuil au-del\`{a}
+duquel le projet est continu\'{e} est sup\'{e}rieur \`{a} $\rho ^{\ast }$.
+
+Le contrat optimal $\left( \rho ^{\ast },I\right) $ est rendu possible par
+un niveau de dette \`{a} court-terme tel que:%
+\begin{equation*}
+s-d^{\ast }+(p+\tau )r=\rho ^{\ast }
+\end{equation*}
+
+En effet, en p\'{e}riode 1, les investisseurs accepteront de financer le
+manque de liquidit\'{e}s en r\'{e}investissant du capital (lorsque $\rho
+^{\ast }>\rho >s-d^{\ast }$), si et seulement si ils r\'{e}cup\`{e}rent (en
+esp\'{e}rance) au moins cette nouvelle quantit\'{e} investie en p\'{e}riode
+2 (en effet, si ils ne refinancent pas, comme le projet est abandonn\'{e},
+ils n'obtiennent rien de toutes les fa\c{c}ons!).
+
+Donc si ils acceptent de refinancer, ils r\'{e}cup\`{e}rent $(p+\tau
+)rI+\left( s-d^{\ast }\right) I$.\ Le co\^{u}t du refinancement est: $\rho I$%
+. Ils refinancent tant que $(p+\tau )rI>\left[ \rho +d^{\ast }-s^{\ast }%
+\right] I$. Dans le pire cas (niveau limite pour lequel le projet est continu%
+\'{e}), $\rho =\rho ^{\ast }$ et $\left[ \rho ^{\ast }+d^{\ast }-s^{\ast }%
+\right] =(p+\tau )rI$
+
+On a donc le contrat optimal est inpml\'{e}ment\'{e} avec un contrat de
+financement qui a la forme suivante:%
+\begin{eqnarray*}
+d^{\ast } &=&s-\rho ^{\ast }+(p+\tau )r \\
+&=&s-\sqrt{2\overline{\rho }\left( 1-s\right) }+(p+\tau )r \\
+I^{\ast } &=&\frac{A}{1-s-\frac{\sqrt{2\overline{\rho }\left( 1-s\right) }}{%
+\overline{\rho }}(p+\tau )r}
+\end{eqnarray*}
+
+Plus $s$ est \'{e}lev\'{e}, plus il y a de firmes liquid\'{e}es en p\'{e}%
+riode 1 ($\frac{\partial \rho ^{\ast }}{\partial s}<0)$: cela peut para\^{\i}%
+tre contre-intuitif mais lorsque $s$ est \'{e}lev\'{e}, les entrepreneurs
+ont + recours \`{a} de la dette \`{a} CT (pour mener des projets de taille +
+importante), ce qui les fragilise en p\'{e}riode 1 et augmente les
+liquidations.
+
+Enfin, noter que le niveau de dette \`{a} CT est d'autant + important que
+l'Etat adopte une politique accommodante \`{a} l'\'{e}gard des investisseurs 
+\'{e}trangers ($\uparrow \tau $) (en rendant plus facile le refinancement).
+Noter aussi (comme pr\'{e}c\'{e}demment) qu'une hausse de $\tau $ augmente
+la taille des projets.
+
+\bigskip \pagebreak
+
+\textit{Gouvernement}
+
+\bigskip
+
+11) Quelle est la part des entreprises qui ne sont pas liquid\'{e}es en p%
+\'{e}riode 1 en fonction de $\tau $ et $d^{\ast }$? Quelle est la politique
+du gouvernement en p\'{e}riode 1 (on supposera que le co\^{u}t $\gamma (\tau
+)$ est support\'{e}e par les entreprises non liquid\'{e}es). Commenter.\ En
+particulier, quel est l'impact d'un niveau \'{e}lev\'{e} de dette \`{a}
+court-terme contract\'{e}e par les firmes sur la politique choisie par le
+gouvernement?
+
+\bigskip
+
+La part d'entreprises non-liquid\'{e}es est:%
+\begin{equation*}
+\frac{\rho ^{\ast }(\tau )}{\overline{\rho }}=\frac{s-d^{\ast }+(p+\tau )r}{%
+\overline{\rho }}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial \rho ^{\ast }}{\partial d^{\ast }}<0\text{ et }\frac{\partial
+\rho ^{\ast }}{\partial \tau }>0
+\end{equation*}
+
+Plus le gouvernement adopte un politique \textquotedblleft
+investor-friendly\textquotedblright , plus la part des entreprises refinanc%
+\'{e}es augmente.
+
+Plus le niveau de dette \`{a} court-terme est \'{e}lev\'{e}e, moins il y a
+d'entreprises en mesure de faire face au choc de liquidit\'{e}s.
+
+Le gouvernement maximise le welfare ex-post:%
+\begin{equation*}
+\max_{\{\tau \}}\left[ \frac{\rho ^{\ast }(\tau )}{\overline{\rho }}\left(
+(p+\tau )\left( R-r\right) -\gamma (\tau )\right) \right] I
+\end{equation*}
+
+CPO:%
+\begin{eqnarray*}
+\frac{\rho ^{\ast }(\tau ^{\ast })}{\overline{\rho }}\gamma ^{/}(\tau ^{\ast
+}) &=&\frac{\rho ^{\ast }(\tau ^{\ast })}{\overline{\rho }}\left( R-r\right)
++\frac{r}{\overline{\rho }}\left( (p+\tau ^{\ast })\left( R-r\right) -\gamma
+(\tau ^{\ast })\right) \\
+\gamma ^{/}(\tau ^{\ast }) &=&\left( R-r\right) +r\frac{\left[ (p+\tau
+^{\ast })\left( R-r\right) -\gamma (\tau ^{\ast })\right] }{\rho ^{\ast
+}(\tau ^{\ast })}>R-r
+\end{eqnarray*}
+
+Si le nombre d'entreprises en liquidation augmente, $\rho ^{\ast }\downarrow 
+$, le gouvernement adopte une politique plus
+"investor-friendly\textquotedblright\ ($\tau ^{\ast }\uparrow $) pour
+augmenter le nombre d'entreprises qui se refinancent (et r\'{e}duire les
+liquidations). En particulier plus le niveau de dette \`{a} CT est \'{e}lev%
+\'{e}, plus il y a d'entreprises qui rencontrent des pbs de liquidit\'{e}s
+et plus l'Etat adopte une politique "investor-friendly\textquotedblright :
+un niveau de dette \`{a} CT \'{e}lev\'{e} discipline l'Etat (r\'{e}duction
+de l'al\'{e}a moral du gouvernement); en d'autres termes, un niveau de dette 
+\`{a} CT \'{e}lev\'{e} fragilise les firmes et force le gouvernement \`{a}
+les s\'{e}curiser. Cela augmente le niveau $\tau ^{\ast }$ choisit en date 1
+et donc les conditions de financement en p\'{e}riode $0$. Les projets sont
+donc de taille plus importantes \`{a} l'\'{e}quilibre $(I\uparrow $ avec $%
+\tau ^{\ast }$).
+
+\bigskip
+
+\section{Eaton et Fernandez : Dette souveraine}
+
+Nous consid\'{e}rons une petite \'{e}conomie qui emprunte $L$. Le pay-off
+associ\'{e} est $W(L)$ (avec $\frac{dW}{dL}>0$ et $\frac{d^{2}W}{dL^{2}}<0$)
+
+En cas de d\'{e}faut, le pays est p\'{e}nalis\'{e} d'un montant $H>0$. On
+suppose que ex-ante, $H$ n'est pas connu du pr\^{e}teur et distribu\'{e}
+selon $f(H)$. On note $\overset{-}{H}=\int_{0}^{\infty }Hf(H)dH$
+
+Pour toute la suite, on consid\`{e}rera la distribution suivante :%
+\begin{equation*}
+f(x)=\lambda e^{-\lambda x}
+\end{equation*}
+
+Par ailleurs, on note $r$ le taux d'int\'{e}r\^{e}t international et on
+assume que les cr\'{e}diteurs internationaux sont risque-neutre. Hormis \`{a}
+la premi\`{e}re question, on suppose que les contrats de dette ne sont pas
+"enforceable".
+
+\bigskip
+
+\textbf{A.\ Questions Pr\'{e}liminaires}
+
+\textbf{1. }Calculer $\overset{-}{H}$
+
+\textbf{2. }Quelle est la quantit\'{e} optimale $L^{\ast }$ emprunt\'{e}e
+(lorsque les contrats sont parfaitement enforceable). Que repr\'{e}sente $H$%
+.\ Que se passe-t-il si $H$ est connu du pr\^{e}teur?
+
+\bigskip
+
+\begin{equation*}
+\frac{dW}{dD}(L^{\ast })=1+r
+\end{equation*}
+
+$H=$embargo, sanctions diplomatiques, commerciales....
+
+si $H$ est connu du pr\^{e}teur $L=H$ pour tout pr\^{e}t au-del\`{a} de $H$,
+Bulow-Rogoff s'applique.
+
+\bigskip
+
+\textbf{B.\ Ren\'{e}gociation possible}
+
+\bigskip
+
+Nous supposons ici qu'en cas de d\'{e}faut, les cr\'{e}diteurs se partagent
+les paiements effectu\'{e}es proportionnellement \`{a} la quantit\'{e} pr%
+\^{e}t\'{e}e et que la ren\'{e}gociation est possible (ex-post $H$ est observ%
+\'{e} par le pr\^{e}teur). Le taux de pr\^{e}t est not\'{e} $R$.
+
+\bigskip
+
+\textbf{3. }Quelle est la probabilit\'{e} de d\'{e}faut $F((1+R)L)$?
+
+\bigskip
+
+$H$ est la quantit\'{e} de paiements ren\'{e}goci\'{e}s ex-post.
+
+$F((1+R)L)=$ Proba$\{(1+R)L>H\}=\int_{0}^{(1+R)L}df(H)=1-e^{-\lambda (1+R)L}$
+
+\textbf{4. }D\'{e}terminer la courbe d'offre de fonds des cr\'{e}diteurs au
+taux $R$. Montrer qu'il existe $L_{\max }$ quantit\'{e} de pr\^{e}t maximal
+qui peut \^{e}tre consentie.
+
+\bigskip
+
+Les cr\'{e}diteurs sont neutres au risque donc on a la condition de
+non-arbitrage suivante :
+
+\begin{equation*}
+1+r=(1+R)(1-F((1+R)L))+\frac{1}{L}\int_{0}^{(1+R)L}Hf(H)dH
+\end{equation*}
+
+On montre que $L\leq \frac{\overset{-}{H}}{1+r}=L_{\max }$
+
+$R\rightarrow \infty $ alors : $\left( 1+r\right) L_{\max }=\overset{-}{H}$
+
+\textbf{5. }D\'{e}terminer le surplus de l'emprunteur au taux $R$.
+
+\bigskip
+
+\begin{equation*}
+S(L)=W(L)-(1+R)L(1-F((1+R)L))-\int_{0}^{(1+R)L}Hf(H)dH
+\end{equation*}
+
+\pagebreak
+
+\textbf{6. }Calculer les quantit\'{e}s $L$ et le taux $R$ d'\'{e}quilibre
+dans les deux cas suivants:
+
+\begin{itemize}
+\item Les march\'{e}s financiers sont coordonn\'{e}s : pr\^{e}teurs et
+emprunteur choisissent un contrat de la forme $(R,L)$
+
+\item Les march\'{e}s financiers ne sont pas coordonn\'{e}s : le pays
+emprunteur prend $R$ comme donn\'{e}.
+\end{itemize}
+
+\textbf{Cas 1 :}
+
+\begin{eqnarray*}
+\max_{R,L}\{S(L)\}
+&=&\max_{R,L}\{W(L)-(1+R)L(1-F((1+R)L))-\int_{0}^{(1+R)L}Hf(H)dH \\
+s.t &:&1+r=(1+R)(1-F((1+R)L))+\frac{1}{L}\int_{0}^{(1+R)L}Hf(H)dH
+\end{eqnarray*}
+
+soit :
+
+$\max_{L}\{W(L)-(1+r)L\}$
+
+donc : $L=\min \{L^{\ast },L_{\max }\}$ (mais $R>r$ d\'{e}termin\'{e} par $%
+1+r=(1+R)(1-F((1+R)L^{\ast }))+\frac{1}{L}\int_{0}^{(1+R)L^{\ast }}Hf(H)dH$)
+
+\bigskip
+
+\textbf{Cas 2 :}
+
+\begin{equation*}
+\max_{L}\{S(L)\}=\max_{L}\{W(L)-(1+R)L(1-F((1+R)L))-\int_{0}^{(1+R)L}Hf(H)dH%
+\}
+\end{equation*}
+
+Donc :
+
+\begin{eqnarray*}
+\frac{dW}{dD}(L)
+&=&(1+R)(1-F((1+R)L))-(1+R)L(1+R)f((1+R)L)+(1+R)(1+R)Lf\left( (1+R)L\right)
+\\
+&=&(1+R)(1-F((1+R)L)) \\
+&=&1+r-\frac{1}{L}\int_{0}^{(1+R)L}Hf(H)dH)<1+r
+\end{eqnarray*}
+
+donc $L^{\ast \ast }>L^{\ast }$ et il y a "overborrowing"
+
+\bigskip
+
+\textbf{C.\ Ren\'{e}gociation impossible}
+
+Nous supposons ici qu'en cas de d\'{e}faut, les cr\'{e}diteurs ne peuvent ren%
+\'{e}goci\'{e} le contrat (une institution telle que le Club de Paris
+n'existe pas).
+
+\bigskip
+
+\textbf{7.\ }R\'{e}pondre aux m\^{e}mes questions que pr\'{e}c\'{e}dement
+selon si les march\'{e}s financiers sont coordonn\'{e}s ou non.
+
+\bigskip
+
+Les cr\'{e}diteurs sont neutres au risque donc on a la condition de
+non-arbitrage suivante :
+
+\begin{equation*}
+1+r=(1+R)(1-F((1+R)L))
+\end{equation*}
+
+\begin{equation*}
+S(L)=W(L)-(1+R)L(1-F((1+R)L))-\int_{0}^{(1+R)L}Hf(H)dH
+\end{equation*}
+
+\begin{itemize}
+\item \textbf{Coordination des march\'{e}s financiers :}
+\end{itemize}
+
+\begin{eqnarray*}
+\max_{R,L}\{S(L)\}
+&=&\max_{R,L}\{W(L)-(1+R)L(1-F((1+R)L))-\int_{0}^{(1+R)L}Hf(H)dH\} \\
+s.t &:&1+r=(1+R)(1-F((1+R)L))
+\end{eqnarray*}
+
+\begin{equation*}
+\max_{R,L}\{W(L)-(1+r)L-\int_{0}^{(1+R)L}Hf(H)dH\}
+\end{equation*}
+
+\begin{eqnarray*}
+\frac{dW}{dD}(L) &=&(1+r)+(1+R)Lf((1+R)L) \\
+L^{\ast \ast \ast } &<&L^{\ast }
+\end{eqnarray*}
+
+$\Longrightarrow $ "Underborrowing" : pour prot\'{e}ger le pays du paiement
+ex-post de la p\'{e}nalit\'{e}, il y a "underborrowing"
+
+\begin{itemize}
+\item \textbf{Pas de coordination :}
+\end{itemize}
+
+\begin{equation*}
+FOC:\text{ }\frac{dW}{dD}(L)=(1+R)(1-F((1+R)L))=1+r
+\end{equation*}
+
+$\Longrightarrow $ $L=L^{\ast }$ : quantit\'{e} optimale de dette mais
+terrible en terme de "welfare" car le pays paie la p\'{e}nalit\'{e}
+(souvent) et emprunte \`{a} taux \'{e}lev\'{e}.
+
+\bigskip
+
+\FRAME{fhFU}{4.9018in}{0.8371in}{0pt}{\Qcb{Tableau r\'{e}capitulatif}}{}{%
+Figure}{\special{language "Scientific Word";type
+"GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
+4.9018in;height 0.8371in;depth 0pt;original-width 6.0935in;original-height
+1.0101in;cropleft "0";croptop "1";cropright "1";cropbottom "0";tempfilename
+'../IRFVOK03.bmp';tempfile-properties "XPR";}}
+
+\end{document}

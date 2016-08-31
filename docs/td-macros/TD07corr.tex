@@ -1,0 +1,557 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue!40!black!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight);
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x};
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y};
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 31 Octobre et 3 Novembre 2006}{7}{International lending and Endogenous punishment}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{EaGe:81}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item International lending,
+	\item Endogeneous punishment.
+\end{itemize}
+
+\section{Introduction}
+
+Le thème de ce TD est l'accès d'un pays souverain au marché du crédit international. Pour un agent individuel (individu ou firme), les cadres légaux sont tels qu'ils permettent au préteur de recouvrer un montant égal aux actifs de l'emprunteur. Pour des prêts internationaux à des souverains, la situation est différente et il n'existe pas de mécanisme explicite pour forcer l'emprunteur à ne pas répudier sa dette. 
+
+Dans ce TD, le mécanisme étudié est un mécanisme d'exclusion endogène du marché du crédit. \`A partir du moment où l'emprunteur a répudié sa dette, il n'a plus la possibilité de revenir sur le marché du crédit.
+
+Nous étudierons deux sets--up particuliers~: (i) le premier est déterministe et conduit à un équilibre unique sans répudiation et (ii) le second est incertain où plusieurs types d'équilibres sont possibles.
+
+\section{Présentation de l'économie}
+
+L'économie est peuplée d'un emprunteur et de préteurs. Il existe un actif de maturité une période qui est acheté par l'emprunteur au préteur pour lisser ses chocs de revenus.
+
+\textenitalique{L'emprunteur}
+
+\`A chaque date $t$, l'emprunteur reçoit un revenu aléatoire $y_t$. Ce revenu est complété par le montant de l'emprunt $b_t$ réalisé à la date $t$. Ce revenu total est utilisé soit pour consommer $c_t$, soit pour repayer le montant $d_t$ de dette contracté à la période précédente. On suppose que le montant repayé $d_t$ est fonction du montant emprunté $b_t$: $d_t = R(b_t)$.
+
+L'objectif de l'agent est de maximiser son utilité intertemporelle espérée sous sa contrainte budgétaire. 
+
+\textenitalique{Les préteurs}
+Les préteurs sont supposés comme neutres au risque. Ils peuvent prêter au maximum un montant $W_t < \infty$. Hormis l'emprunteur que l'on considère dans ce modèle, on suppose que les emprunteurs ont aussi accès à un autre marché leur offrant au moins le taux d'intérêt $\overline{r}>0$.  
+
+\bigskip
+\ques \'Ecrire la contrainte budgétaire de l'emprunteur.
+\correction{
+Elle est~:
+\begin{eqnarray*}
+	c_t = y_t + b_t - d_t
+\end{eqnarray*}
+}
+\medskip
+\section{Un modèle déterministe d'emprunt}
+On suppose que le revenu moyen de l'emprunteur croît au taux $g>0$ (on note $G=1+g$). On note $y$ le revenu moyen initial. \`A chaque date, l'emprunteur reçoit alternativement un revenu bas ou un revenu haut par rapport à la moyenne. On note $\sigma$ la déviation, constante à chaque période, par rapport à la moyenne. Ainsi les revenus haut et bas sont~:
+\begin{eqnarray*}
+	y_t &=& (1-\sigma)y\,G^t \qquad t = 1, 3, 5, \ldots \\
+	y_t &=& (1+\sigma)y\,G^t \qquad t = 0, 2, 4, \ldots 
+\end{eqnarray*}
+
+On suppose qu'à chaque date, l'emprunteur qui a toujours accès au marché (et donc qui n'a jamais fait défaut) peut emprunter ou épargner une part constante de l'écart de son revenu par rapport à la moyenne. Dans les états du monde où ses revenus sont élevés, il épargne au taux brut $R'$ une part $s$ constante du surplus par rapport à la moyenne et repaie son emprunt de la période précédente. Dans les états du monde où le revenu est bas, il reçoit les revenus de son épargne de la période précédente et emprunte au taux $R$ un pourcentage constant $b$ du `déficit' de son revenu  par rapport à la moyenne. 
+\medskip
+
+\ques Exprimer en fonction de $b$, $s$, $R$, $R'$, $G$, $y$ et $\sigma$ les consommations de l'emprunteur dans les états de revenus hauts et bas que l'on notera respectivement $c^h$ et $c^l$.
+\correction{
+Dans les états du monde où le \emph{revenu est bas}~: l'emprunteur reçoit un revenu $y_t = (1-\sigma)y G^t$, emprunte au taux $R$ la quantité $b\,|E[y_t] - y_t| = b\,\sigma\,y\,G^t$ et reçoit l'épargne de la période précédente $R'\,s\,|y_{t-1}-E[y_{t-1}]| =R'\,s\,\sigma\,y G^{t-1}$. 
+
+Au total, l'emprunteur consomme la quantité $c^l_t$ égale à~: 
+\begin{eqnarray*}
+	c^l_t &=& y_t + b\,\sigma\,y G^t + R'\,s\,\sigma\,y G^{t-1} \\
+			&=& (1-\sigma)y G^t + b\,\sigma\,y G^t + R'\,s\,\sigma\,y G^{t-1} \\
+			&=& \left[1-\sigma + b\,\sigma + \sigma \frac{R'\,s}{G}\right]y G^{t} \\
+			&=& \left[1-\sigma\left(1 - b - \frac{R'\,s}{G}\right)\right]y G^{t}
+\end{eqnarray*}
+\medskip
+
+Dans les états du monde où le \emph{revenu est élevé}~: l'emprunteur reçoit un revenu $y_t = (1+\sigma)y G^t$, rembourse l'emprunt de la période précédente $R\,b\,|E[y_{t-1}] - y_{t-1}| =R\,b\,\sigma\,y\,G^{t-1}$, épargne au taux $R'$ la quantité $s\,|y_{t}-E[y_{t}]|=s\,\sigma\,y\,G^{t}$. 
+
+Au total, l'emprunteur consomme $c^h_t$ égal à~: 
+\begin{eqnarray*}
+	c^h_t &=& y_t - R\,b\,\sigma\,y\,G^{t-1} - s\,\sigma\,y\,G^t \\
+			&=& (1+\sigma)y G^t - R\,b\,\sigma\,y\,G^{t-1} - R'\,s\,\sigma\,y\,G^{t} \\
+			&=& \left[1+\sigma\left(1 - \frac{R\,b}{G} - s\right)\right]y G^{t}
+\end{eqnarray*}
+}
+\medskip
+
+On suppose que l'utilité de l'emprunteur à chaque période est caractérisée par une aversion au risque relative constante.
+\begin{eqnarray*}
+	U(X) = \left\{\begin{array}{l}
+						\dfrac{X^{1-\gamma}}{1-\gamma}\quad \gamma>0 \textrm{ et } \gamma\neq 1 \\
+						\\
+						\ln(X)
+				\end{array}\right.
+\end{eqnarray*}
+On définit l'utilité discountée de deux périodes, notée $W^h$ et $W^l$ selon l'état du monde à la première période~:
+\begin{eqnarray*}
+	W^h_t(s, b) &=& U\bigl(c^h(s,b,t)\bigr) + \beta\,U\bigl(c^l(s,b,t)\bigr) \\
+	W^l_t(s, b) &=& U\bigl(c^l(s,b,t)\bigr) + \beta\,U\bigl(c^h(s,b,t)\bigr)
+\end{eqnarray*}
+On suppose pour l'instant que l'agent se comporte comme s'il n'y avait que deux périodes. Ainsi, quand l'état du monde est $h$, l'emprunteur maximise $W^h$ en fonction de $s$ à $b$ donné. Inversement,  quand l'état du monde est $l$, l'emprunteur maximise $W^l$ en fonction de $b$ à $s$ donné. 
+
+\medskip
+\ques \'Ecrire le programme de l'emprunteur dans les deux états du monde et montrer qu'il existe un niveau de croissance des revenus $\overline{G}$ tel que~:
+\begin{itemize}
+	\item Si $G>\overline{G}$, il y a emprunt mais pas d'épargne.
+	\item Si $G<\overline{G}$, il y a épargne mais pas d'emprunt.
+	\item Si $G=\overline{G}$, il y a indifférence entre épargne et d'emprunt.
+\end{itemize}
+\correction{
+Dérivons $W^h$ et $W^l$ par rapport resp. à $s$ et $b$~:
+\begin{eqnarray*}
+	\frac{\partial W^h}{\partial s} &=& \left[1-\sigma\left(1 - b - \frac{R'\,s}{G}\right)\right]^{-\gamma} - \frac{G^\gamma}{\beta\,R'}\left[1+\sigma\left(1 - \frac{R\,b}{G} - s\right)\right]^{-\gamma} \\
+	\frac{\partial W^l}{\partial b} &=& \left[1-\sigma\left(1 - b - \frac{R'\,s}{G}\right)\right]^{-\gamma} - G^{-\gamma}\,\beta\,R\,\left[1+\sigma\left(1 - \frac{R\,b}{G} - s\right)\right]^{-\gamma} 
+\end{eqnarray*}
+
+Pour avoir simultanément $\frac{\partial W^h}{\partial s}=\frac{\partial W^l}{\partial b}=0$, $G$ doit vérifier~:
+\begin{eqnarray*}
+	G^\gamma = \beta\,\bigl(R'\,R\bigr)^{1/2} = \overline{G}^\gamma
+\end{eqnarray*}
+Dans ce cas, $b$ et $s$ sont indéterminés. Tous les couples vérifiant $\frac{\partial W^h}{\partial s}=0$ sont solutions.
+
+Si $G^\gamma > \overline{G}^\gamma$, $\frac{\partial W^l}{\partial b}=0$ quand $\frac{\partial W^h}{\partial s}<0$. Le maximum est atteint donc pour $b^\star>0$ et $s^\star=0$. On remarquera que l'autre possibilité $\frac{\partial W^l}{\partial b}>0$ et $\frac{\partial W^h}{\partial s}=0$ ne conduit pas à un équilibre, car $b\rightarrow \infty$ . Quand le taux de croissance du revenu est grand, on observe un comportement d'épargne (espérance de revenu demain élevé et rendement de l'épargne et coût de l'emprunts faibles).
+
+Inversement, si $G^\gamma < \overline{G}^\gamma$, $\frac{\partial W^h}{\partial s}=0$ quand $\frac{\partial W^l}{\partial b}<0$. Le maximum est atteint donc pour $s^\star>0$ et $b^\star=0$. On observe un comportement d'épargne quand le taux d'épargne est élevé. 
+}
+
+\medskip
+\ques En déduire le niveau optimal d'emprunt $\sigma\,b^\star$. On notera $\kappa = \bigl(\beta R\bigr)^{-1/\gamma}$. Commenter le rôle du taux de croissance des revenus $G$ et de l'écart--type $\sigma$.
+\correction{
+Le niveau de dette optimal $\sigma b^\star$ est défini par $\frac{\partial W^l}{\partial b}=0$ avec $s^\star=0$, soit~:
+\begin{eqnarray*}
+	\dfrac{1-\sigma\left(1-b\right)}{1+\sigma\left(1-\frac{R\,b}{G}\right)} &=& G \bigl(\beta R\bigr)^{-1/\gamma} = G\,\kappa \\
+	1-\sigma\left(1-b\right) &=& G\,\kappa \left[1+\sigma\left(1-\frac{R\,b}{G}\right)\right] \\
+	\sigma b\left[1+ R\,\kappa\right] &=& \sigma\bigl(1+G\,\kappa \bigr) + G\,\kappa - 1
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+	\sigma\,b^\star = \frac{\sigma\bigl(1+G\,\kappa \bigr) + G\,\kappa - 1}{1+ R\,\kappa}
+\end{eqnarray*}
+
+Le niveau optimal emprunté $\sigma b^\star$ croît sans ambiguïté avec la taux de croissance des revenus (qui augmente la capacité de l'emprunteur à rembourser demain) et l'écart type des revenus $\sigma$ (qui augmente le besoin de lissage de l'emprunteur). 
+}
+
+\medskip
+On cherche maintenant à déterminer le niveau de dette soutenable. C'est le niveau maximal de dette que l'emprunteur, dans un horizon infini, peut emprunter dans les périodes basses et repayer dans les périodes hautes. 
+\medskip
+
+\ques Exprimer l'utilité intertemporelle de l'emprunteur qui prend la décision de repayer $R\,b$ dans les périodes hautes et se garde la possibilité d'emprunter $b$ dans les périodes basses. 
+\correction{
+À une date donnée, l'utilité deux périodes d'un emprunteur qui se réserve la possibilité d'emprunter $b$ et choisit de repayer $R\,b$ est $\max_s W_t^h(s, b)$. On remarquera que les formes fonctionnelles choisies sont telles que $s$ et $b$ sont indépendants de $t$.
+
+Comme la première période est bien haute, l'utilité intertemporelle de l'emprunteur $V^R(b)$ ($R$ marque le choix de repayer sa dette) en fonction de $b$ est égale à~:
+\begin{eqnarray*}
+	V^R(b) = \sum_{t=0}^\infty \beta^{2 t} \,\max_{s} W_{2t}^h(s, b)
+\end{eqnarray*}
+Comme $c^h_t = c^h G^t$ et $c^l_t = c^l G^t$, $W^h_t = G^{(1-\gamma)t}\,W^h_0$. On en déduit alors $V^R(b)$~:
+\begin{eqnarray*}
+	V^R(b) &=& \left[\sum_{t=0}^\infty \bigl(\beta G^{1-\gamma}\bigr)^{2 t}\right]\,\max_{s} W_0^h(s, b) \\
+				 &=& \underbrace{\bigl(1- \bigl(\beta G^{1-\gamma}\bigr)^{2}\bigr)^{-1}}_{=1/\phi >0}\,\max_{s} W_0^h(s, b) 
+\end{eqnarray*}
+}
+\medskip
+
+\ques On cherche à montrer que l'ensemble des dettes soutenables est un segment.
+
+\medskip
+\subques Montrer que pour les $b>0$ vérifiant $V^R(b)=V^R(0)$ ou $V'^R(b)=0$, le niveau optimal d'épargne est nul (On supposera que $V^R$ est continu).
+\correction{
+Le cas $V'^R(b)=0$ est absolument analogue au cas 2 périodes. Pour l'autre cas $V^R(\bar b)=V^R(0)$, il existe $b^\star>0$ entre 0 et $\bar b$ telle que $V'^R(b^\star)=0$ et $s(b^\star)=0$. 
+
+On montre ensuite que $s^\star(b)$ est décroissante en $b$ donc que $s^\star(b) = 0$ pour $b\ge b^\star$ donc en $\bar b$.
+
+En dérivant $W^h$, on montre après quelques calculs (reprendre les expressions de la question 3. sans $s=0$)~:
+\begin{eqnarray*}
+	\sigma\,s^\star(b) &=& \max\left\{0, \frac{\sigma\bigl(1+G(1-b)\,\kappa' - R b/G \bigr) + (1-G\,\kappa')}{1+ R'\,\kappa'}\right\} \\
+	\kappa'^{-\gamma} &=& \beta R' 
+\end{eqnarray*}
+$s^\star(b)$ est donc bien décroissante de $b$. 
+}
+
+\medskip
+\subques Montrer qu'il existe au plus un $\tilde b$ tel que $V^R(\tilde b) = V^R(0)$.
+\correction{
+Supposons qu'il en existe au moins deux. Comme $V^R$ est continue, elle admet au moins deux extrema. D'après la question suivante, après le premier extremum, $s^\star(b)=0$. Donc $V^R(b) = W^h(0,b)\phi^{-1}$~: la fonction est donc strictement concave et ne peut donc admettre aucun minimum et au plus un maximum. Le premier extremum est donc nécessairement un maximum et le second ne peut pas exister. Ainsi, il existe donc bien au plus un extremum.
+}
+
+\medskip
+\subques Utiliser les deux questions précédentes pour montrer que l'ensemble des niveaux de dette soutenables est un segment du type $\bigl[\,0\,;\,\bar b\,\bigr]$, avec $\bar b = \min(\hat b, \tilde b)$. On note $\hat b$ le niveau de dette maximal assurant que  $c^h\ge 0$ et $s\ge 0$.
+\correction{
+Soit $\hat b$ le niveau de dette maximal permettant $c^h\ge 0$ et $s\ge 0$.
+\begin{eqnarray*}
+	c^h\ge 0 \Leftrightarrow b &\le& \frac{G}{R}\bigl(1+\sigma(1-s)\bigr) \\
+	b &\le& \frac{G}{R}\bigl(1+\sigma\bigr) = \hat b
+\end{eqnarray*}
+
+Si $V'^R(0)>0$, on montre alors que $\bar b = \min(\hat b, \tilde b)$. En effet, un niveau $b$ de dette soutenable doit vérifier~:
+\begin{eqnarray*}
+	(i)\:V^R(b) \ge V^R(0) \qquad(ii)\:c^h\ge 0 \qquad (iii)\: s\ge 0
+\end{eqnarray*}
+
+On vérifie sans problème que si $b>\tilde b$, la condition $(i)$ n'est pas vérifiée. De même si $b>\hat b$, l'une des conditions $(ii)$ ou $(iii)$ n'est pas vérifiée. Inversement si $b<\hat b$, les trois conditions sont vérifiées.
+
+Si $V'^R(0)<0$, alors $V^R(b)<V^R(0)$ pour tout niveau de dette positif. Dans ce cas, aucun niveau de dette positif n'est soutenable et $\bar b = 0$.
+}
+
+\medskip
+\ques On veut  maintenant montrer que le niveau maximal de dette est une fonction croissante de la variance des revenus $\sigma$.
+\medskip
+ 
+\subques \emph{Premier cas~:} $\bar b =\hat b$.
+\medskip
+
+\subques \emph{Deuxième cas~:} $\bar b =\tilde b$. Commencer par trouver deux conditions nécessaires qui assurent l'existence de $\tilde b$. Trouver ensuite une condition suffisante qui  nous assure que $\frac{\partial \sigma\,\bar b}{\partial \sigma}>0$. Conclure en observant que $V^R$ doit être décroissante en $\bar b$ et croissante en 0.
+\correction{
+Rappelons que le niveau de dette est fourni par $\sigma\,b$.
+(i) Commençons par $\bar b =\hat b$. On obtient alors facilement que~:
+\begin{eqnarray*}
+	\frac{\partial \sigma\,\hat b}{\partial \sigma} = \hat b + \sigma\frac{G}{R} >0
+\end{eqnarray*}
+On a le résultat dans ce cas.
+
+\medskip
+(ii) Continuons avec $\bar b = \tilde b$. Il nous faut calculer~:
+\begin{eqnarray*}
+	\frac{\partial \sigma\,\bar b}{\partial \sigma} = \sigma\,\frac{\partial \bar b}{\partial \sigma} + \bar b
+\end{eqnarray*}
+
+
+La variable $\tilde b$ est définie par $V^R(\tilde b) = V^R(0)$.	On a donc l'égalité suivante~:
+\begin{eqnarray*}
+	&&\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{1-\gamma} - \left[1+\sigma(1-s)\right]^{1-\gamma}   =  \\
+	&&\qquad  +\beta G^{1-\gamma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{1-\gamma} - \beta G^{1-\gamma} \left[1 - \sigma (1-\bar b)^{1-\gamma}\right]
+\end{eqnarray*}
+
+Remarquons tout d'abord qu'une condition nécessaire est que les termes soient de même signe (i.e. soit $>0$, soit $<0$). Donc que l'on ait~:
+\begin{eqnarray*}
+	\left\{\begin{array}{c} \dfrac{R \bar b }{G} \le s \\\\ \bar b \le \dfrac{R's }{G} \\ \end{array}\right. \textrm{ ou } \left\{\begin{array}{c} \dfrac{R \bar b }{G} \ge s \\\\ \bar b \ge \dfrac{R's }{G} \\ \end{array}\right.
+\end{eqnarray*}
+
+La variable $s$ est l'épargne optimale en l'absence de dette et définie par~:
+\begin{eqnarray*}
+	\sigma\,s &=& \frac{\sigma\bigl(1+G\,\kappa'  \bigr) + (1-G\,\kappa')}{1+ R'\,\kappa'} \\
+	\kappa'^{-\gamma} &=& \beta R' 
+\end{eqnarray*}
+
+En dérivant l'égalité précédente par rapport à $\sigma$, on obtient~:
+\begin{eqnarray*}
+	&& \left[1-\frac{R \bar b}{G}-\frac{R \sigma}{G}\frac{d \bar b }{d \sigma}\right]\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} - \left[1-\bar b-\sigma \frac{d \bar b }{d \sigma}\right]\beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right] = \\
+	&&\qquad  (1-s)\left[1+\sigma(1-s)\right]^{-\gamma} - \left(1 - \frac{R' s}{G}\right)\beta G^{1-\sigma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{-\gamma}			
+\end{eqnarray*}
+
+On utilise maintenant la définition de $s$ et le fait que $\frac{\partial W^h}{\partial s}=0$~:
+\begin{eqnarray*}
+	-\,\left[1+\sigma(1-s)\right]^{-\gamma} + \frac{R'}{G}\,\beta G^{1-\sigma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{-\gamma} = 0
+\end{eqnarray*}
+
+En simplifiant et en réarrangeant l'expression précédente, on obtient~:
+\begin{eqnarray*}
+	&& \sigma\frac{d \bar b }{d \sigma}\left[-\frac{R}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]\right] = \\
+	&&\qquad  \left[1+\sigma(1-s)\right]^{-\gamma} - \beta G^{1-\sigma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{-\gamma}			 \\
+	&& -\left[1-\frac{R \bar b}{G}\right]\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \left[1-\bar b\right]\beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]
+\end{eqnarray*}
+
+On peut alors calculer $\frac{\partial \sigma\,\bar b}{\partial \sigma}$~:
+\begin{eqnarray*}
+	&& \left[\sigma\frac{d \bar b }{d \sigma} + \bar b \right]	\left[-\frac{R}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]\right]  \\
+	&&= \left[1+\sigma(1-s)\right]^{-\gamma} - \beta G^{1-\sigma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{-\gamma}			 \\
+	&&\quad  -\left[1-\frac{R \bar b}{G}\right]\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \left[1-\bar b\right]\beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right] \\
+	&&\quad  -\frac{R\bar b}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \bar b\, \left[1 - \sigma (1-\bar b)^{-\gamma}\right] \\
+	&&= \left[1+\sigma(1-s)\right]^{-\gamma} - \beta G^{1-\sigma}\left[1-\sigma\left(1 - \frac{R' s}{G}\right)\right]^{-\gamma}			 \\
+	&&\quad  -\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right] 
+\end{eqnarray*}
+
+Etudions le premier signe, i.e. celui de $\left[-\frac{R}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]\right]$. Commençons par remarquer que $V^R(b)$ est décroissante en $b$ en $\bar b$ (c'est un maximum et la fonction est concave). 
+\begin{eqnarray*}
+	V'^R(\bar b) = \left[-\frac{R}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]\right] < 0
+\end{eqnarray*}
+
+Par conséquent, pour que la $\sigma\,\bar b$ soit décroissante il suffit que le signe de la deuxième expression (à droite de l'égalité) soit négatif. Une condition suffisante est~:
+\begin{eqnarray*}
+	\left\{\begin{array}{c} \dfrac{R \bar b }{G} \ge s \\\\ \bar b \ge \dfrac{R's }{G} \\ \end{array}\right. 
+\end{eqnarray*}
+
+Cette condition assure donc bien l'existence et la décroissance de $\sigma\,\bar b$. 
+
+Pour conclure, vérifions maintenant que cette condition est vraie à l'équilibre. $V^R$ doit être décroissante en $\bar b$ et croissante en 0 pour assurer que $\bar b$ est bien un maximum positif. Cela se traduit par~:
+\begin{eqnarray*}
+	&&\left[-\frac{R}{G}\,\left[1+\sigma\left(1 - \frac{R \bar b}{G}\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\bar b)^{-\gamma}\right]\right] < 0 \\
+	&&\left[-\frac{R}{G}\,\left[1+\sigma\left(1 - s\right)\right]^{-\gamma} + \beta G^{1-\sigma} \left[1 - \sigma (1-\frac{R' s}{G})^{-\gamma}\right]\right] > 0 \\
+\end{eqnarray*}
+
+Si ces conditions sont vérifiées, nos deux inégalités le sont aussi. On peut donc conclure que $\bar b$ est bien une fonction croissante de $\sigma$.
+}
+
+\medskip
+%\ques Montrer que l'effet du taux de croissance $G$ est ambigu.
+
+\textenitalique{Un modèle stochastique}
+On fait désormais l'hypothèse que le revenu de l'emprunteur est iid et prend à chaque période avec la même probabilité les valeurs $y^h = 1+\sigma$ et $y^l = 1-\sigma$.
+\medskip
+
+On fait deux hypothèses supplémentaires liées à l'emprunt avec incertitude~:
+\begin{enumerate}[(i)~]
+	\item Il ne peut y avoir un emprunt à la période $t$ que (i) si l'emprunteur se trouve dans un état bas ($y_t=y^l$), (ii) s'il n'a pas emprunté à la période précédente ($y_{t-1}=0 $) et (iii) s'il n' a jamais fait défaut dans le passé. 
+	\item Les remboursements du prêt sont dus une période plus tard quel que soit l'état du monde à cette période (pas de remboursement contingent). 
+\end{enumerate}
+\medskip
+
+\ques Considérons un emprunteur susceptible d'emprunter qui a décidé de rembourser son prêt. Son horizon est pour l'instant de deux périodes. Quelle utilité va--t--il maximiser~?
+\correction{
+Il va maximiser l'utilité deux périodes suivantes~:
+\begin{eqnarray*}
+	U\bigl(1-\sigma(1-b)\bigr) + \frac{\beta}{2}\left\{U\bigl(1+\sigma(1-R\,b)\bigr)+ U\bigl(1-\sigma(1+R\,b)\bigr)\right\}
+\end{eqnarray*}
+}
+
+\ques Utiliser une approximation de Taylor au second ordre pour exprimer la quantité optimale de dette $\sigma\,b^\star$ que l'emprunteur souhaite emprunter.
+\correction{
+Dérivons l'égalité précédente par rapport à $b$ et l'on obtient~:
+\begin{eqnarray*}
+	0 = U'\bigl(1-\sigma(1-b)\bigr) - \frac{\beta}{2} R\left\{U'\bigl(1+\sigma(1-R\,b)\bigr)+ U'\bigl(1-\sigma(1+R\,b)\bigr)\right\}
+\end{eqnarray*}
+
+On fait une approximation de Taylor de $U'(1+X)$ autour de $X=0$~: $U'(1+X) = U'(1) + X\,U''(1)$.
+\begin{eqnarray*}
+	0 &=& (1-\beta R)U'(1) + \sigma\bigl(b-1 - \frac{\beta}{2} R((1-R\,b)-(1+R\,b)) \bigr)\,U''(1)  \\
+	0 &=& (1-\beta R)U'(1) + \sigma\bigl(b-1  + \beta R^2\,b \bigr)\,U''(1)  
+\end{eqnarray*}
+
+On conclue alors sur le niveau de dette $\sigma\,b^\star$~:
+\begin{eqnarray*}
+	\sigma\,b^\star &=& \frac{\sigma-(1-\beta R)\frac{U'(1)}{U''(1)}}{1+\beta R^2}>0 \quad (U''<0)
+\end{eqnarray*}
+}
+
+\medskip
+\ques On définit $V^R(b)$ comme l'utilité intertemporelle d'un agent à horizon infini qui emprunte $b$ quand c'est possible ($y=y^l$ et pas de dette passée) et qui repaie toujours. Exprimer $V^R(b)$. 		
+\correction{
+Prenons période par période~:
+\begin{enumerate}[{Période} 1.~]
+	\item Avec une probabilité $1/2$ l'emprunteur est dans une situation haute et il n'emprunte rien (valeur $U(1+\sigma)/2$). Avec une probabilité $1/2$, la situation est basse et il emprunte $b$ (valeur $U(1-\sigma(1-b))/2$).
+	\item si à la période 1, la période était haute, on se retrouve dans la situation du début (valeur $V^R(b)/2$). Si la période était basse, il doit rembourser, soit dans une situation haute (valeur $U(1+\sigma(1-R b))/4$), soit dans une situation basse (valeur $U(1-\sigma(1+R b))/2$).
+	\item On ne s'intéresse qu'aux cas où il a remboursé à la période précédente (sinon, on a déjà la récurrence~!). Dans les deux cas, il se retrouve sans dette héritée, comme à la période initiale (valeur $2\times V^R(b)/4$)
+\end{enumerate}
+
+Au total, l'expression de $V^R(b)$ devient~:
+\begin{eqnarray*}
+	V^R(b) &=& \frac{1}{2}\bigl(U(1-\sigma(1-b)) + U(1+\sigma)\bigr)\\
+	&+& \beta\left\{\frac{1}{2}V^R(b) + \frac{1}{4}U(1+\sigma(1-R b))+ \frac{1}{4}U(1-\sigma(1+R b))\right\} \\
+	&+& \beta^2\,\frac{1}{2}V^R(b) 
+\end{eqnarray*}
+
+Soit, si l'on réarrange les termes~:
+\begin{eqnarray*}
+		V^R(b) = \frac{\frac{1}{2}\bigl(U(1-\sigma(1-b)) + U(1+\sigma)\bigr) + \frac{\beta}{4}\bigl(U(1+\sigma(1-R b)) + U(1-\sigma(1+R b)) \bigr )}{1-\beta/2-\beta^2/2}
+\end{eqnarray*}
+}	
+	
+\ques On définit $V^D(b)$ comme l'utilité intertemporelle d'un agent à horizon infini qui vit en autarcie et n'emprunte jamais. Exprimer $V^D(b)$. 		
+\correction{
+A chaque période l'agent ne reçoit que l'utilité de son revenu qui avec une probabilité 1/2 est haut et est bas avec la même probabilité. A chaque période son utilité est~:
+\begin{eqnarray*}
+	\frac{1}{2}\bigl(U(1+\sigma)+U(1-\sigma)\bigr)
+\end{eqnarray*}
+
+Son utilité intertemporelle est donc simplement~:
+\begin{eqnarray*}
+	V^D &=& \sum^\infty_{t=0} \beta^t\left(\frac{1}{2}\bigl(U(1+\sigma)+U(1-\sigma)\bigr)\right) \\
+		&=& \frac{1}{2(1-\beta)}\bigl(U(1+\sigma)+U(1-\sigma)\bigr)
+\end{eqnarray*}
+}
+
+\ques On cherche à déterminer un niveau maximal de dette $\bar b$ au dessous duquel, il est optimal pour l'agent d'emprunter et de toujours repayer sa dette.
+\medskip
+
+\subques Utiliser les deux questions précédentes pour trouver une condition sous laquelle il est optimal pour l'agent de ne pas répudier sa dette. Pour cela, on se placera à une date où l'état du monde est mauvais et où l'agent a le choix entre repayer une dette $b$ et la répudier. S'il la répudie, il est exclu des marchés financiers et s'il la paie, il continuera d'emprunter et de payer. 
+\medskip
+
+\subques Utiliser un développement limité à l'ordre 2 de la condition précédente pour déterminer $\bar b$.
+
+\correction{
+L'état du monde est mauvais et l'agent hérite d'une dette $b$.  Il fait face à deux situations~:
+\begin{enumerate}[(i)~]
+	\item il repaie $R\,b$ (valeur $U(1-\sigma(1+R b))$) et continue donc d'emprunter /rembourser (valeur $\beta V^R(b)$).
+	\item il répudie sa dette $b$ (valeur $U(1-\sigma)$) et continue donc en autarcie (valeur $\beta V^D(b)$).
+\end{enumerate}
+
+On remarquera que l'on se place dans un mauvais état du monde car la contrainte est plus forte que dans un bon état du monde ($U$ est concave).
+
+La condition pour être un emprunteur est donc la suivante~:
+\begin{eqnarray*}
+	U(1-\sigma(1+R b)) + \beta V^R(b) \ge U(1-\sigma) + \beta V^D(b)
+\end{eqnarray*}
+
+On note $a = {1-\beta/2-\beta^2/2}$. On fait les dl à l'ordre 2~:
+\begin{eqnarray*}
+		V^R(b) = \frac{\frac{1}{2}\bigl(U(1-\sigma(1-b)) + U(1+\sigma)\bigr) + \frac{\beta}{4}\bigl(U(1+\sigma(1-R b)) + U(1-\sigma(1+R b)) \bigr )}{1-\beta/2-\beta^2/2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	V^D(b) &=& \frac{1}{1-\beta}\left(U(1)+ \frac{\sigma^2}{2} U''(1)\right) \\
+	a V^R(b) &=& U(1)(1+\frac{\beta}{2}) \\
+	&+&\frac{1}{2}\left(\sigma\,b U'(1) +\sigma^2(1+(1-b)^2) \frac{U''(1)}{2} \right) \\
+	&+& \frac{\beta}{4}\left(-2 \sigma\,R\, b\, U'(1) + \sigma^2((1-R b)^2+(1+R b)^2) \frac{U''(1)}{2}\right) \\
+	U(1-\sigma) &=& U(1) - \sigma U'(1) + \sigma^2 \frac{U''(1)}{2} \\
+	U(1-\sigma(1+R b)) &=& U(1) - \sigma(1+R b) U'(1) + \sigma^2(1+R b)^2 \frac{U''(1)}{2} \\
+\end{eqnarray*}
+
+On commence par simplifier les termes $V^R(b)-V^D(b)$~:
+\begin{eqnarray*}
+	&&a\,(1-\beta)(V^R(b)-V^D(b)) = U(1)(1+\frac{\beta}{2})(1-\beta) - a\,U(1)\\
+	&&\quad+\frac{1-\beta}{2}\left(\sigma\,b\, U'(1) +\sigma^2(1+(1-b)^2) \frac{U''(1)}{2} \right) \\
+	&&\quad+ \frac{\beta(1-\beta)}{4}\left(-2 R\,\sigma\,b\, U'(1) + \sigma^2((1-R b)^2+(1+R b)^2) \frac{U''(1)}{2}\right) \\
+	&&\quad- 	a\,\frac{\sigma^2}{2} U''(1) \\
+	&&\quad= \frac{1-\beta}{2} \sigma\,b\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{\sigma^2}{2} U''(1)\left[-\,a  + \frac{1-\beta}{2}(1+(1-b)^2) + \frac{\beta(1-\beta)}{2}(1+(R b)^2)\right] \\
+	&&\quad= \frac{1-\beta}{2} \sigma\,b\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{\sigma^2}{2} U''(1)\left[-1 + \frac{\beta + \beta^2}{2} + \frac{1-\beta^2}{2} + \frac{1-\beta}{2}((1-b)^2+\beta(R b)^2)\right] \\
+	&&\quad= \frac{1-\beta}{2} \sigma\,b\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{\sigma^2}{2} U''(1)\left[\frac{\beta -1}{2}  + \frac{1-\beta}{2}((1-b)^2+\beta(R b)^2)\right] \\
+	&&\quad= \frac{1-\beta}{2} \sigma\,b\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{\sigma^2}{2} U''(1)\left(-1 + 1 - 2b+b^2+\beta(R b)^2\right)\frac{1-\beta}{2} \\
+	&&\quad= \frac{1-\beta}{2}\,b\, \sigma\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{1-\beta}{2}b\,\frac{\sigma^2}{2} U''(1)\,b\left( - 2+b(1+\beta R^2)\right) \\
+	&&\quad= (1-\beta)\,b\,\biggl\{\frac{\sigma}{2}\,U'(1)(1-\beta\,R) \\
+	&&\quad+\frac{\sigma^2}{2} \frac{U''(1)}{2}\Bigl(-2 + (1+\beta R^2)\,b \Bigr)\biggr\} 
+\end{eqnarray*}
+On continue par $U(1-\sigma(1+R b)) - U(1-\sigma)$
+\begin{eqnarray*}
+	U(1-\sigma(1+R b)) - U(1-\sigma)  &=&  - \sigma\,R\,b\,U'(1) + \sigma^2\,b\,(2\,R+ R^2 b) \frac{U''(1)}{2} \\
+\end{eqnarray*}
+
+La condition devient alors après simplification par $b$~: 
+\begin{eqnarray*}
+	0 &\le& a\,\left(- \sigma\,R\,U'(1) + \sigma^2\,(2\,R+ R^2 b) \frac{U''(1)}{2}\right) \\
+	&+& \beta\frac{1}{2} \sigma\,U'(1)(1-\beta\,R) \\
+	&+&\beta\frac{\sigma^2}{2} \,\frac{U''(1)}{2}\,\Bigl(-2 + (1+\beta\,R^2)\,b \Bigr) \\
+	0 &\le& \Bigl(- \bigl(1-\beta/2-\beta^2/2\bigr)\,R +\frac{\beta}{2} (1-\beta\,R)\Bigr)\sigma\,U'(1) \\
+	&+&  \sigma^2\,\frac{U''(1)}{2} \Bigl(a\,(2\,R+ R^2 b) + \frac{\beta}{2}\bigl(-2 + (1+\beta\,R^2)\,b \bigr)\Bigr) \\%
+	0 &\le& \frac{1}{4}\Bigl(2\,\beta- \bigl(4- 2\,\beta\bigr)\,R \Bigr)\frac{U'(1)}{U''(1)} \\
+	&+& \frac{\sigma}{2} \Bigl(2\,a\,R - \beta\Bigr) \\
+	&+& \frac{1}{4} \Bigl(2 a\,R^2 + \beta\,\bigl(1+\beta\,R^2 \bigr)\Bigr) \sigma b
+\end{eqnarray*}
+
+On obtient finalement~:
+\begin{eqnarray*}
+	\sigma\bar b = \frac{2\sigma \Bigl(\beta- 2a\,R \Bigr)-\Bigl(2\,\beta(1+R) - 4\,R \Bigr)\frac{U'(1)}{U''(1)} }{2 a\,R^2 + \beta\,\bigl(1+\beta\,R^2 \bigr)}
+\end{eqnarray*}
+
+Contrairement au cas certain, l'effet de $\sigma$ et de l'aversion au risque $-U''(1)/U'(1)$ est ambigu. 
+
+Pour $\beta \approx 1$, $\sigma\bar b \approx \frac{2\sigma -2\Bigl(1- R \Bigr)\frac{U'(1)}{U''(1)} }{1+R^2 }$ $\Rightarrow$ leur rôle est clairement positif. Quand le futur est fortement pris en compte, l'aversion pour le risque et la dispersion des revenus accroissent le montant de dette que l'agent peut emprunter. L'agent valorise en effet fortement la possibilité de pouvoir emprunter demain pour lisser son revenu. 
+
+Inversement, quand $\beta$ est proche de 0, $\sigma\bar b \approx \frac{-4\sigma\,R +  4\,R \frac{U'(1)}{U''(1)} }{2\,R^2 }$. L'impact de l'aversion au risque et de la dispersion sont opposées quand le futur n'est pas pris en compte. Dans ce cas l'agent valorise fortement la consommation présente et donc la répudiation de sa dette. 
+
+Dans le cas stochastique, plusieurs équilibres sont possibles et l'équilibre unique $\bar b>0$ n'est plus unique. 
+}
+\end{document}

@@ -1,0 +1,500 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 17/24 et 20/27 Octobre 2006}{5}{Nominal debt and time--inconsistency}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Maal:06}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item La cohérence temporelle,
+	\item L'équilibre récursif et la fonction valeur,
+	\item Le Lagrangien intertemporel.
+\end{itemize}
+
+\section{Introduction}
+
+Dans ce TD, on s'intéresse à l'impact de la dette sur la politique monétaire. En particulier, on regarde l'impact de l'émission de dette nominale, dette réelle et enfin l'impact de la capacité d'engagement (crédibilité) du gouvernement. 
+
+\section{Présentation de l'économie}
+
+L'économie est peuplée d'un ménage représentatif, d'un gouvernement bénévole et d'une firme. 
+
+\textenitalique{Le gouvernement}
+
+A chaque date $t = 0, 1, \ldots$, le gouvernement finance des dépenses publiques $g$ exogènes et constantes par l'émission de monnaie $M_{t+1}^g$ et de dette nominale $B_{t+1}^g$. La dette émise à la date $t-1$ paie à la date $t$ le taux d'intérêt nominal $i_t$. On note $p_t$ le prix d'une unité de consommation agrégée en unités monétaires. 
+
+On suppose que le gouvernement hérite à la date 0 du paiement d'un stock de monnaie $M_0$ donné ainsi que d'un remboursement de dette nominale  $(1+i_0)B_0$ également donné. 
+
+La politique du gouvernement est déterminée par le choix des quantités de monnaie, de dette et de dépenses publiques, que l'on note $\bigl\{M_{t+1}^g, B^g_{t+1}, g\bigr\}_{t\ge 0}$
+
+\textenitalique{Le ménage}
+
+A chaque date $t$, le ménage consomme $c_t$ et travaille $n_t$. Il valorise sa consommation et son travail par l'utilité intertemporelle suivante~:
+\begin{eqnarray*}
+	U(c,n) = \sum^\infty_{t=0} \beta^t\bigl\{u(c_t) - \alpha\,n_t\bigr\}
+\end{eqnarray*}
+
+On suppose que $u$ est croissante, concave et dans la plupart de l'article on supposera que cette utilité sera log. 
+
+A chaque date $t$, le ménage consomme une partie de ses revenus totaux~: revenus du travail, revenus de ses placements en monnaie et dette nominale. Il épargne l'autre partie de ses revenus en détenant de la monnaie $M_{t+1}$ et de la dette nominale $B_{t+1}$. 
+
+En termes de rendement la monnaie est un actif strictement dominé par la dette nominale. Pour `forcer' la détention de monnaie par le ménage, on impose une contrainte de cash--in--advance à la Svensson. Le ménage ne peut pas consommer plus que les encaisses réelles qu'il détenait à la fin de la période précédente. La contrainte de cash--in--advance à la Lucas dit que le ménage ne peut pas consommer plus que ses encaisses réelles en période courante\footnote{La contrainte à la Svensson fait plus de sens quand la période est courte, de l'ordre de la semaine.}. Ainsi~:
+\begin{eqnarray*}
+	c_t \le \dfrac{M_t}{P_t}
+\end{eqnarray*}
+
+\textenitalique{La firme}
+
+La firme produit à l'aide d'une technologie linéaire $y = n$ des biens à partir du travail. Ces biens peuvent être consommés indifféremment par le ménage ou par le gouvernement.
+
+\ques \'Ecrire la contrainte budgétaire du gouvernement.
+\correction{
+Le gouvernement finance ses dépenses $g$ constantes uniquement par de la monnaie et de la dette nominale (notamment pas de taxes).
+\begin{eqnarray*}
+	M_{t+1}^g + B_{t+1}^g \ge M_t^g + B_t^g(1+i_t) + P_t \,g 
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques Calculer le salaire réel et écrire la contrainte budgétaire du ménage.
+\correction{
+La firme maximise son profit. Sa fonction de production étant linéaire, le salaire réel est égal à 1.
+
+Le consommateur travaille $n_t$ et consomme $c_t$. Il investit dans de la monnaie et de la dette nominale.
+\begin{eqnarray*}
+	M_{t+1} + B_{t+1} \le M_t + B_t(1+i_t) - P_t \,c_t + P_t\,n_t
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques \'Ecrire la contrainte de ressource de l'économie
+\correction{
+On a équilibre sur le marché de la monnaie et des obligations~: $M_{t+1}^g = M_{t+1}$ et $B_{t+1}^g = B_{t+1}$. On déduit alors des contraintes budgétaires de l'agent et du gouvernement la contrainte de ressource de l'économie. Elle traduit simplement que la consommation agrégée doit être inférieure à la production totale.
+\begin{eqnarray*}
+	c_t + g\le n_t
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques \'Ecrire le programme du ménage, le résoudre et exprimer le taux nominal $i_{t+1}$ en fonction d'une part de la consommation $c_t$ et des prix d'autre part. 
+\correction{
+Le ménage maximise son utilité intertemporelle sous sa contrainte budgétaire et sous la contrainte de cash--in--advance. 
+\begin{eqnarray*}
+	&& \max_{c, n, B, M} \sum^\infty_{t=0} \beta^t\bigl[u(c_t) - \alpha\,n_t\bigr] \\
+	&&\textrm{s.t. } M_{t+1} + B_{t+1} \le M_t + B_t(1+i_t) - P_t \,c_t + P_t\,n_t \\
+	&&\phantom{\textrm{s.t. }} P_t c_t \le M_t
+\end{eqnarray*}
+
+En notant $\beta^t\,\lambda_t$ et $\beta^t\,\mu_t$ les multiplicateurs de Lagrange attachés aux deux contraintes du ménage,on obtient l'expression du Lagrangien suivante~:
+\begin{eqnarray*}
+	\mathcal{L}(c, n, B, M) &=& \sum^\infty_{t=0} \beta^t \Bigl\{\bigl[u(c_t) - \alpha\,n_t\bigr] \\
+	&& + \lambda_t \bigl[ M_t + B_t(1+i_t) - P_t \,c_t + P_t\,n_t - M_{t+1} - B_{t+1} \bigr] \\
+	&& + \mu_t \bigl[ M_t - P_t\,c_t \bigr]
+\end{eqnarray*}
+
+Les CPO associées au Lagrangien sont~:
+\begin{eqnarray*}
+	\frac{\partial \mathcal{L}}{\partial c_t} &=& 0 = u'(c_t) - (\lambda_t+\mu_t) P_t  \\
+	\frac{\partial \mathcal{L}}{\partial n_t} &=& 0 = -\alpha + \lambda_t P_t  \\
+	\frac{\partial \mathcal{L}}{\partial B_{t+1}} &=& 0 = \beta\lambda_{t+1}(1+i_{t+1}) - \lambda_t  \\
+	\frac{\partial \mathcal{L}}{\partial M_{t+1}} &=& 0 = \beta(\lambda_{t+1}+\mu_{t+1}) - \lambda_t  \\
+\end{eqnarray*}
+
+Elles impliquent~:
+\begin{eqnarray*}
+	\lambda_t+\mu_t &=& \frac{u'(c_t)}{P_t}  \\
+	\lambda_t  &=&  \frac{\alpha}{P_t}   \\
+	1+i_{t+1} &=& \beta^{-1}\,\frac{P_{t+1}}{P_t} = \frac{u'(c_{t+1})}{\alpha}
+\end{eqnarray*}
+}
+\medskip
+
+\ques \'Ecrire l'égalité de l'offre et de la demande sur les marchés de la monnaie et de la dette. En déduire, ainsi que de la question précédente, que la contrainte budgétaire du gouvernement peut s'écrire sous la forme suivante~:
+\begin{eqnarray*}
+	&&c_{t+1}\,u'(c_{t+1})\frac{\beta}{\alpha} + \beta \,z_{t+1}\,c_{t+1} = c_t +z_t\,c_t +g \\
+	&&\textrm{with~:}\quad z_t = \frac{B_t(1+i_t)}{M_t}
+\end{eqnarray*}
+\correction{
+On a équilibre sur le marché de la monnaie et des obligations~: $M_{t+1}^g = M_{t+1}$ et $B_{t+1}^g = B_{t+1}$.
+
+La contrainte budgétaire du gouvernement s'écrit alors en termes réels de la façon suivante~:
+\begin{eqnarray*}
+	\frac{M_{t+1}}{P_t} + \frac{B_{t+1}}{P_t} \ge \frac{M_t}{P_t} + \frac{B_t\,(1+i_t)}{P_t} + g 
+\end{eqnarray*}
+
+En utilisant la contrainte de cash--in--advance et en substituant $\frac{1}{P_t} = \frac{c_t}{M_t}$ et en définissant $z_t = \frac{B_t(1+i_t)}{M_t}$, la partie droite devient~: 
+\begin{eqnarray*}
+	\frac{M_t}{P_t} + \frac{B_t\,(1+i_t)}{P_t} + g &=& c_t + z_t\,c_t + g
+\end{eqnarray*}
+
+Pour la partie gauche, on utilise les CPO de la partie précédente et notamment le fait que $\frac{P_{t+1}}{P_t}= \beta(1+i_{t+1})$~:
+\begin{eqnarray*}
+	\frac{M_{t+1}}{P_t} + \frac{B_{t+1}}{P_t} &=& \frac{P_{t+1}}{P_t}\,\frac{M_{t+1}}{P_{t+1}} + \frac{P_{t+1}}{P_t}\,\frac{B_{t+1}}{P_{t+1}} \\
+		&=& \beta(1+i_{t+1})\,c_{t+1} + \beta(1+i_{t+1})\,\frac{B_{t+1}}{P_{t+1}} \\
+		&=& c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} + \beta z_{t+1}\,c_{t+1}
+\end{eqnarray*}
+
+On en déduit alors l'expression recherchée.
+}
+
+\ques On suppose que la condition de transversalité $\lim_{T\rightarrow \infty} \beta^T\,\dfrac{M_{T+1}+B_{T+1}}{p_T}=0$ est vérifiée. Montrer alors que la contrainte budgétaire intertemporelle du gouvernement se réduit à~:
+\begin{eqnarray}
+	\sum^\infty_{t=0} \beta^t\left(c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} - (c_t+g)\right) = z_0\,c_0 \label{eq:implem}
+\end{eqnarray}
+\correction{
+La condition précédente fournit~:
+\begin{eqnarray*}
+	z_t\,c_t &=& \beta \,z_{t+1}\,c_{t+1} + \biggl\{c_{t+1}\,u'(c_{t+1})\frac{\beta}{\alpha}  - (c_t + g)\biggr\} \\
+\end{eqnarray*}
+
+En itérant forward, on obtient~:
+\begin{eqnarray*}
+	z_t\,c_t &=& \beta^T \,z_{t+T+1}\,c_{t+T+1} + \sum_{i=0}^{T}\biggl\{c_{t+i+1}\,u'(c_{t+i+1})\frac{\beta}{\alpha}  - (c_{t+i} + g)\biggr\} \\
+\end{eqnarray*}
+
+La condition de transversalité impose que $\lim_{T\rightarrow \infty}\beta^{T+1}\bigl(c_{T+1}u'(c_{T+1}) \frac{1}{\alpha} + z_{T+1}c_{T+1}\bigr)=0$ donc nécessairement que $\lim_{T\rightarrow \infty}\beta^{T+1}\,z_{T+1}c_{T+1}=0$. On en déduit alors la condition intertemporelle recherchée~:
+\begin{eqnarray*}
+	z_0\,c_0 = \sum^\infty_{t=0} \beta^t\left(c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} - (c_t+g)\right) 
+\end{eqnarray*}
+}
+
+\section{Engagement crédible du gouvernement}
+
+Dans cette partie, nous supposons que le gouvernement est en mesure de s'engager de façon crédible à $t=0$ sur l'ensemble des politiques futures. On suppose que le gouvernement cherche à déterminer l'optimum de Ramsey~: il maximise l'utilité du ménage sous la contrainte d'implémentabilité \reff{eq:implem}.
+\medskip
+
+\ques Résoudre le programme de Ramsey dans le cas où $u = \ln$. En particulier faire attention aux cas où $t=0$ et $\ge 1$. Montrer notamment que $c_0^F<c_1^F = c_{t+1}^F$ pour tout $t\ge 0$.
+\correction{
+Le programme de Ramsey consiste à maximiser l'utilité de l'agent sous la contrainte d'implémentabilité \reff{eq:implem}~:
+\begin{eqnarray*}
+	&& \max_{c} \sum^\infty_{t=0} \beta^t\bigl[\ln(c_t) - \alpha\,(c_t+g)\bigr] \\
+	&& \textrm{s.t. }z_0\,c_0 = \sum^\infty_{t=0} \beta^t\left(\frac{\beta}{\alpha} - (c_t+g)\right) 
+\end{eqnarray*}
+
+Le Lagrangien associé s'écrit (en séparant les termes en 0 et $\ge1$)~:
+\begin{eqnarray*}
+	&&\mathcal{L}(c) = \ln(c_0) - \alpha\,(c_0+g) \\
+	&& + \lambda \left(\frac{\beta}{\alpha} - (c_0+g) - z_0\,c_0 \right)\\
+	&& + \sum^\infty_{t=1} \beta^t\bigl[\ln(c_t) - \alpha\,(c_t+g)\bigr] \\
+	&& + \lambda \sum^\infty_{t=1} \beta^t\left(\frac{\beta}{\alpha} - (c_t+g)\right) 
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	\forall t\ge 1\quad \frac{\partial \mathcal{L}}{\partial c_t} &=& 0 = \frac{1}{c_t} - \alpha - \lambda \\
+	\frac{\partial \mathcal{L}}{\partial c_0} &=& 0 = \frac{1}{c_0} - \alpha - \lambda(1+z_0)
+\end{eqnarray*}
+
+On en déduit alors que~:
+\begin{eqnarray*}
+	\forall t\ge 1 \frac{1}{c_t} - \alpha &=& \frac{1}{c_1} - \alpha = \lambda \\
+	\frac{1}{c_0} - \alpha  &=& \lambda(1+z_0) \\
+	\Rightarrow \frac{1}{c_0} - \alpha &=& (1+z_0)\left[\frac{1}{c_1} - \alpha \right]
+\end{eqnarray*}
+
+}
+
+\medskip
+
+\ques Commenter le résultat précédent. Que penser des conséquences de l'engagement crédible du gouvernement~?
+\correction{
+Comme $z_0>0$, $c_0^F<c_1^F$. Le gouvernement fait de l'inflation pour monétiser la dette initiale, ce qui se traduit par des encaisses réelles plus faibles en 0 et donc moins de consommation en 0. Le gouvernement ne monétise pas complètement la dette initiale (inflation finie) car il y a un coût en $t=0$ à l'inflation (via la contrainte de cash--in--advance).  Il ne peut pas non plus recommencer dans futur car il annonce à $t=0$ ses politiques (dont le niveau de prix) pour l'ensemble des années à venir. \emph{Par hypothèse}, cette annonce est crédible et l'inflation pour $t\ge1$ est parfaitement anticipée par les agents et se reflète donc intégralement dans le rendement $i_t$ de la dette. 
+
+Néanmoins, on se rend compte de l'importance de l'hypothèse d'engagement crédible de la part du gouvernement. Elle implique des politiques non cohérentes temporellement pour la raison suivante. A $t=1$, l'optimum pour le gouvernement de cette date sera de réaliser la même politique que le gouvernement de la date 0 et donc de monétiser en partie la dette héritée et non pas d'appliquer la politique choisie par le gouvernement de la date 0~! 
+
+L'hypothèse d'engagement impose donc qu'aucun des gouvernements à venir ne choisira sa politique optimale. 
+}
+
+
+\section{Pas d'engagement crédible du gouvernement}
+Dans cette section, on lève l'hypothèse d'engagement crédible de la part du gouvernement. En conséquence, la particularité de la période 0 de l'exemple précédent se répète à chaque période et le programme de Ramsey souffre d'un problème de cohérence temporelle.
+
+On propose deux solutions pour résoudre le cas d'absence d'engagement~: la première repose sur un calcul de Lagrangien intertemporel et la seconde sur un calcul de fonction valeur.
+\medskip
+
+\ques Pour la première méthode, on cherche à déterminer quel est l'équilibre de Ramsey qui est cohérent temporellement\footnote{NB~: cet équilibre de Ramsey cohérent temporellement n'existe pas toujours.}. 
+
+\subques Déterminer l'équilibre de Ramsey pour le gouvernement de la date 0. On note $\lambda^{(0)}$ le multiplicateur de Lagrange associé.
+\correction{
+L'équilibre de Ramsey conduit aux égalités suivantes~:
+\begin{eqnarray*}
+	\lambda^{(0)} &=& \frac{1}{c^{(0)}_1} - \alpha = \frac{1}{1+z^{(0)}_0}\left[\frac{1}{c^{(0)}_0} - \alpha \right] 
+\end{eqnarray*}
+
+En remplaçant cette égalité dans la contrainte budgétaire intertemporelle, on obtient~:
+\begin{eqnarray*}
+	(1+z^{(0)}_0)\,c^{(0)}_0 = \frac{1}{1-\beta}\left[\frac{\beta}{\alpha} - g - \beta\,c^{(0)}_1\right]
+\end{eqnarray*}
+}
+\medskip
+
+\subques Déterminer l'équilibre de Ramsey pour le gouvernement de la date 1. On note $\lambda^{(1)}$ le multiplicateur de Lagrange associé.
+\correction{
+De façon analogue au cas précédent, on obtient en résolvant le prg. de Ramsey pour le gouvernement (1) à partir de la date 1~:
+\begin{eqnarray*}
+	\lambda^{(1)} &=& \frac{1}{c^{(1)}_2} - \alpha = \frac{1}{1+z^{(1)}_1}\left[\frac{1}{c^{(1)}_1} - \alpha \right] \\
+	(1+z^{(1)}_1)\,c^{(1)}_1 &=& \frac{1}{1-\beta}\left[\frac{\beta}{\alpha} - g - \beta\,c^{(1)}_2\right]
+\end{eqnarray*}
+}
+\medskip
+
+\subques En déduire l'équilibre de Ramsey cohérent temporellement. 
+\correction{
+L'équilibre est cohérent temporellement si $c^{(1)}_1 = c^{(0)}_1 = c_1 = c^{(1)}_2$  et si $z^{(1)}_1=z_1$. L'équilibre de Ramsey du gouvernement (1) devient~:
+\begin{eqnarray*}
+	\lambda^{(1)} &=& \frac{1}{c_1} - \alpha = \frac{1}{1+z_1}\left[\frac{1}{c_1} - \alpha \right] \\
+	(1+z_1+\frac{1}{1-\beta})\,c_1 &=& \frac{1}{1-\beta}\left[\frac{\beta}{\alpha} - g \right]
+\end{eqnarray*}
+On en déduit~:
+\begin{eqnarray*}
+	\lambda^{(1)} &=& \frac{1}{c_1} - \alpha \\
+	z_1 &=& 0 \\
+	c_1 &=& \frac{\beta}{\alpha} - g 
+\end{eqnarray*}
+
+De plus, pour le gouvernement 0, on a~:
+\begin{eqnarray*}
+	\lambda^{(0)} &=& \lambda^{(1)} = \frac{1}{1+z_0}\left[\frac{1}{c_0} - \alpha \right] =\frac{1}{c_1} - \alpha \\
+	(1+z_0)\,c_0 &=& c_1 = \frac{\beta}{\alpha} - g
+\end{eqnarray*}
+Ces deux dernières égalités imposent $z_0 = 0$~! Le seul équilibre de Ramsey time--consistent est un équilibre où la quantité de dette nominale est nulle et où par conséquent il n'y a aucune motivation pour faire de l'inflation. 
+}
+\medskip
+
+\ques La seconde méthode repose sur l'optimisation de la fonction valeur. L'hypothèse importante est que les fonctions de réponse à la date $t+1$ ne dépendent pas de l'ensemble de l'histoire mais uniquement de la valeur de la variable d'état à la date $t$.
+
+\subques Expliquer pourquoi cet équilibre est cohérent temporellement.
+\correction{
+Les fonctions de réponse des agents sont Markoviennes et ne dépendent que de l'état des variables d'état à la période précédente et non de l'historique  complet de ces variables. 
+
+Autrement dit, à chaque période, le gouvernement en question choisit les variables de contrôle courantes en fonction de ce dont il hérite mais cela ne lie en aucun cas les gouvernements futurs à une politique donnée (sauf bien sûr dans la mesure où cela influence l'héritage). Par construction, cet équilibre est donc cohérent temporellement. 
+}
+\medskip
+
+\subques \'Ecrire le programme du gouvernement. Déterminer les conditions du premier ordre et appliquer le théorème de l'enveloppe. 
+\correction{
+On note $V$ la fonction valeur associé au consommateur. On utilise la notation récursive (un $'$ prime désigne la période suivante et rien la période courante). Ainsi la contrainte d'implémentation et la fonction valeur se réduisent à~:
+\begin{eqnarray*}
+	&&\frac{\beta}{\alpha} - g+ \beta z' c' = c(1+z) \\
+	&& V = \max\bigl\{ u(c) -\alpha(c+g) + \beta\,V'\bigr\}
+\end{eqnarray*}
+
+La variable  $c$ est une variable de contrôle et $z'$ la variable d'état ($\equiv$ dette exprimée en quantité de monnaie). Le gouvernement à chaque date choisit la consommation courante et la dette qu'il laisse à son successeur, en fonction de la dette $z$ dont il a lui même hérité. 
+
+La variable $c'$ ne peut pas être choisie par le gouvernement courant car sinon on ferait de nouveau face à un problème de cohérence temporelle. On suppose alors que cette consommation dépend uniquement de l'`héritage'  du gouvernement suivant, à savoir la quantité de dette $z'$. Ainsi, le programme est cohérent temporellement par construction. On note $C$ la fonction de réponse de la consommation~:
+\begin{eqnarray*}
+	c' &=& C(z') 
+\end{eqnarray*}
+
+Le programme récursif s'écrit alors~:
+\begin{eqnarray*}
+	&& V(z) = \max_{c, z'} \bigl\{\ln(c) -\alpha(c+g) + \beta\,V(z')\bigr\} \\
+	&& \frac{\beta}{\alpha} - g+ \beta z' C(z') = c(1+z)
+\end{eqnarray*}
+
+Il nous reste alors à écrire les deux CPO du lagrangien $\mathcal{L} = u(c) -\alpha(c+g) + \beta\,V(z') + \lambda\bigl\{\frac{\beta}{\alpha} - g+ \beta z' C(z') -c(1+z)\bigr\}$ 
+\begin{eqnarray*}
+	\frac{1}{c}- \alpha &=& \lambda (1+z) \\
+	\beta V'(z') &=& \beta\lambda (C(z') + z' C'(z')) = \beta\,C(z')\,\lambda \,(1+\varepsilon_c(z')) \\
+	\varepsilon_c(z') &=& 1 + z'\,\frac{C'(z')}{C(z')}
+\end{eqnarray*}
+
+La condition de l'enveloppe fournit quant à elle~: 
+\begin{eqnarray*}
+	V'(z) = -\lambda \,c \quad \left(=\dfrac{\partial \mathcal{L}}{\partial z}\right)
+\end{eqnarray*}
+En updatant la condition de l'enveloppe $V'(z') = -\lambda' \,c'$ et en utilisant la deuxième CPO, on obtient $\lambda' =\lambda(1+\varepsilon_c(z'))$, soit~:
+\begin{eqnarray*}
+	\frac{\frac{1}{c}-\alpha}{1+z} &=& \left[\frac{\frac{1}{c'}-\alpha}{1+z'}\right]\bigl(1+\varepsilon_c(z')\bigr)^{-1} \\
+		&=& -\,\frac{V'(z')}{C(z')}\bigl(1+\varepsilon_c(z')\bigr)^{-1}
+\end{eqnarray*}
+ 
+}
+\medskip
+
+\subques Caractériser l'optimum et conclure. Comparer notamment avec le cas où l'engagement du gouvernement est crédible.
+\correction{
+L'équation $\frac{\frac{1}{c}-\alpha}{1+z} = -\,\frac{V'(z')}{C(z')}\bigl(1+\varepsilon_c(z')\bigr)^{-1}$ égalise le gain marginal en utlité d'une unité de consommation supplémentaire avec son coût marginal en variation de la fonction valeur. Le gain marginal est réduit par le facteur $1+z$ acre accroître la consommation en diminuant le niveau des prix augmente la dette nette. Le terme de fonction valeur est amplifié par le facteur $1+\varepsilon_c$ qui correspond à l'impact futur sur la consommation d'une hausse de dette aujourd'hui qui passe par le canal des taux d'intérêt~: ce terme de fonction valeur capte un coût direct ($\equiv$ distorsion sur la conso du niveau de prix par la cash--in--advance constraint) et indirect qui passe par les taux d'intérêt.  
+
+L'équation $\frac{\frac{1}{c}-\alpha}{1+z} = \left[\frac{\frac{1}{c'}-\alpha}{1+z'}\right]\bigl(1+\varepsilon_c(z')\bigr)^{-1}$ ne dit pas autre chose et montre que le chemin de consommation est affecté par les deux canaux.
+
+en termes de bien--être, cet équilibre est nécessairement moins bon que l'équilibre de Ramsey (par définition de l'équilibre de Ramsey\footnote{Les  équilibres de Ramsey et compétitif sont tous les deux compétitifs. L'équilibre de Ramsey est une maximisation non contrainte parmi l'ensemble des équilibre compétitifs alors que l'équilibre récursif est une maximisation parmi les équilibres admettant une structure récursive.})~: on constate donc une perte de bien--être liée à la perte d'engagement de la part de l'\'Etat. 
+}
+\medskip
+
+\section{Dette indexée}
+
+Dans cette section on suppose que le gouvernement n'émet plus de dette nominale mais émet de la dette réelle notée $b_t$.
+
+\ques Montrer que la contrainte d'implémentabilité du gouvernement est la suivante.
+\begin{eqnarray*}
+	c_{t+1}\,u'(c_{t+1})\frac{\beta}{\alpha} + \beta b_{t+1} = c_t + g + b_t
+\end{eqnarray*}
+\correction{
+Il faut reprendre la caractérisation de l'équilibre compétitif pour l'agent. Son programme avec de la dette indexée notée $b$ est le suivant~:
+\begin{eqnarray*}
+	&& \max_{c, n, b, M} \sum^\infty_{t=0} \beta^t\bigl[u(c_t) - \alpha\,n_t\bigr] \\
+	&&\textrm{s.t. } M_{t+1} + P_{t}\,\frac{b_{t+1}}{1+r_{t+1}} \le M_t + P_t\,b_t - P_t \,c_t + P_t\,n_t \\
+	&&\phantom{\textrm{s.t. }} P_t c_t \le M_t
+\end{eqnarray*}
+
+Les CPO du Lagrangien fournissent~:
+\begin{eqnarray*}
+	\frac{P_{t+1}}{P_t}  &=& \beta \frac{u'(c_{t+1})}{\alpha} \\
+	1+r_{t+1} &=& \beta^{-1}
+\end{eqnarray*}
+
+La contrainte d'implémentabilité devient alors (avec des notations analogues)~: 
+\begin{eqnarray*}
+	\frac{M_{t+1}}{P_t} + \frac{b_{t+1}}{1+r_{t+1}} &\ge& \frac{M_t}{P_t} + b_t + g  \\
+	c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} + \beta b_{t+1} &\ge& c_t  + b_t + g  	
+\end{eqnarray*}
+}
+
+\medskip
+\ques \'Ecrire le programme du gouvernement sous forme récursive et le résoudre dans le cas log. Montrer que la consommation et le niveau de dette restent constants au cours du temps.
+\correction{
+Le programme du gouvernement est maintenant~:
+\begin{eqnarray*}
+	&& \max_{c} \sum^\infty_{t=0} \beta^t\bigl[\ln(c_t) - \alpha\,(c_t+g)\bigr] \\
+	&& \textrm{s.t. }c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} + \beta b_{t+1} \ge c_t  + b_t + g  	\\
+	&&\phantom{\textrm{s.t. + conditions de transversalité}} 
+\end{eqnarray*}
+
+sous forme récursive, ce programme se réduit à ($b$ est la nouvelle variable d'état)~:
+\begin{eqnarray*}
+	&& V(b) = \max_{c, z'} \bigl\{\ln(c) -\alpha(c+g) + \beta\,V(b')\bigr\} \\
+	&& \frac{\beta}{\alpha} + \beta b'  = c + b + g
+\end{eqnarray*}
+
+Le Lagrangien s'écrit: $\mathcal{L} = \ln(c) -\alpha(c+g) + \beta\,V(b') + \lambda\bigl\{\frac{\beta}{\alpha} + \beta b' - c - b -g\bigr\}$ Les CPO et la condition de l'enveloppe nous fournissent~:
+\begin{eqnarray*}
+	\frac{1}{c}- \alpha &=& \lambda  \\
+	\beta V'(b') &=& -\,\beta\lambda  \\
+	V'(b) &=& -\lambda 
+\end{eqnarray*}
+
+On en déduit alors que $\lambda = \lambda'$ et $V(b) = V(b')$. Donc~:
+\begin{eqnarray*}
+	\frac{1}{c}- \alpha &=& \frac{1}{c'}- \alpha
+\end{eqnarray*}
+
+La consommation reste toujours constante. En effet, comme il n'y a plus d'effet de l'inflation (ni de la conso) sur les taux d'intérêt, qui sont constants et égaux à $1/\beta-1$, l'inflation est désormais uniquement un coût (contrainte de cash--in--advance) et le gouvernement n'a plus aucune raison d'en faire. 
+}
+\medskip 
+
+\ques Montrer que si $b_0 = \frac{B_0(1+i_0)}{p_0^F}$, le bien--être est plus élevé dans l'économie avec de la dette indexée que de la dette nominale.
+\correction{
+La contrainte d'implémentabilité dans le cas de dette indexée fournit (exposant $^I$)~:
+\begin{eqnarray*}
+	b_0 &=& \sum^\infty_{t=0} \beta^t\left(\frac{\beta}{\alpha} - g- c^I\right)\\
+	&=& \frac{1}{1-\beta}\left(\frac{\beta}{\alpha} - g- c^I\right)
+\end{eqnarray*}
+
+Dans le cas d'engagement crédible~:
+\begin{eqnarray*}
+	(1+z_0)\,c^F_0 = \frac{1}{1-\beta}\left[\frac{\beta}{\alpha} - g - \beta\,c^F_1\right]
+\end{eqnarray*}
+
+En réarrangeant ces deux expressions, on obtient si l'on suppose que $b_0 = \frac{B_0(1+i_0)}{p_0^F}= z_0\,c_0^F$~:
+\begin{eqnarray*}
+	c^I &=& \frac{\beta}{\alpha} - g - (1-\beta) b_0 = \beta\,c^F_1 + (1-\beta) c^F_0
+\end{eqnarray*}
+
+Le bien être $W^F$ dans le cas d'engagement s'écrit~:
+\begin{eqnarray*}
+	W^F &=& \ln(c^F_0) +\frac{\beta}{1-\beta} \ln(c^F_1) \\
+	&=& \frac{1}{1-\beta}\bigl((1-\beta)\ln(c^F_0) + \beta\ln(c^F_1) \bigr) \\
+	&\le&  \frac{1}{1-\beta}\ln\bigl((1-\beta)c^F_0 + \beta c^F_1  \bigr) \textrm{ $\ln$ est concave.} \\
+	&\le& \frac{1}{1-\beta}\ln\bigl(c^I) \bigr)  \\
+	&\le& W^I
+\end{eqnarray*}
+
+Le bien être augmente avec l'introduction de dette indexée.
+
+Ce résultat repose essentiellement sur la structure particulière de l'économie~: le seul moyen de financement de la dette sont les revenus de seigneuriage qui sont équivalents à une taxe non distorsive. Ils sont en effet égaux à $(M_{t+1}-M_t)/P_t = \beta/\alpha -c_t$. Si l'on raisonne dans un monde avec taxe distorsive (sur le travail par ex.), on peut montrer qu'il n'existe pas en général d'équilibre cohérent temporellement avec uniquement de la dette indexée.  
+}
+\end{document}

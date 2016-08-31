@@ -1,0 +1,474 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+\newcommand{\refg}[1]{({\sc Fig.}~\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue~~!40~~!black~~!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight)~;
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x}~;
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y}~;
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+
+\EnTete{Séances des 14 et 17 Novembre 2006}{10}{Endogeneous Growth: modèles de R\&D}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{Jo:95}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Croissance endogène,
+	\item Rôle de la R\&D et absence d'effet taille.
+\end{itemize}
+
+
+\section{Set--up du modèle}
+
+L'économie est peuplée d'un agent représentatif qui consomme un bien final. Ce bien final est produit à partir du travail et d'un continuum de biens intermédiaires. Le secteur du bien final est parfaitement concurrentiel alors que les firmes du secteur intermédiaire sont en monopole. Celles--ci profitent du bénéfice de leur innovation et produisent à partir du capital. Les inventions de nouveaux biens intermédiaires se fait par l'intermédiaire de firmes de R\&D dans lesquelles travaillent des chercheurs. Il y a libre--entrée sur le marché de la R\&D et le travailleur/consommateur peut librement allouer son temps de travail entre le secteur final et celui de la recherche.
+
+\section{Résolution}
+
+\textenitalique{Le bien final}
+
+Le bien final $Y$ est produit à partir du travail $L_Y$ et d'un continuum de biens intermédiaires $x$ que l'on indice sur $[0,A]$, $A$ étant supposé comme exogène pour ce secteur. Le secteur est parfaitement concurrentiel et la fonction de production est la suivante~:
+\begin{eqnarray*}
+	Y = L_Y^\alpha\,\int^A_0 x_i^{1-\alpha} di
+\end{eqnarray*}
+
+Le salaire des travailleurs du secteur est noté $w_Y$. Le bien intermédiaire $x_i$ est valorisé à $p_i$ unités de bien final, considéré comme numéraire. 
+
+\ques Déterminer $w_Y$ en fonction de $Y$ et $L_Y$.
+\correction{
+La firme maximise son profit en choisissant la quantité de travail et de biens intermédiaires qu'elle utilise~:
+\begin{eqnarray*}
+	\max_{L_Y, \{x_i\}} L_Y^\alpha\,\int^A_0 x_i^{1-\alpha} di - w_Y\,L_Y - \int^A_0 p_i\,x_i\,di
+\end{eqnarray*}
+
+La CPO par rapport à $w_Y$ fournit~:
+\begin{eqnarray*}
+	w_Y &=& \alpha\,L_Y^{\alpha-1}\,\int^A_0 x_i^{1-\alpha} di \\
+	&=& \alpha\frac{Y}{L_Y}
+\end{eqnarray*}
+Le salaire est égal à la productivité marginale.
+}
+\medskip
+
+\ques Exprimer la demande en bien intermédiaire $x_i$ en fonction de $p_i$ et $L_Y$.
+\correction{
+La dérivée du profit par rapport à $x_i$ fournit~:
+\begin{eqnarray*}
+	p_i &=& (1-\alpha) L_Y^\alpha\, x_i^{-\alpha} \\
+	x_i &=& (1-\alpha)^{\frac{1}{\alpha}} p_i^{-\,\frac{1}{\alpha}} L_Y 
+\end{eqnarray*}
+}
+\medskip
+
+\textenitalique{Les biens intermédiaires}
+
+Le secteur des biens intermédiaires se compose d'un continuum de firmes sur $[0,A]$. Chaque firme est en monopole sur son segment. On suppose en effet qu'elle bénéficie d'une innovation du secteur de la R\&D qu'elle est la seule à produire. Elle produit en utilisant comme seul input le capital qui coûte $r$.
+
+\ques Exprimer l'élasticité de la demande d'un bien intermédiaire par le secteur du bien final~? En déduire le prix des biens intermédiaires.
+\correction{
+L'élasticité de la demande est égale à $\frac{1}{\alpha}$. Les monopoles tarifient avec un mark--up constant au delà du coût marginal. Ce mark--up 	est égal à l'inverse de $1-$ l'élasticité, soit~: $\frac{1}{1-\alpha}$. Le prix $p_i$ est dont égal à~: 
+\begin{eqnarray*}
+	p_i = \frac{1}{1-\alpha}\,r
+\end{eqnarray*}
+
+Une autre façon de le voir est d'écrire la maximisation du profit du monopole à demande donnée~:
+\begin{eqnarray*}
+	&&\max_{p_i} p_i\,x_i - r\,x_i \\
+	\textrm{s.t.}&& x_i = (1-\alpha)^{\frac{1}{\alpha}} p_i^{-\,\frac{1}{\alpha}} L_Y
+\end{eqnarray*}
+
+Le programme se réduit à~: $\max_{p_i} (p_i- r)\,(1-\alpha)^{\frac{1}{\alpha}} p_i^{-\,\frac{1}{\alpha}} L_Y$. La CPO est~:
+\begin{eqnarray*}
+	x_i =  \frac{1}{\alpha}(p_i-r)\,x_i\,\frac{1}{p_i} \quad \Rightarrow \quad p_i = \frac{1}{1-\alpha}\,r
+\end{eqnarray*}
+}
+\medskip
+
+\ques Quelle est la quantité de biens intermédiaires produites par chaque firme~? Quel profit $\pi$ réalise--t--elle~?
+\correction{
+Des question précédentes, on déduit~:
+\begin{eqnarray*}
+	x_i &=& x = (1-\alpha)^{\frac{2}{\alpha}} r^{-\,\frac{1}{\alpha}} L_Y \\
+	\pi_i &=& \pi = (p_i - r) x = \alpha\,p\,x  = (1-\alpha)^{\frac{2}{\alpha}} r^{-\,\frac{1}{\alpha}} L_Y 
+\end{eqnarray*}
+}
+\medskip
+
+\ques On note $K$ la quantité de capital allouée aux firmes de biens intermédiaires. Déduire des questions précédentes la répartition de la valeur ajoutée $Y$ entre salaires, profits agrégés des firmes de biens intermédiaires et rémunération du capital. Commenter.
+\correction{
+Le capital alloué aux firmes de biens intermédiaires est égal à la somme des $x_i$~: $K = \int^A_0 x_i \,di = A\,x$. 
+
+La valeur ajoutée totale est~: $Y  = A\,L_Y^\alpha\,x^{1-\alpha}= \frac{1}{1-\alpha}p\,A\,x $.
+
+On cherche à déterminer la répartition de la valeur ajoutée totale entre salaires $w_Y\,L_Y$, profits des firmes intermédiaires $A\,\pi$ et rémunération du capital  $r\,K$. 
+\begin{eqnarray*}
+	w_Y \,L_Y &=& \alpha\,Y \\
+	r\,K	&=& (1-\alpha) p\,K = (1-\alpha) p\,A\,x\\
+				&=& (1-\alpha)^2\,Y \\
+	A\,\pi &=& \alpha\,p\,A\,x \\
+				&=& \alpha(1-\alpha)\,Y
+\end{eqnarray*}
+}
+
+\textenitalique{La R\&D}
+
+L'invention de nouveaux biens intermédiaires obéit à la loi suivante~:
+\begin{eqnarray*}
+	\dot{A} = \delta\,L_A^\lambda\,A^\phi
+\end{eqnarray*}
+$L_A$ désigne le nombre de chercheurs dans le secteur de la $R\&D$. $\lambda$ et $\phi$ sont des paramètres compris entre 0 et 1. 
+
+Le secteur de la R\&D vend une innovation au prix $p_A$~: c'est assimilable à une \emph{patente}. On suppose qu'il y a libre entrée dans ce secteur.
+
+Le marché du travail n'est pas segmenté entre chercheurs et travailleurs dans le secteur du bien final et les travailleurs choisissent librement de travailler dans le secteur R\&D pour un salaire $w_A$.
+\medskip
+
+\ques Commenter la loi d'évolution des innovations. En quoi se différencie--t--elle de celle du modèle de Romer (1990)~? Cette hypothèse vous paraît--elle justifiée?
+\correction{
+ Dans le mod\`{e}le de Romer, il y a un \textquotedblleft effet taille\textquotedblright : plus il y a de chercheurs, plus le taux de croissance est \'{e}lev\'{e}. Empiriquement, un tel effet taille est tr\`{e}s contestable \refg{fig:TD10}.
+ 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 12cm]{TD10image.pdf}	
+	\caption{Evolutions du nombre de chercheurs et d'ingénieurs en R\&D et la TFP growth aux USA.}
+	\label{fig:TD10}
+\end{figure}
+
+En effet l'équation d'évolution des innovations est la suivante~:
+\begin{eqnarray*}
+	\frac{\dot{A}}{A} = L_A
+\end{eqnarray*}
+Elle est directement liée au nombre de chercheurs dans l'économie. Une première alternative est de supposer que le taux de croissance dépend de la part de chercheurs dans l'économie (donc de $L_A/L$) mais cela pose le problème suivant~: une économie avec une unité de travail peut produire autant d'innovations que celle avec 1 million \ldots
+
+La spécification retenue dans cet article est la suivante. Le nombre d'inno\-vations $\dot{A}$ est proportionnelle au nombre de chercheurs dans l'économie: $\dot{A} = \bar \delta L_A$. $\bar \delta$ est la vitesse de découverte d'une invention pour un chercheur. On fait l'hypothèse que cette vitesse positivement du nombre d'inventions déjà en place $\bar \delta = \bar{\bar{\delta}} A^\phi$. Si $\phi<0$, cela signifie 	que le rendement des découvertes est décroissant~: les idées les plus simples sont découvertes d'abord et il devient ensuite de plus en plus difficile d'innover.  $\phi=0$ correspond au cas où les inventions passées n'ont aucun impact sur les inventions futures (pas d'exterminateurs).  Enfin le cas $\phi>0$ signifie que les inventions passées créent des externalités positives sur la recherche actuelle (exemple : la découverte du transistor $\Rightarrow$ composants électroniques $\Rightarrow$ ordinateurs, téléphones portables \ldots). On suppose pour finir que cette vitesse agrégée par chercheurs masque des problèmes de duplication/doublon des recherches. $\bar \delta = \delta L_A^{\lambda -1 } A^\phi$ avec $0\le \lambda \le 1$.
+
+On en déduit alors la forme retenue dans cet article. Remarquons que $\phi = \lambda = 1$ correspond au modèle de Romer. 
+}
+\medskip
+
+\ques Calculer le salaire $w_A$ des chercheurs.
+\correction{
+La condition de 0 profit impose de choisir $w_A$ tel que~:
+\begin{eqnarray*}
+	w_A\,L_A = p_A\,\dot{A} \quad\Rightarrow\quad w_A = p_A\delta\,L_A^{\lambda-1}\,A^\phi
+\end{eqnarray*}
+ 
+On remarquera que pour $w_A = w_Y=w$ pour que les agents travaillent dans les deux secteurs. 
+}
+
+\textenitalique{Le consommateur}
+
+Les préférences du consommateur représentatif sont définies de la manière suivante~:
+\begin{eqnarray*}
+\int_{0}^{\infty }\frac{c_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt
+\end{eqnarray*}
+$c_t$ désigne la consommation instantanée par individu de bien final à la date $t$. Le taux de préférence privé pour le présente se note $\rho>0$. 
+\medskip
+
+\ques On note $K$ la richesse agrégée de l'économie. Exprimer la loi d'évolution de $K$ en fonction des autres paramètres agrégés de l'économie.
+\correction{
+A chaque instant~: 
+\begin{itemize}
+	\item Une richesse $rK + w L + A\pi$ est créée.
+	\item Une partie de cette est consommée $-C$ et investie en R\&D $-p_A\,\dot{A} $
+\end{itemize}
+Donc la richesse accumulée $\dot{K}$ est~:
+\begin{eqnarray*}
+	\dot{K} = rK + w L + A\pi - C
+\end{eqnarray*}
+}
+\medskip
+
+\ques Récrire cette loi d'évolution en variables par tête. On notera ainsi $c = C/L$, $k = K/L$, $a=A/L$ avec $L = L_A + L_Y$. On suppose que la population croît au taux constant $n$.
+\correction{
+\begin{eqnarray*}
+	\dot{k} &=& \frac{\dot{K}}{L} - \frac{\dot{L}}{L} \frac{K}{L} 	\\
+	&=& (r-n)k+w+a\pi -c-p_A\,(\dot{a} + n\,a)
+\end{eqnarray*}
+}
+\medskip
+
+\ques \'Ecrire et résoudre le programme du consommateur. En  déduire l'équation d'Euler.
+\correction{
+Le programme du consommateur est de maximiser sa consommation sous une contrainte d'évolution de la richesse~:
+\begin{eqnarray*}
+	&&\max_{c_t}\quad \int_{0}^{\infty }\frac{c_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt \\
+	&&\dot{k} = (r-n)k+w+a\pi -c-p_A\,(\dot{a} + n\,a)
+\end{eqnarray*}
+
+On écrit le Lagrangien associé (ou l'hamiltonien) en utilisant le multiplicateur $\lambda_t\,e^{-\rho t}$~:
+\begin{eqnarray*}
+	\mathcal{L}(c_t, k_t) &=& \int_{0}^{\infty }\left(\frac{c_{t}^{1-\theta }}{1-\theta } + \lambda_t\left((r-n)k_t+w+a\pi -c_t-p_A\,(\dot{a} + n\,a)\right) \right)e^{-\rho t}dt \\
+	&&- \int_{0}^{\infty } \lambda_t \dot{k}_t e^{-\rho t}dt 	
+\end{eqnarray*}
+
+On transforme par intégration par parties~: $\int_{0}^{\infty } \dot{k}_t\,\lambda_t\, e^{-\rho t}dt = -\lambda_0 k_0 + \int_{0}^{\infty } k_t(\rho \lambda_t - \dot{\lambda}_t) e^{-\rho t}dt$. On en déduit la nouvelle expression~:
+\begin{eqnarray*}
+	\mathcal{L} &=& \int_{0}^{\infty }\left(\frac{c_{t}^{1-\theta }}{1-\theta } +\lambda_t\left((r-n)k_t+w+a\pi -c_t - \rho k_t-p_A\,(\dot{a} + n\,a)\right)+ \dot{\lambda}_t k_t\right)e^{-\rho t}dt \\
+	&& + \lambda_0 k_0
+\end{eqnarray*}
+Les CPO fournissent~:
+\begin{eqnarray*}
+	\frac{\partial \mathcal{L}}{\partial c_t} &=& 0 = c_{t}^{-\theta } - \lambda_t \\
+	\frac{\partial \mathcal{L}}{\partial k_t} &=& 0 = \lambda_{t}(r-n - \rho) + \dot{\lambda}_t 
+\end{eqnarray*}
+
+En utilisant la première équation, on obtient~:
+\begin{eqnarray*}
+	\theta \dot{c}_t\,c_t^{-\theta-1} =  c_{t}^{-\theta }(r-n - \rho)
+\end{eqnarray*}
+Soit l'équation d'Euler suivante~:
+\begin{eqnarray*}
+	\frac{\dot{c}_t}{c_t} =  \frac{r-n - \rho}{\theta}
+\end{eqnarray*}
+}
+
+\textenitalique{Le sentier de croissance équilibré}
+
+On cherche ici à déterminer l'équilibre stationnaire (donc de long--terme). Pour cela, on suppose que la part des chercheurs dans la population active $s = L_A/L$ est constante à long--terme et que $c$ et $y$ croissent aux taux $g>0$ constant.
+\medskip
+
+\ques Exprimer le taux de rendement du capital $r$ en fonction de $g$ à l'équilibre stationnaire. Montrer que le taux de croissance stationnaire $g_A$ du nombre de biens intermédiaires $A$ est égal à celui de la consommation $g$.
+\correction{
+D'après la question précédente, on a les égalités~:
+\begin{eqnarray*}
+	g = \frac{\dot{c}_t}{c_t} = \frac{r-n - \rho}{\theta} \quad\Rightarrow\quad r = \theta\,g + n+ \rho
+\end{eqnarray*}
+
+Pour calculer $g_A$, partons de la définition de $Y = A\,L_{Y}^{\alpha }x^{1-\alpha }$. On en déduit par dérivation~:
+\begin{eqnarray*}
+	\frac{\dot{Y}}{Y} = \frac{\dot{A}}{A} + \alpha\frac{\dot{L}_{Y}}{L_{Y}} + (1-\alpha)\frac{\dot{x}}{x}
+\end{eqnarray*}
+
+Comme $x = (1-\alpha)^{\frac{2}{\alpha}} r^{-\,\frac{1}{\alpha}} L_Y$, on en déduit~:
+\begin{eqnarray*}
+	\frac{\dot{x}}{x} &=& -\,\frac{1}{\alpha}\frac{\dot{r}}{r} + \frac{\dot{L}_{Y}}{L_{Y}} \\
+					&=& \frac{\dot{L}_{Y}}{L_{Y}}
+\end{eqnarray*}
+
+Déterminons $\frac{\dot{L}_{Y}}{L_{Y}}$. Comme $s = s = L_A/L$ est constante dans le long terme, on peut écrire~:
+\begin{eqnarray*}
+	L &=& L_A + L_Y = s\,L + L_Y \quad \Rightarrow  \quad  L_Y = (1-s)\,L 	
+\end{eqnarray*}
+
+On montre alors facilement que $\frac{\dot{L}_{Y}}{L_{Y}} = \frac{\dot{L}}{L} = n$. On en déduit finalement~:
+\begin{eqnarray*}
+	\frac{\dot{Y}}{Y} &=&  \frac{\dot{A}}{A} + n
+\end{eqnarray*}
+
+En passant aux grandeurs par tête~: 
+\begin{eqnarray*}
+	\frac{\dot{y}}{y} &=& \frac{\dot{Y}}{Y} - \frac{\dot{L}}{L} \\
+	&=&  \frac{\dot{A}}{A} + n - n \\
+	g &=& g_A
+\end{eqnarray*}
+}
+\medskip
+
+\ques Utiliser la loi d'évolution de $A$ pour exprimer $g_A$. Pourquoi parle--t--on de croissance \emph{semi--endogène}~? Quelle est la principale différence avec le modèle de Romer (1990)~?
+\correction{
+La loi d'évolution de $A$ est~:
+\begin{eqnarray*}
+	\frac{\dot{A}}{A} = g_A = \delta\,L_A^{\lambda}\,A^{\phi-1}
+\end{eqnarray*}
+Par différentiation, on en déduit~:
+\begin{eqnarray*}
+	0 = \lambda\frac{\dot{L}_A}{L_A} + (\phi-1) \frac{\dot{A}}{A}
+\end{eqnarray*}
+
+Comme $L_A = s\,L$, $\frac{\dot{L}_A}{L_A} = n$. On en déduit~:
+\begin{eqnarray*}
+	g = \frac{\lambda}{1-\phi}\,n
+\end{eqnarray*}
+
+La croissance de long--terme est liée au progrès technologique et à un secteur de R\&D compétitif. Néanmoins, contrairement	au modèle de Romer par exemple (ou celui de Aghion et Howitt), la croissance de long--terme est indépendante du choix des variables de politique économique. On parle alors de \textquotedblleft croissance semi--endogène\textquotedblright .
+}
+\medskip
+
+\ques Calculer $\dfrac{\dot{p}_A}{p_A}$ et commenter.
+\correction{
+Rappelons que~:
+\begin{eqnarray*}
+	w_A &=& p_A\,\delta\,L_A^{\lambda-1}\,A^\phi \\
+	&=& w = \alpha\,A\, \left[\frac{x}{L_Y}\right]^{1-\alpha}  = \alpha\,A\, \left[\frac{x}{L_Y}\right]^{1-\alpha} = \alpha\,A\, \left[\frac{(1-\alpha)^2}{r}\right]^{\frac{1-\alpha}{\alpha}} 
+\end{eqnarray*}
+
+En différenciant, on en déduit~:
+\begin{eqnarray*}
+	\frac{\dot{p}_A}{p_A} + (\lambda-1)\frac{\dot{L}_A}{L_A} + \phi\frac{\dot{A}}{A} = \frac{\dot{A}}{A}  - \frac{1-\alpha}{\alpha}\frac{\dot{r}}{r}
+\end{eqnarray*}
+
+En simplifiant, on obtient~:
+\begin{eqnarray*}
+	\frac{\dot{p}_A}{p_A} &=&  - (\lambda-1)n - \phi g + g \\
+		&=& n \quad (g = \frac{\lambda}{1-\phi}n)
+\end{eqnarray*}
+
+Le prix des patentes s'appr\'{e}cie au cours du temps car il devient de plus en plus difficile d'innover du fait des rendements d\'{e}croissants de l'innovation.
+
+}
+\medskip
+
+\ques On souhaite déterminer $s$
+\medskip
+
+\subques Déterminer la valeur d'une patente $p_A$. On utilisera deux méthodes~: (i) l'absence d'opportunités d'arbitrage (pour un investisseur neutre au risque qui peut investir  dans le capital et dans le secteur de la R\&D) et (ii)  Utiliser la méthode intégrale (supposer que les dates de survenue des inventions suit un processus de Poisson). 
+\medskip
+
+\subques En déduire $s=\dfrac{L_A}{L}$ et commenter.
+\correction{
+{\bf Pour la méthode avec AOA~:} Comme dans le TD 1 (Mortensen Pissaridès), on suppose qu'un investisseur risque--neutre dispose de la somme $p_A$ à investir~:
+\begin{itemize}
+	\item Il l'investit dans le capital et cela lui rapporte $r\,p_A$,
+	\item Il l'investit dans la R\&D~: cela lui rapporte le profit $\pi$ ($\equiv$ dividende) et le changement de valeur $\frac{\dot{p}_A}{p_A}$ ($\equiv$ variation du cours du sous--jacent).
+\end{itemize}
+
+L'investisseur est indifférent entre les deux placements, on en déduit~:
+\begin{eqnarray*}
+	r = \frac{\pi}{p_A} + \frac{\dot{p}_A}{p_A} \quad\Rightarrow \quad p_{A}=\frac{\pi }{r-\frac{\dot{p}_{A}}{p_{A}}} 
+\end{eqnarray*}
+\medskip
+
+{\bf Pour la méthode intégrale~:} On se place à une date $t$ quelconque et on note $t+T\ge t$ la date de la prochaine invention. On suppose que $T\leadsto \mathcal{P}$. 
+\begin{eqnarray*}
+	p_A(t) &=& \E_t\left[ \int_t^{t+T} \pi_\tau e^{-r\,(\tau-t)} d\tau + e^{-r\,T} p_A(t+T)\right]  \\
+	&=& \int_0^\infty \left[\int_t^{t+T} \pi e^{-r\,(\tau-t)} dt + e^{-r\,T} p_A(t+T)\right] \mu e^{-\mu T} dT \\
+	&=& \int_0^\infty \left[\frac{\pi}{r}\,(1-e^{-r\,T}) + e^{-r\,T} p_A(t+T)\right] \mu e^{-\mu T} dT \\
+	&=& \int_0^\infty \frac{\pi}{r}\,(1-e^{-r\,T}) \mu e^{-\mu T} dT + \int_t^\infty e^{-(r+\mu)\,(T-t)} p_A(T) \mu dT \\
+\end{eqnarray*}
+Si on dérive par rapport à $t$,on obtient~:
+\begin{eqnarray*}
+	\dot{p}_A &=& (r+\mu)\,\int_t^\infty e^{-(r+\mu)\,(T-t)} p_A(T) \mu dT  - \mu \,p_A(t)
+\end{eqnarray*}	
+En réutilisant l'expression de $p_A(t)$, on en déduit~:
+\begin{eqnarray*}
+	\dot{p}_A&=& (r+\mu)\,\left(p_A(t) -\int_0^\infty \frac{\pi}{r}\,(1-e^{-r\,T}) \mu e^{-\mu T} dT\right) - \mu \,p_A(t)\\
+	&=& r\,p_A(t) - (r+\mu)\,\frac{\pi}{r}\,\left(1-\frac{\mu}{\mu +r}\right) \\
+	&=& r\,p_A(t) - \pi
+\end{eqnarray*}
+
+
+
+\medskip
+On utilise le fait que $w_A = w_Y$, soit~:
+\begin{eqnarray*}
+	w_A &=& p_A \frac{\dot{A}}{L_A} =  \frac{\pi A }{r-\frac{\dot{p}_{A}}{p_{A}}}\frac{1}{A} \frac{\dot{A}}{s\,L} \\
+	&=& \frac{\alpha(1-\alpha) Y }{r-\frac{\dot{p}_{A}}{p_{A}}}g \frac{1}{s\,L} \quad(\pi A=\alpha(1-\alpha) Y) \\
+	&=& \frac{(1-\alpha) w_Y L_Y }{r-\frac{\dot{p}_{A}}{p_{A}}}g \frac{1}{s\,L} \quad(\alpha Y = w_Y L_Y) \\
+	&=& \frac{(1-\alpha) w_Y (1-s)L }{r-\frac{\dot{p}_{A}}{p_{A}}}g \frac{1}{s\,L} \quad(L_Y =(1-s)L)
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+	\frac{s}{1-s} &=& \frac{1-\alpha }{r-\frac{\dot{p}_{A}}{p_{A}}}g  \\
+	&=& \frac{1-\alpha }{\theta g +\rho}g \quad (r=\theta g+\rho +n) \\
+	&=& \frac{1-\alpha }{\theta +\rho\frac{1-\phi}{\lambda\,n}} \\
+	\\
+	\Rightarrow&& s = \frac{1}{1+\frac{1}{1-\alpha}\left(\theta +\rho\frac{1-\phi}{\lambda\,n}\right)}
+\end{eqnarray*}
+
+}
+
+\end{document}

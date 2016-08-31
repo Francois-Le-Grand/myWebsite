@@ -1,0 +1,272 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+
+\begin{document}
+
+\EnTete{Séances des 6--13 Octobre 2006}{3}{Equivalence ricardienne et d\'{e}mographie}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Bu:88}
+
+\paragraph{\large{Points techniques du TD :}} 
+\begin{itemize}
+	\item \'Equivalence ricardienne,
+	\item Lagrangien intertemporel. 
+\end{itemize}
+
+On consid\`{e}re une version du mod\`{e}le \`{a} g\'{e}n\'{e}rations en
+temps discret, avec incertitude sur la dur\'{e}e de vie. A une p\'{e}riode
+donn\'{e}e, la population est constitu\'{e}e de l'ensemble des individus
+encore vivants issus des cohortes pass\'{e}es. La d\'{e}mographie est caract%
+\'{e}ris\'{e}e par deux param\`{e}tres suppos\'{e}s constants~:
+
+\begin{itemize}
+	\item un taux de natalit\'{e} $b$ : \`{a} la p\'{e}riode $t$, une cohorte
+de taille $bN_{t}$ vient au monde, $N_{t}$ \'{e}tant la taille de la
+population \`{a} la date $t$,
+	\item une probabilit\'{e} de d\'{e}c\`{e}s $p$, qui frappe \`{a} chaque p\'{e}%
+riode l'ensemble des agents vivants, et ce ind\'{e}pendamment de leur \^{a}%
+ge.
+\end{itemize}
+
+Par convention, les variables sont d\'{e}finies en d\'{e}but de p\'{e}%
+riode.\bigskip 
+
+\section{D\'{e}mographie}
+
+\ques Calculer $n$ le taux de croissance de la population.\medskip
+
+\ques Donner la probabilit\'{e} pour un agent n\'{e} \`{a} la p\'{e}riode $s$
+meure avant le d\'{e}but de la p\'{e}riode $t$ $>s$.
+
+\section{Dotations, syst\`{e}me viager et \'{e}volution de la richesse
+financi\`{e}re }
+
+On note $a_{s,t}$\ la richesse financi\`{e}re \`{a} la p\'{e}riode $t$ d'un
+agent n\'{e} \`{a} la p\'{e}riode $s$. Un agent commence avec une richesse
+financi\`{e}re $a_{s,s}=0$. A chaque p\'{e}riode, il re\c{c}oit un salaire $%
+w_{t}$ et paie un montant d'imp\^{o}ts $\tau _{t}$. A la p\'{e}riode $t$, un
+agent dispose d'un montant $a_{s,t}+w_{t}-\tau _{t}$\ qu'il peut soit
+consommer, soit placer.
+
+Le placement de la p\'{e}riode $t$ est doublement r\'{e}mun\'{e}r\'{e} \`{a}
+la p\'{e}riode $t+1$ :
+
+\begin{itemize}
+	\item au taux d'int\'{e}r\^{e}t r\'{e}el $r$, constant au cours du temps,
+	\item via une prime proportionnelle \`{a} son \'{e}pargne.
+\end{itemize}
+
+\medskip
+
+On suppose en effet qu'il existe un syst\`{e}me viager parfaitement
+concurrentiel (i.e. profit nul) dont le principe est le suivant : \`{a}
+chaque p\'{e}riode un agent re\c{c}oit une prime proportionnelle \`{a} son 
+\'{e}pargne; en \'{e}change, il r\'{e}troc\`{e}de l'int\'{e}gralit\'{e} de
+sa richesse financi\`{e}re au jour de sa mort.\bigskip
+
+\ques Ecrire la loi d'\'{e}volution de la richesse financi\`{e}re d'un individu
+n\'{e} \`{a} la p\'{e}riode $s$ pendant la dur\'{e}e de sa vie, \`{a} taux
+actuariel\footnote{$\Pi$ est la prime proportionnelle liée à l'aspect viager} $\Pi $\ donn\'{e}.\medskip
+
+\ques Ecrire l'ensemble des d\'{e}penses et des recettes pour le syst\`{e}me
+viager et d\'{e}terminer le taux $\Pi $ v\'{e}rifiant la condition de profit
+nul.\medskip
+
+\ques Montrer que le taux d'int\'{e}r\^{e}t (brut) total pour l'\'{e}pargne des
+individus est $\frac{1+r}{1-p}$. Par la suite on notera $1+r_{h}\equiv \frac{%
+1+r}{1-p}$.
+
+\section{Comportement de consommation optimal}
+
+Un agent appartenant \`{a} la cohorte n\'{e}e \`{a} la p\'{e}riode $s$
+cherche \`{a} maximiser 
+\begin{equation*}
+U_{s}=\sum_{t=s}^{\infty }(1-p)^{t-s}\beta ^{t-s}\log (c_{s,t}{)}
+\end{equation*}
+
+L'\'{e}volution de la richesse est contrainte par la condition suivante : 
+\begin{equation*}
+\lim_{t\rightarrow \infty }\quad \frac{a_{s,t}}{(1+r_{h})^{t}}=0
+\end{equation*}
+
+\ques Ecrire le programme de maximisation d'un agent n\'{e} \`{a} la p\'{e}%
+riode $s$ et le Lagrangien associ\'{e}.\medskip
+
+\ques D\'{e}river les conditions du premier ordre\ et montrer que : 
+\begin{equation*}
+\frac{c_{s,t+1}}{c_{s,t}}=\beta (1+r)
+\end{equation*}
+
+\ques En utilisant la condition de transversalit\'{e}, \'{e}crire la
+contrainte budg\'{e}taire intertemporelle. On notera : 
+\begin{equation*}
+h_{t}=\sum_{i=0}^{\infty }\frac{(w_{t+i}-\tau _{t+i})}{(1+r_{h})^{i}}
+\end{equation*}
+
+\ques D\'{e}terminer $c_{s,t}$\ pour $t\geq s$ en fonction de $a_{s,t}$ et de $%
+h_{t}$.\medskip
+
+\ques Ecrire $C_{t}$\ la consommation agr\'{e}g\'{e}e sur l'ensemble de la
+population.
+
+\section{Finances publiques}
+
+L'Etat r\'{e}alise des d\'{e}penses $G_{t}$ (qui n'apparaissent pas dans la
+fonction d'utilit\'{e} des agents), qu'il peut financer soit
+par l'imp\^{o}t (on note $T_{t}$ les pr\'{e}l\`{e}vements fiscaux agr\'{e}g%
+\'{e}s), soit par la dette, sur laquelle il paie un taux d'int\'{e}r\^{e}t $%
+r $.\bigskip
+
+\ques Ecrire la loi d'\'{e}volution de la dette $D_{t}$.\medskip
+
+\ques L'\'{e}volution de la dette est contrainte par la condition suivante : 
+\begin{equation*}
+\lim_{t\rightarrow \infty }\quad \frac{D_{t}}{(1+r)^{t}}=0
+\end{equation*}
+Montrer qu'on doit avoir : 
+\begin{equation*}
+\sum_{i=0}^{\infty }\frac{T_{t+i}}{(1+r)^{i}}=D_{t}+\sum_{i=0}^{\infty }%
+\frac{G_{t+i}}{(1+r)^{i}}
+\end{equation*}%
+
+
+\section{Equilibre et condition pour la neutralit\'{e} de la dette}
+
+
+\ques Expliquer pourquoi on doit avoir \`{a} chaque p\'{e}riode $A_{t}=D_{t}$%
+.\medskip
+
+\ques Substituer dans $C_{t}$ l'expression de $D_{t}$\ en fonction des exc\'{e}%
+dents budg\'{e}taires futurs. \medskip
+
+\ques Montrer que la consommation est ind\'{e}pendante du chemin de taxe choisi
+si et seulement si : 
+\begin{equation*}
+b=0
+\end{equation*}
+
+\ques Dans cette \'{e}conomie, l'argument selon lequel il n'y a pas \'{e}%
+quivalence ricardienne parce qu'au moment de rembourser la dette on sera
+peut-\^{e}tre mort est-il valable?
+
+\end{document}

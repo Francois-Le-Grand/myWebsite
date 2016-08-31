@@ -1,0 +1,357 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+		\end{flushleft}
+		\begin{center}	
+			\bigskip
+			TD {#2}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+
+\begin{document}
+
+\EnTete{Séances des 3--10 et 6--13 Octobre 2006}{2}{Architecture Optimale de la Protection de l'Emploi}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{BlTi:04}
+
+\paragraph{\large{Points techniques du TD :}} 
+\begin{itemize}
+	\item Aléa moral,
+	\item Cohérence temporelle. 
+\end{itemize}
+
+\section{Set-up du mod\`{e}le}
+
+\textenitalique{Hypoth\`{e}ses}
+
+\begin{itemize}
+\item L'\'{e}conomie est constitu\'{e}e d'un continuum de travailleurs de
+masse $1$ et d'un continuum d'entrepreneurs de masse $1$.
+
+\item Les entrepreneurs sont neutres au risque. Chaque entrepreneur peut
+mener un projet (cr\'{e}er une entreprise). Il y a un co\^{u}t fixe au
+lancement d'un projet $I$, identique pour tous les entrepreneurs. Si un
+projet est lanc\'{e}, un travailleur est employ\'{e} et la productivit\'{e}
+du \textquotedblleft match\textquotedblright\ entrepreneur-travailleur $(y)$
+est r\'{e}v\'{e}l\'{e}e. La productivit\'{e} $(y)$ d'un match est tir\'{e}e
+d'une fonction de distribution dont la fonction de r\'{e}partition est $G(y)$
+continue et diff\'{e}rentiable (on note $g(y)$ dans $[0,1]$ la densit\'{e}
+associ\'{e}e). Une fois la productivit\'{e} r\'{e}v\'{e}l\'{e}e,
+l'entreprise peut soit produire et r\'{e}mun\'{e}rer le travailleur, soit le
+licencier (lequel se retrouve au ch\^{o}mage).
+
+\item Les travailleurs sont averses au risque: leur fonction d'utilit\'{e}
+est $U(x)$ concave, o\`{u} $x$ est le revenu du travailleur. En l'absence
+d'allocation ch\^{o}mage, le revenu de r\'{e}serve d'un travailleur sans
+emploi est $b$.
+
+\item Le dernier agent de cet \'{e}conomie est l'Etat: l'Etat finance les
+allocations-ch\^{o}mage $(\mu )$ \`{a} budget \'{e}quilibr\'{e}.\ Pour
+financer la caisse d'allocations, il peut avoir recours \`{a} deux
+instruments: taxe au licenciement d'un travailleur $\left( f\right) $ pay%
+\'{e}es \`{a} chaque licenciement ou cotisations sociales $\left( \tau
+\right) $ pay\'{e}es par la firme pour chaque travailleur employ\'{e}.
+\end{itemize}
+
+\textenitalique{Timing}
+
+\begin{itemize}
+\item P\'{e}riode 0: L'Etat choisit le triplet $\left\{ f,\tau ,\mu \right\} 
+$ sous-contrainte de budget \'{e}quilibr\'{e}.
+
+\item P\'{e}riode 1: Les entrepreneurs d\'{e}cident de lancer un projet,
+paient le co\^{u}t fixe $(I)$ et emploient des travailleurs.\ Les
+entrepreneurs offrent un contrat $\left( w,y^{\ast }\right) $ qui stipule un
+niveau de salaire fix\'{e} \textit{ex-ante} $w$ et un niveau minimum de
+productivit\'{e} $(y^{\ast })$ en de\c{c}a duquel le travailleur est licenci%
+\'{e}. Noter que les firmes ne proposent pas de salaires contingents \`{a}
+la r\'{e}alisation $(w(y))$ du fait de l'aversion au risque des
+travailleurs. Noter aussi que comme les entrepreneurs font face au m\^{e}me
+co\^{u}t fixe et \`{a} la m\^{e}me distribution de productivit\'{e}, \`{a} l'%
+\'{e}quilibre, ils chercheront tous \`{a} lancer un projet.
+
+\item P\'{e}riode 2: L'incertitude sur la productivit\'{e} est r\'{e}v\'{e}l%
+\'{e}e: si $y>y^{\ast }$, la production est r\'{e}alis\'{e}e et le salaire $%
+\left( w\right) $ est pay\'{e} au travailleur et la cotisation sociale $%
+\left( \tau \right) $ est pay\'{e} \`{a} l'Etat; si $y<y^{\ast }$, la firme
+paie la taxe $\left( f\right) $ et le travailleur est licenci\'{e} et touche 
+$\left( \mu \right) $ de l'Etat.
+\end{itemize}
+
+\medskip
+
+L'objet du TD est de trouver l'architecture optimale de la protection de
+l'emploi, \textit{i.e }le triplet $\left\{ f,\tau ,\mu \right\} $ optimal
+dans divers cas de figure.
+
+\section{Benchmark}
+
+\ques Ecrire l'utilit\'{e} esp\'{e}r\'{e} d'un travailleur $(V_{W})$
+conditionnellement au contrat $\left( w,y^{\ast }\right) $.
+
+\medskip
+
+\ques Ecrire le gain esp\'{e}r\'{e} d'un entrepreneur $(V_{F})$
+conditionnellement au contrat $\left( w,y^{\ast }\right) $. A quelle
+condition, les entrepreneurs lancent un projet~?
+
+\medskip
+
+\ques Ecrire la contrainte budg\'{e}taire du gouvernement.
+
+\medskip
+
+\textenitalique{Programme de la firme}
+
+\ques Ecrire le programme de maximisation de la firme (N'oubliez pas la
+contrainte de participation des travailleurs~!). Donner les conditions du
+premier-ordre. En d\'{e}duire que:%
+\begin{equation*}
+y^{\ast }=w+\tau -f-\left( \frac{U(w)-U(b+\mu )}{U^{\prime }(w)}\right)
+\end{equation*}
+
+Commenter.
+
+\medskip
+
+\ques Pourquoi cette solution n'est pas coh\'{e}rente temporellement~? Donner la
+solution du programme pr\'{e}c\'{e}dent coh\'{e}rente temporellement.
+
+\medskip
+
+On supposera par la suite que le contrat $\left( w,y^{\ast }\right) $ est coh%
+\'{e}rent temporellement.
+
+\medskip
+
+\textenitalique{Optimum social}
+
+Un planificateur bienveillant cherche \`{a} maximiser l'utilit\'{e} esp\'{e}r%
+\'{e}e des travailleurs sous les contraintes suivantes:
+\begin{itemize}
+	\item contrainte budg\'{e}taire du gouvernement,
+	\item contrainte de participation des entrepreneurs,
+	\item seuil de productivit\'{e} choisi par les entreprises (et coh\'{e}rent
+temporellement).
+\end{itemize}
+
+\medskip
+
+\ques Montrer que les contraintes de participation des entrepreneurs et d'\'{e}%
+quilibre budg\'{e}taire implique la contrainte suivante:
+\begin{equation*}
+-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left( 1-G(y^{\ast
+})\right) w\geq I
+\end{equation*}
+
+On suppose que le planificateur choisit d'abord $\{w,\mu ,y^{\ast }\}$ de
+sorte \`{a} maximiser:
+\begin{eqnarray*}
+&&\max_{\{w,\mu ,y^{\ast }\}}\left\{ G(y^{\ast })U(b+\mu )+\left(
+1-G(y^{\ast })\right) U(w)\right\} \\
+s.c &:&\text{ }-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left(
+1-G(y^{\ast })\right) w\geq I
+\end{eqnarray*}
+
+(En effet, le planificateur pourra toujours fixer le couple $\{f,\tau \}$
+tel que $y^{\ast }$ corresponde au seuil choisi par les entreprises et tel
+que la contrainte budg\'{e}taire de l'Etat est \'{e}quilibr\'{e}e).
+
+En d\'{e}duire le niveau d'allocations-ch\^{o}mage vers\'{e}es par le
+gouvernement et le seuil de productivit\'{e} \`{a} l'optimum social en
+fonction de $w$ et $b$. Commenter.
+
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social. Commenter.
+
+\section{Limites de l'assurance compl\`{e}te: al\'{e}a moral}
+
+Dans le mod\`{e}le benchmark, les travailleurs sont parfaitement assur\'{e}%
+s: en pratique, ce cas est peu r\'{e}aliste car une parfaite assurance d\'{e}%
+sincite les travailleurs \`{a} fournir l'effort maximal pour chercher un
+emploi et/ou garder leur emploi (al\'{e}a moral). Nous allons voir dans
+cette deuxi\`{e}me partie comment ces questions d'incitations modifient le
+design de la protection de l'emploi.
+
+\medskip
+
+Nous supposons que la contrainte d'incitation des travailleurs (\`{a}
+fournir un effort lorsqu'ils sont employ\'{e}s) peut se r\'{e}\'{e}crire de
+la mani\`{e}re suivante:%
+\begin{equation*}
+\left( 1-G(y^{\ast })\right) \left( U(w)-U(b+\mu )\right) \geq B\text{ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }(IW)
+\end{equation*}
+
+o\`{u} $B$ d\'{e}signe les b\'{e}n\'{e}fices priv\'{e}s d'un travailleur
+lorsque celui -ci ne fournit pas d'effort.
+
+\medskip
+
+\ques Interpr\'{e}ter la condition $(IW)$
+
+\medskip
+
+\textenitalique{Optimum social}
+
+\ques R\'{e}\'{e}crire le programme du planificateur social. Montrer que
+
+\subques l'assurance n'est plus compl\`{e}te
+
+\subques la valeur seuil v\'{e}rifie $y^{\ast }=b+\left[ w-(b+\mu )-\frac{%
+U(w)-U(b+\mu )}{U^{\prime }(w)}\right] $
+
+Commenter.
+
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social en fonction de $w$ et des param\`{e}tres du mod%
+\`{e}le. Commenter.
+
+\section{Shallow Pockets}
+
+Jusqu'alors, nous avons suppos\'{e} que les firmes peuvent toujours financer
+les taxes de licenciements (pas de contraintes financi\`{e}res,
+\textquotedblleft Deep Pockets\textquotedblright ). Nous \'{e}tudions
+maintenant le design optimal de la protection de l'emploi lorsque les firmes
+sont contraintes financi\`{e}rement.
+
+Nous supposons que la richesse d'un entrepreneur $(W_{E})$ avant de cr\'{e}%
+er sa firme est born\'{e}e:
+
+\begin{equation*}
+W_{E}\leq I+f^{\ast }
+\end{equation*}
+
+\medskip
+
+\ques Quelle est la limite impos\'{e}e \`{a} $f$ dans ce cas~? On supposera que
+cette contrainte est satur\'{e}e\footnote{%
+Dans le cas contraire, le probl\`{e}me est \'{e}quivalent \`{a} la partie A.}%
+. En d\'{e}duire que le choix de $\mu $ de l'Etat est contraint par:
+
+\begin{equation*}
+G(y^{\ast })\mu \leq f^{\ast }+\left( 1-G(y^{\ast })\right) (y^{\ast }-w)
+\end{equation*}
+
+\medskip
+
+\textenitalique{Optimum social}
+
+\ques Ecrire le programme de maximisation du planificateur social en tenant
+compte de cette nouvelle contrainte sur le niveau d'allocations-ch\^{o}mage
+et d\'{e}river les conditions du premier ordre (on ne demande pas de r\'{e}%
+soudre).\ Montrer que:
+
+\subques \`{a} l'optimum, il y a assurance compl\`{e}te
+
+\subques le seuil de productivit\'{e} en de\c{c}a duquel il y a licenciement est
+plus \'{e}lev\'{e} qu'en~A.
+
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social en fonction de $y^{\ast }$ et des param\`{e}%
+tres du mod\`{e}le. Commenter.
+
+\end{document}
+

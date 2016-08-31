@@ -1,0 +1,251 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+\newcommand{\refg}[1]{({\sc Fig.}~\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue~~!40~~!black~~!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight)~;
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x}~;
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y}~;
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+
+\EnTete{Séances des 7/14 et 10/17 Novembre 2006}{9}{Endogenous Growth}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{Ac:02}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Croissance endogène,
+	\item Progrès technique biaisé.
+\end{itemize}
+
+\section{Set--up du modèle}
+
+L'économie est peuplée d'un agent représentatif qui consomme un bien final. Ce bien final est un agrégat de deux biens intermédiaires qui sont produits en utilisant à la fois des machines et du travail. Les deux biens se distinguent par la caractéristique des inputs~: ils sont supposés qualifiés pour l'un et peu qualifiés pour l'autre.
+
+\textenitalique{Préférences}
+
+Les préférences d'un agent représentatif sont définies de la manière suivante~:
+\begin{eqnarray*}
+\int_{0}^{\infty }\frac{C_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt
+\end{eqnarray*}
+
+o\`{u} $C_{t}$ est la consommation de bien final.
+
+\textenitalique{Bien final}
+
+Le bien de consommation final est un agrégat des deux biens intermédiaires selon une fonction CES standard~:
+\begin{eqnarray*}
+C=\left[ \gamma \left( C_{L}\right)^{\frac{\varepsilon -1}{\varepsilon }%
+}+\left( 1-\gamma \right) \left( C_{H}\right)^{\frac{\varepsilon -1}{%
+\varepsilon }}\right]^{\frac{\varepsilon }{\varepsilon -1}}
+\end{eqnarray*}
+
+$\varepsilon $ est l'élasticité de substitution entre les deux biens $H$ et $L$.
+
+Le prix du bien final est normalisé à 1~:
+\begin{eqnarray*}
+\left[ \gamma^{\varepsilon }\left( p_{L}\right)^{1-\varepsilon }+\left( 1-\gamma
+\right)^{\varepsilon }\left( p_{H}\right)^{1-\varepsilon }\right]^{\frac{1}{%
+1-\varepsilon }}=1
+\end{eqnarray*}
+
+\section{Résolution}
+
+\ques \'Ecrire la demande relative de chacun des biens $H$ et $L.$
+
+\textenitalique{Biens intermédiaires}
+
+Il existe deux biens intermédiaires dont la production utilise des inputs différents~: le secteur $L$ et le secteur $H$.
+
+Le secteur $L$ produit à partir de travailleurs non--qualifiés $(L)$ et d'un continuum de machines $\left( x_{L}(j)\right) $ selon la fonction de production suivante~:
+\begin{eqnarray*}
+Y_{L}=\frac{1}{1-\beta }\left( \int_{0}^{N_{L}}x_{L}(j)^{1-\beta}dj\right) L^{\beta }
+\end{eqnarray*}
+
+o\`{u} $L$ désigne la quantité de travailleurs non--qualifiés employés et $N_{L}$ le nombre de machines à disposition dans le secteur $L$.
+
+Symétriquement, la fonction de production dans le secteur $H$ est~:
+\begin{eqnarray*}
+Y_{H}=\frac{1}{1-\beta }\left( \int_{0}^{N_{H}}x_{H}(j)^{1-\beta}dj\right) H^{\beta }
+\end{eqnarray*}
+
+o\`{u} $H$ désigne la quantité de travailleurs qualifiés employés et $N_{H}$ le nombre de machines à disposition dans le secteur $H$.
+
+\medskip
+
+On note $w_{L}$ le salaire d'un travailleur de type $L$ (resp. $w_{H}$ le salaire d'un travailleur de type $H$). Une machine $(j)$ de type $L$ est loué au prix $\chi _{L}(j)$ (resp. une machine $(j)$ de type $H$ est loué au prix $\chi _{H}(j)$). Les secteurs $H$ et $L$ sont parfaitement concurrentiels.
+
+\medskip
+
+\ques \'Ecrire les fonctions de demande en machines $(j)$ de type $(i)$ pour chacun des secteurs.
+\medskip
+
+\textenitalique{Producteurs de machines}
+
+\ques On suppose que les producteurs de machines sont des monopoles et que le coût marginal de production d'une machine est constant égale à $(1-\beta )$ unités du bien final. Calculer le prix de location fixé par chacun des producteurs de machines. En déduire le profit $\left( \pi _{i}\right) $ réalisé à chaque période par un producteur de machine de type $(i)$. 
+\medskip
+
+\ques Calculer la valeur actualisée $V_{i}$ des profits des monopoles producteurs de machines de type $(i)$ à l'état stationnaire. On notera $r$ le taux d'actualisation. En déduire le rapport $\frac{V_{H}}{V_{L}}$. Sous quelles conditions est--il plus incitatif d'innover dans le secteur $H$ plutôt que dans le secteur $L$~?
+\medskip
+
+\textenitalique{Equilibre sur le marché des biens}
+
+\ques En utilisant l'équilibre sur le marché des biens intermédiaires, exprimer $\frac{V_{H}}{V_{L}}$ en fonction de $\frac{H}{L}$ et $\frac{N_{H}}{N_{L}}$ et des paramètres du modèle. On introduira le paramètre $\sigma =\varepsilon \beta +(1-\beta )$
+\medskip
+
+\ques Dans quelles circonstances une hausse de la dotation en travailleurs
+qualifiés relativement aux travailleurs non--qualifiés augmentent le
+ratio $\frac{V_{H}}{V_{L}}$~?
+\medskip
+
+\ques Dériver des conditions de premier ordre des firmes de biens intermédiaires, la courbe de salaires relatifs des deux facteurs $(\frac{w_{H}}{w_{L}})$ en fonction de $\left( \frac{N_{H}}{N_{L}}\right) $ et $\left( 
+\frac{H}{L}\right) $. Commenter.
+
+\textenitalique{Innovations technologiques}
+
+On suppose que l'innovation technologique (invention de nouvelles machines) suit dans chacun des secteurs $(i)$ la loi d'évolution suivante~:
+\begin{eqnarray*}
+\dot{N_{i}}=\eta _{i}X_{i}
+\end{eqnarray*}
+
+o\`{u} $X_{i}$ désigne les ressources allouées à l'invention de nouvelles machines de type $(i)$ (en unité de bien final, \textquotedblleft Lab--Equipment Model\textquotedblright ). On suppose qu'il y a libre--entrée dans le secteur des innovations.
+
+\medskip
+
+\ques \'Ecrire la condition d'équilibre sur le marché des innovations technologiques. En déduire la relation qui lie $V_{H}$ et $V_{L}$ à l'état stationnaire, puis le nombre relatif de machines $\left( \frac{N_{H}}{N_{L}}\right) $ en fonction de la dotation factorielle $\left( \frac{H}{L}\right) $.
+\medskip
+
+\ques En déduire le ratio $\frac{w_{H}}{w_{L}}$ en fonction des dotations relatives $\left( \frac{H}{L}\right) $. Commenter.
+
+\textenitalique{Programme du consommateur}
+
+\ques \'Ecrire l'Equation d'Euler du programme du consommateur. En déduire que le taux de croissance de l'économie sur le sentier de croissance  équilibré est égal à~:
+\begin{eqnarray*}
+g=\frac{1}{\theta }\left( \beta \left[ \gamma^{\varepsilon }\left( \eta
+_{L}L\right)^{\sigma -1}+\left( 1-\gamma \right)^{\varepsilon }\left( \eta
+_{H}H\right)^{\sigma -1}\right]^{\frac{1}{\sigma -1}}-\rho \right)
+\end{eqnarray*}
+Commenter. Pourquoi parle--t--on \textquotedblleft d'effet
+taille\textquotedblright\ lorsque $\sigma >1$~?
+On supposera qu'il y a libre--entrée sur le marché de l'innovation. Expliquer pourquoi cela implique $\eta_{L}V_{L}=1=\eta_{H}V_{H}$.  
+
+\medskip
+
+\textenitalique{Application~: \textquotedblleft Skill Premium\textquotedblright }
+
+La figure \refg{fig:TD9} représente l'évolution du salaire relatif des travailleurs qualifiés par rapport aux travailleurs non--qualifiés en fonction de l'offre relative de qualifiés et de non--qualifiés aux US.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 12cm]{TD9image.pdf}	
+	\caption{Evolution de la \textquotedblleft skill--premium\textquotedblright\ en fonction de l'offre relative des qualifiés et non--qualifiés.}
+	\label{fig:TD9}
+\end{figure}
+
+\medskip
+
+\ques Pourquoi l'évolution du salaire relatif des qualifiés par rapport aux non--qualifiés peut apparaître paradoxale~? Comment le modèle étudié permet--il de répondre à ce paradoxe~? Quelles autres explications pouvez--vous avancer~?
+
+\end{document}

@@ -1,0 +1,216 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+\newcommand{\refg}[1]{({\sc Fig.}~\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue~~!40~~!black~~!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight)~;
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x}~;
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y}~;
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+
+\EnTete{Séances des 14 et 17 Novembre 2006}{10}{Endogeneous Growth: modèles de R\&D}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{Jo:95}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Croissance endogène,
+	\item Rôle de la R\&D et absence d'effet taille.
+\end{itemize}
+
+
+\section{Set--up du modèle}
+
+L'économie est peuplée d'un agent représentatif qui consomme un bien final. Ce bien final est produit à partir du travail et d'un continuum de biens intermédiaires. Le secteur du bien final est parfaitement concurrentiel alors que les firmes du secteur intermédiaire sont en monopole. Celles--ci profitent du bénéfice de leur innovation et produisent à partir du capital. Les inventions de nouveaux biens intermédiaires se fait par l'intermédiaire de firmes de R\&D dans lesquelles travaillent des chercheurs. Il y a libre--entrée sur le marché de la R\&D et le travailleur/consommateur peut librement allouer son temps de travail entre le secteur final et celui de la recherche.
+
+\section{Résolution}
+
+\textenitalique{Le bien final}
+
+Le bien final $Y$ est produit à partir du travail $L_Y$ et d'un continuum de biens intermédiaires $x$ que l'on indice sur $[0,A]$, $A$ étant supposé comme exogène pour ce secteur. Le secteur est parfaitement concurrentiel et la fonction de production est la suivante~:
+\begin{eqnarray*}
+	Y = L_Y^\alpha\,\int^A_0 x_i^{1-\alpha} di
+\end{eqnarray*}
+
+Le salaire des travailleurs du secteur est noté $w_Y$. Le bien intermédiaire $x_i$ est valorisé à $p_i$ unités de bien final, considéré comme numéraire. 
+\medskip
+
+\ques Déterminer $w_Y$ en fonction de $Y$ et $L_Y$.
+\medskip
+
+\ques Exprimer la demande en bien intermédiaire $x_i$ en fonction de $p_i$ et $L_Y$.
+\medskip
+
+\textenitalique{Les biens intermédiaires}
+
+Le secteur des biens intermédiaires se compose d'un continuum de firmes sur $[0,A]$. Chaque firme est en monopole sur son segment. On suppose en effet qu'elle bénéficie d'une innovation du secteur de la R\&D qu'elle est la seule à produire. Elle produit en utilisant comme seul input le capital qui coûte $r$.
+\medskip
+
+\ques Exprimer l'élasticité de la demande d'un bien intermédiaire par le secteur du bien final~? En déduire le prix des biens intermédiaires.
+\medskip
+
+\ques Quelle est la quantité de biens intermédiaires produites par chaque firme~? Quel profit $\pi$ réalise--t--elle~?
+\medskip
+
+\ques On note $K$ la quantité de capital allouée aux firmes de biens intermédiaires. Déduire des questions précédentes la répartition de la valeur ajoutée $Y$ entre salaires, profits agrégés des firmes de biens intermédiaires et rémunération du capital. Commenter.
+
+\textenitalique{La R\&D}
+
+L'invention de nouveaux biens intermédiaires obéit à la loi suivante~:
+\begin{eqnarray*}
+	\dot{A} = \delta\,L_A^\lambda\,A^\phi
+\end{eqnarray*}
+$L_A$ désigne le nombre de chercheurs dans le secteur de la $R\&D$. $\lambda$ et $\phi$ sont des paramètres compris entre 0 et 1. 
+
+Le secteur de la R\&D vend une innovation au prix $p_A$~: c'est assimilable à une \emph{patente}. On suppose qu'il y a libre entrée dans ce secteur.
+
+Le marché du travail n'est pas segmenté entre chercheurs et travailleurs dans le secteur du bien final et les travailleurs choisissent librement de travailler dans le secteur R\&D pour un salaire $w_A$.
+\medskip
+
+\ques Commenter la loi d'évolution des innovations. En quoi se différencie--t--elle de celle du modèle de Romer (1990)~?
+\medskip
+
+\ques Calculer le salaire $w_A$ des chercheurs.
+
+\textenitalique{Le consommateur}
+
+Les préférences du consommateur représentatif sont définies de la manière suivante~:
+\begin{eqnarray*}
+\int_{0}^{\infty }\frac{c_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt
+\end{eqnarray*}
+$c_t$ désigne la consommation instantanée par individu de bien final à la date $t$. Le taux de préférence privé pour le présente se note $\rho>0$. 
+\medskip
+
+\ques On note $K$ la richesse agrégée de l'économie. Exprimer la loi d'évolution de $K$ en fonction des autres paramètres agrégés de l'économie.
+\medskip
+
+\ques Récrire cette loi d'évolution en variables par tête. On notera ainsi $c = C/L$, $k = K/L$, $a=A/L$ avec $L = L_A + L_Y$. On suppose que la population croît au taux constant $n$.
+\medskip
+
+\ques \'Ecrire et résoudre le programme du consommateur. En  déduire l'équation d'Euler.
+
+\textenitalique{Le sentier de croissance équilibré}
+
+On cherche ici à déterminer l'équilibre stationnaire (donc de long--terme). Pour cela, on suppose que la part des chercheurs dans la population active $s = L_A/L$ est constante à long--terme et que $c$ et $y$ croissent aux taux $g>0$ constant.
+\medskip
+
+\ques Exprimer le taux de rendement du capital $r$ en fonction de $g$ à l'équilibre stationnaire. Montrer que le taux de croissance stationnaire $g_A$ du nombre de biens intermédiaires $A$ est égal à celui de la consommation $g$.
+\medskip
+
+\ques Utiliser la loi d'évolution de $A$ pour exprimer $g_A$. Pourquoi parle--t--on de croissance \emph{semi--endogène}~? Quelle est la principale différence avec le modèle de Romer (1990)~?
+\medskip
+
+\ques Calculer $\dfrac{\dot{p}_A}{p_A}$ et commenter.
+\medskip
+
+\ques On souhaite déterminer $s$
+\medskip
+
+\subques Déterminer la valeur d'une patente $p_A$. On utilisera deux méthodes~: (i) l'absence d'opportunités d'arbitrage (pour un investisseur neutre au risque qui peut investir  dans le capital et dans le secteur de la R\&D) et (ii)  Utiliser la méthode intégrale (supposer que les dates de survenue des inventions suit un processus de Poisson). 
+\medskip
+
+\subques En déduire $s=\dfrac{L_A}{L}$ et commenter.
+
+\end{document}

@@ -1,0 +1,233 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\newcommand{\vect}[2]{
+\left(\begin{array}{c}
+				#1\\ #2 \\
+			\end{array}\right)
+}
+
+\begin{document}
+
+\EnTete{Séances des 24/31 et 27 Octobre/3 Novembre 2006}{6}{Taxation and debt}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{AiMaSaSe:02}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Taxation optimale,
+	\item Dépenses gouvernementales stochastiques.
+\end{itemize}
+
+\section{Introduction}
+
+Dans ce TD, on s'intéresse à l'impact de la dette sur la taxation optimale. Le gouvernement doit financer un flux de dépenses stochastiques avec une taxe distorsive et de la dette sans risque. On cherche à savoir si l'on retrouve le résultat de Barro selon lequel les taxes sont constantes à l'état stationnaire et plus précisément que le taux de taxe optimal est une martingale.
+
+\section{Présentation de l'économie}
+
+L'économie est peuplée d'un ménage représentatif, d'un gouvernement bénévole et d'une firme. 
+
+\textenitalique{Le gouvernement}
+
+Les dépenses à la date $t$ du gouvernement $g_t$ sont stochastiques et sont supposées suivre un processus de Markov. On suppose que les dépenses sont inclues dans le support $\bigl[g_{min}\:;\:g_{max}\bigr]$. 
+
+Le gouvernement peut se financer en levant des taxes $\tau$ (distorsives) sur le travail et en émettant de la dette $b$ réelle à une période. La dette $b_t$ est achetée à la date $t$ au prix $p_t$ et verse $b_t$ à la date $t+1$.
+
+\textenitalique{Le ménage}
+À chaque date $t$, le ménage consomme un bien agrégé $c$ et profite du loisir $x$. À la date 0, le ménage maximise son utilité espérée ($\beta$ représente le discount temporel privé)~:
+\begin{eqnarray*}
+	\E_0 \sum^\infty_{t=0} \beta^t\,u(c_t, x_t)
+\end{eqnarray*}
+
+L'utilité $u$ est croissante concave en consommation et en loisir. L'opérateur $\E_s$ désigne l'espérance conditionnelle à l'information disponible à la date $s$.
+
+\textenitalique{La firme}
+La firme produit à l'aide d'une technologie linéaire $y = l$ des biens à partir du travail $l=1-x$. Ces biens peuvent être consommés indifféremment par le ménage ou par le gouvernement.
+
+\textenitalique{Le timing}
+Les décisions du gouvernement et des ménages à la date $t$ sont des fonctions de l'historique des dépenses gouvernementales $g^t=\bigl(g_t, g_{t-1},\ldots , g_0\bigr)$ et de la dette initiale $b_{-1}$. 
+
+\bigskip
+\ques Calculer le salaire réel et le profit des firmes.
+\medskip
+
+\ques \'Ecrire la contrainte budgétaire du ménage à la période $t$.
+\medskip
+
+\ques \'Ecrire le programme de l'agent. En déduire le niveau de taxe $\tau_t$ à la date $t$ et montrer que le prix de la dette vérifie~:
+\begin{eqnarray*}
+	p_t = \beta\,\E_t\frac{u_{c,t+1}}{u_{c,t}}
+\end{eqnarray*}
+\medskip
+
+\ques \'Ecrire la contrainte de ressource de l'économie. Exprimer le surplus primaire $s_t$ du gouvernement à la date $t$ en fonction de $c_t$ et $g_t$. 
+\medskip
+
+\ques On suppose que $\beta^T \,u_{c,t+T}\,b_{t+T-1} \rightarrow_{p.s.} 0$. En déduire qu'à chaque date $t$, on a la relation suivante~:
+\begin{eqnarray*}
+	b_{t-1} = \E_t \sum^\infty_{j=0} \beta^j \,\frac{u_{c,t+j}}{u_{c,t}}\,s_{t+j}
+\end{eqnarray*}
+Pourquoi n'est--il pas possible de réduire toutes les contraintes en une contrainte unique en 0~?
+\medskip
+
+\ques On suppose qu'il existe deux bornes exogènes $\overline{M}$ et $\underline{M}$ pour la dette $b$. A chaque date, la dette doit vérifier $\underline{M}\le b_t \le\overline{M}$. \'Ecrire le programme de Ramsey du gouvernement et le Lagrangien intertemporel associé. On notera $\lambda_t$ le multiplicateur de Lagrange associé à la contrainte budgétaire et $\mu_{1,t}$ et $\mu_{2,t}$ les multiplicateurs associés aux bornes sur la dette. Exceptionnellement, $\lambda_t$ sera homogène à l'opposé d'un prix de la période $t$.
+\medskip
+
+\ques Montrer que le Lagrangien s'écrit sous la forme suivante~:
+\begin{eqnarray*}
+	\mathcal{L} &=& \E_0 \sum^\infty_{t=0} \beta^t\Biggl\{ u(c_t, 1-c_t-g_t) - \psi_t\,u_{c,t}\,s_t \\
+			&+& u_{c,t}\,\biggl( \mu_{1,t} \overline{M} - \mu_{2,t} \underline{M} + \lambda_t\,b_{t-1} \biggr)\Biggr\}
+\end{eqnarray*}
+où $\psi_t = \psi_{t-1} + \mu_{1,t} - \mu_{2,t} + \lambda_t$ et $\psi_{-1}=0$.
+\medskip
+
+\ques \'Ecrire les contraintes du premier ordre du programme précédent.  Montrer notamment que l'on a~:
+\begin{eqnarray*}
+	&&u_{c,t}-u_{x,t} - \psi_t \kappa_t + \bigl(u_{cc,t}-u_{cx,t}\bigr)\bigl(\mu_{1,t} \overline{M} - \mu_{2,t} \underline{M} + \lambda_t\,b_{t-1}\bigr)=0 \\
+	&& \kappa_t = \bigl(u_{cc,t}-u_{cx,t}\bigr)\,s_t + u_{c,t}\,s_{c,t}
+\end{eqnarray*}
+
+\ques {\it Le cas de marchés complets}~: on cherche à retrouver certains résultats de Lucas et Stokey (1983). 
+\medskip
+
+\subques Montrer que dans ce cas le taux de taxe est uniquement déterminé par~: 
+\begin{eqnarray*}
+	u_{c,t}-u_{x,t} = \lambda_0\,\kappa_t 
+\end{eqnarray*}
+En déduire que seule la valeur courante de $g$ affecte $\tau$.
+\medskip
+
+\subques Toujours dans le cadre de marché complet, on suppose de plus que l'utilité est quadratique. En déduire que l'expression de $c$ et $\tau$ en fonction de $g$. Dans un souci de simplicté analytique, on supposera simplement que $u(c,x) = c-\frac{1}{2}(1-x)^2$. NB~: le résultat reste vrai pour une expression quelconque de l'utilité quadratique.
+\medskip
+  
+\ques Dans le cadre de \emph{marchés incomplets}, on étudie un cas particulier où l'on suppose que $u(c,x) = c+ H(x)$. $H$ est croissante concave et vérifie en plus $H'''(x)\,(1-x)>2\,H''(x)$ pour $x\in[0\:;\:1]$. On cherche à montrer qu'à l'état stationnaire les taxes sont constantes et ainsi retrouver le résultat de Barro.
+\medskip
+
+\subques Montrer que l'on a les égalités suivantes~: 
+\begin{eqnarray*}
+	p_t &=& \beta \\
+	H'(x_t) &=& 1-\tau_t
+\end{eqnarray*}
+
+\subques Montrer que les revenus $R$ du gouvernement s'écrivent $R(x) = \bigl(1-H'(x)\bigr)(1-x)$. Montrer qu'il existe deux niveaux de loisir $x_1$ et $x_2$ tels que $R$ est positive et strictement croissante sur $\bigl[x_1\:;\:x_2\bigr]$. En déduire les limites de dette en fonction de $g_{min}$ et  $g_{max}$.
+\medskip
+
+\subques Montrer que l'on a les deux relations suivantes~:
+\begin{eqnarray}
+	\tau_t &=& -\,\psi_t\,R'(x_t) \nonumber \\
+	\E_{t-1}\psi_t &\ge& \psi_{t-1} \label{submart}
+\end{eqnarray}
+En déduire que le niveau de taxes est constant. 
+
+On admettra que \reff{submart} implique que (Théorème de convergence des sous martingales)  $\psi_t$ converge p.s. vers une variable aléatoire négative ou nulle. 
+\medskip
+
+\subques On se place dans le cadre de marché complet. Montrer qu'il y a une contrainte d'implémentabilité unique vérifiant~: $b_{-1} = \E_0 \sum^\infty_{t=0} \beta^t\,\bigl(R_t - g_t\bigr)$. Montrer également que le taux de taxe est défini par~:
+\begin{eqnarray*}
+	\tau_t = 1-H'(x_t) = -\,\lambda_0\,R'(x_t)
+\end{eqnarray*}
+En déduire alors que le taux de taxe est constant dans le cadre de marchés complets.
+\medskip
+
+\ques On retourne maintenant au cas général~: $u$ quelconque et marchés incomplets. Montrer que l'on peut écrire $\psi$ comme une martingale ajustée pour le risque dans le cas où les contraintes sur $\overline{M}$ et $\underline{M}$ ne mordent pas~:
+\begin{eqnarray*}
+	\psi_t = \E_t\left[\frac{u_{c,t+1}}{\E_t u_{c,t+1}}\,\psi_{t+1}\right]
+\end{eqnarray*}
+On admettra que dans le cas général $\psi$ n'admet pas de limite. Monter qu'alors, l'équilibre avec dette sans risque ne converge pas vers l'équilibre avec dette contingente.
+
+\ques Retour sur le résultat de non--convergence de $\psi$. 
+\medskip
+
+\subques On définit $\theta_t$ de la façon suivante~:
+\begin{eqnarray*}
+	\theta_t = \prod^t_{\tau=1} \frac{u_{c,\tau}}{\E_{\tau-1}u_{c,\tau}}
+\end{eqnarray*}
+Montrer que $\{\psi_t\,\theta_t\}$ est une martingale et en déduire que le processus converge p.s. vers $\overline{\theta\psi}$. 
+\medskip
+
+\subques Montrer que $\{\theta_t\}$ est une martingale positive et qu'elle converge p.s. vers $\overline{\theta}$. On fixe une réalisation $\omega$. Montrer que si $\theta_t(\omega) \rightarrow \overline{\theta}(\omega)>0$ alors $u_{c,t}(\omega)/\E_{t-1}u_{c,t}(\omega) \rightarrow 1$. 
+\medskip
+
+\subques En déduire que si l'équilibre de Ramsey dans le cadre de marchés complets conduit à $u_{c,t}(\omega)/\E_{t-1}u_{c,t}(\omega) \neq 1$, alors $\theta_t\rightarrow 0$. Dans ce cas, on n'a plus aucun résultat de convergence sur $\psi$. Le résultat de Barro ne tient plus. (en fait, il faut aller un peu plus loin pour montrer que l'on a bien absence de convergence. On sait juste que l'approche martingale échoue). 
+
+NB~: À la question 10), $u$ était linéaire en $c$, donc $u_{c,t}=\E_{t-1}u_{c,t}=1$.
+
+\end{document}

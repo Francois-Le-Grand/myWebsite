@@ -1,0 +1,318 @@
+table.sourceCode, tr.sourceCode, td.sourceCode, table.sourceCode pre
+   { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; background-color: /*bg*/#e7efef }
+td.nums { text-align: right; padding-right: 5px; padding-left: 5px; background-color: #f0f0f0; }
+td.sourceCode { padding-left: 5px; }
+code.sourceCode { background-color: /*bg*/#e7efef; }
+pre.sourceCode { background-color: /*bg*/#e7efef; line-height: 125% }
+td.nums pre { background-color: #f0f0f0; line-height: 125% }
+code.sourceCode span.kw { color: #000; font-weight: bold } /* Keyword */
+code.sourceCode span.dt { color: #204a87 } /* Keyword.Type */
+code.sourceCode span.dv { color: #099 } /* Literal.Number.Integer */
+code.sourceCode span.bn { color: #0000cf } /* Literal.Number.Hex */
+code.sourceCode span.fl { color: #0000cf } /* Literal.Number.Float */
+code.sourceCode span.ch { color: #d14 } /* Literal.String.Char */
+code.sourceCode span.st { color: #d14 } /* Literal.String */
+code.sourceCode span.co { color: #998; font-style: italic } /* Comment */
+code.sourceCode span.ot { color: #333 } /* Comment.Preproc */
+code.sourceCode span.al { color: #ef2929 } /* Generic.Error */
+code.sourceCode span.fu { color: #333 } /* Name.Function */
+code.sourceCode span.re { }
+code.sourceCode span.er { color: #a40000; border: 1px solid #ef2929 } /* Error */
+
+/********************* Colour reference chart****************
+*************************** comment ********* colour ******** 
+From the website http://www.color-hex.com/
+
+fontcolor                   fc               #641818
+titles                      tic              #186464 (complementary of fc)
+a link                      alc              #a22727 (3+ monochromatic colors from fc)
+a h link                    alh              #a22727 (3+ monochromatic colors from fc)
+a hover IN TAB              aht              #cb3131
+bg color                    bg               yellow
+*/
+
+
+@font-face {
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+}
+
+
+body {
+    background-color:/*bg*/#e7efef;
+    font-size:20px;
+    font-family: Biolinum;
+    color:/*fc*/#641818;
+    src: local("Linux Biolinum O");
+}
+
+h1 {
+    font-size:34px;
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+    color:/*tic*/#186464;
+}
+
+h2 {
+    font-size:30px;
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+    color:/*tic*/#186464;
+}
+
+h3 {
+    font-size:26px;
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+    color:  /*tic*/#186464;
+}
+
+
+
+p {
+    padding-bottom:0px;
+    padding-top:5px;
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+}
+
+.no-vert-space {
+    padding: 0;
+    margin: 0;
+}
+
+.no-bottom-space {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.no-top-space {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.indent {
+    margin-left: 5em;
+    margin-right: 10em;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+a {
+    text-decoration:none;
+    color:green;
+}
+
+
+a:link,
+a:visited {
+    text-decoration:none;
+    color:/*alc*/#a22727;
+}
+
+a:hover,
+a:active, 
+a:focus {
+    outline: none;
+    color:/*alc*/#a22727;
+    border-bottom: 0.1px dotted /*alc*/#a22727;
+    text-decoration: none;
+}
+
+
+pre {
+    margin-bottom:20px;
+    border:none;
+}
+
+.post-title {
+    margin-bottom:5px;
+    margin-top:0;
+}
+
+ul.nav {
+    display:flex;
+    margin-top:0px;
+    padding-top:0px;
+/*
+    position:fixed; top:0px; z-index:100000; width:100%;
+*/
+}
+
+.inconsolata {
+    font-family:inconsolata;
+}
+
+.biolinum {
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+}
+
+.footer {
+    margin-top:-40px;
+}
+
+.nav li {
+    flex:1;
+    text-align:center;
+    
+}
+
+.nav li a:hover,
+.nav li a:focus,
+.nav li a:active {
+    background-color:/*bg*/#e7efef;
+    text-decoration:none;
+    border: none;
+    color:/*aht*/#d24444;
+}
+
+.nav li a:link,
+.nav li a:visited {
+    background-color:/*bg*/#e7efef;    
+    text-decoration:none;
+    border:none;
+}
+
+.normalfontsize {
+    font-size: 18px;
+}
+
+.content .posts li {
+    font-size: 18px;
+    list-style:none;
+    padding:8px 0;
+    margin-left:-0px;
+}
+
+.content .posts li em {
+    font-style:italic;
+    color:#666;
+}
+
+.head {
+    padding:0 50px;
+}
+
+.content {
+    padding:50px 0px ;
+}
+
+.footer {
+    padding:0 50px 0px 50px;
+}
+
+
+.metadata {
+    padding-bottom:10px;
+    padding-left:2px;
+}
+
+p.metadata {
+    font-size:14px;
+}
+
+.tags {
+    font-weight: bold;
+    padding-left:5px;
+}
+
+.tags a {
+    text-decoration:none;
+}
+
+.date {
+    font-style:italic;
+    color:#222;
+    padding-right:5px;
+}
+
+.page-header h1 {
+    font-family:FiraLight;
+}
+
+
+.header {    
+    border-bottom:1px solid /*fc*/#641818;
+    border-top:1px solid #aaa;    
+}
+
+.page-header {
+    border-bottom:none;
+}
+
+.page-header a {
+    text-decoration:none;
+}
+
+.bottom {
+    text-align: center;
+    font-family: Biolinum;
+    src: local("Linux Biolinum O");
+    padding:15px 0px 50px 0px;
+    font-style:italic;
+    color:#999;
+    border-top:1px solid /*fc*/#641818;
+    font-size:14px;
+}
+
+.bottom a {
+    color:#666;
+}
+
+.date {
+    margin-bottom:10px;
+}
+
+img.top {
+    vertical-align: text-top;
+}
+
+.imgleft {
+    margin-left: 3px;
+}
+
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align:text-top;}
+
+.more {
+    display: none;
+}
+
+.navbar-default {
+    border:none;
+    background-color:/*bg*/#e7efef;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: text-top;
+    float: none;
+}
+
+@media screen and (min-width: 768px) {
+    .content{
+        padding:80px 0 80px 0;
+    }
+    
+    .presentation{
+        padding:80px 0 0px 0;
+    }
+    
+    .afterpresentation{
+        padding:0px 0 80px 0;
+    }
+
+    .footer {
+        padding:0 0px 0px 0px;
+    }
+
+    .head {
+        padding:0 0px;
+    }
+}
+
+

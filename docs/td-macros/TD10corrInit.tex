@@ -1,0 +1,330 @@
+
+\documentclass[a4paper]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Monday, January 30, 2006 12:47:17}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\input{tcilatex}
+
+\begin{document}
+
+
+{\small Nicolas Coeurdacier}
+
+{\small nicolas.coeurdacier@pse.ens.fr}
+
+{\small Cours de Macro\'{e}conomie 3 (Prof. D.\ Cohen)}
+
+\bigskip
+
+\begin{center}
+\bigskip
+
+TD 10 - El\'{e}ments de correction.
+\end{center}
+
+\bigskip
+
+\textbf{Croissance endog\`{e}ne: \textquotedblleft R\&D Based Models of
+Economic Growth\textquotedblright .}
+
+D'apr\`{e}s C.I.\ Jones, 1995, \textit{The Journal of Political Economy},
+Vol 103 (4), 759-784.
+
+\bigskip
+
+\textbf{Secteur des biens finaux}
+
+\bigskip
+
+Le secteur des biens finaux produit le bien de consommation $Y$ \`{a} partir
+du travail $L_{Y}$ et un continuum de biens interm\'{e}diaires $x$. Le
+nombre de biens interm\'{e}diaires $A$ est consid\'{e}r\'{e} comme donn\'{e}
+par les firmes. Le secteur est parfaitement concurrentiel.
+
+\begin{equation*}
+Y=L_{Y}^{\alpha }\int_{0}^{A}x_{i}^{1-\alpha }di
+\end{equation*}
+
+o\`{u} $L_{Y}$ d\'{e}signe le nombre de travailleurs dans le secteur des
+biens finaux.
+
+On note $w$ le salaire des travailleurs et $p_{i}$ le prix du bien interm%
+\'{e}diaire $x_{i}$.
+
+Le prix des biens finaux est prix comme num\'{e}raire.
+
+\bigskip
+
+1) D\'{e}terminer le salaire $w$ en fonction de $Y$ et $L_{Y}$.%
+\begin{equation*}
+w=\alpha \frac{Y}{L_{Y}}
+\end{equation*}
+
+2) Calculer la fonction de demande du bien interm\'{e}diaire $x_{i}$ en
+fonction de $p_{i}\ $et $L_{Y}$.%
+\begin{eqnarray*}
+p_{i} &=&\left( 1-\alpha \right) L_{Y}^{\alpha }x_{i}^{-\alpha } \\
+x_{i} &=&\left( 1-\alpha \right) ^{\frac{1}{\alpha }}L_{Y}p_{i}^{-\frac{1}{%
+\alpha }}
+\end{eqnarray*}
+
+\bigskip
+
+\textbf{Secteur des biens interm\'{e}diaires}
+
+\bigskip
+
+Le secteur des biens interm\'{e}diaires est constitut\'{e} d'un continuum
+des firmes sur $\left[ 0,A\right] $: chacune de ses firmes est en monopole
+sur son segment gr\^{a}ce b\'{e}n\'{e}fice de son innovation. La production
+d'une unit\'{e} de bien interm\'{e}diaire est assur\'{e} en transformant une
+unit\'{e} de capital. Le co\^{u}t du capital est $r$ (et identique pour
+toutes les firmes).
+
+\bigskip
+
+3) Quelle est l'\'{e}lasticit\'{e} de la demande d'un bien interm\'{e}diaire
+par le secteur des biens finaux? En d\'{e}duire le prix des biens interm\'{e}%
+diaires.%
+\begin{equation*}
+\text{\'{e}lasticit\'{e} de la demande}=\frac{1}{\alpha }\Rightarrow p_{i}=%
+\frac{r}{1-\alpha }=p\text{ \ \ \ }\forall i
+\end{equation*}
+
+4) Quelle est la quantit\'{e} de biens interm\'{e}diaires produites par
+chaque firme? Quel est le profit $\pi $ r\'{e}alis\'{e}?%
+\begin{eqnarray*}
+x_{i} &=&x=\left( 1-\alpha \right) ^{\frac{2}{\alpha }}L_{Y}r^{-\frac{1}{%
+\alpha }} \\
+\pi _{i} &=&\pi =\alpha px
+\end{eqnarray*}
+
+5) On note $K$ la quantit\'{e} de capital pr\^{e}t\'{e}e aux firmes de biens
+interm\'{e}diaires. D\'{e}duire des questions pr\'{e}c\'{e}dentes la r\'{e}%
+partition de la valeur ajout\'{e}e $Y$ entre salaires, profits agr\'{e}g\'{e}%
+s des firmes de biens interm\'{e}diaires et r\'{e}mun\'{e}ration du capital.
+Commenter.%
+\begin{eqnarray*}
+K &=&Ax \\
+rK &=&Arx=A(1-\alpha )px=(1-\alpha )^{2}Y \\
+A\pi &=&\alpha (1-\alpha )Y \\
+wL_{Y} &=&\alpha Y
+\end{eqnarray*}
+
+\bigskip
+
+\textbf{Secteur R\&D}
+
+\bigskip
+
+L'invention de nouveaux biens interm\'{e}diaires (innovations) ob\'{e}it 
+\`{a} la loi suivante:
+
+\begin{equation*}
+\overset{\bullet }{A}=\delta L_{A}^{\lambda }A^{\phi }
+\end{equation*}
+
+o\`{u} $L_{A}$ d\'{e}signe le nombre de travailleurs dans le secteur R\&D
+(\textquotedblleft chercheurs\textquotedblright ).
+
+$\left( \lambda ,\phi \right) $ sont des param\`{e}tres compris dans $\left[
+0,1\right] $
+
+\bigskip
+
+Le secteur R\&D vend une innovation (\textquotedblleft
+patente\textquotedblright ) au prix $p_{A}$. Les travailleurs choisissent
+librement de travailler dans le secteur R\&D (le march\'{e} du travail n'est
+pas segment\'{e} entre chercheurs et travailleurs dans le secteur des biens
+finaux). Il y a libre entr\'{e}e dans le secteur R\&D.
+
+\bigskip
+
+6) Commenter la loi d'\'{e}volution des innovations. En quoi est-elle diff%
+\'{e}rente de celle du mod\`{e}le de Romer [1990]? Cette hypoth\`{e}se vous
+para\^{\i}t-elle justifi\'{e}e?
+
+\bigskip
+
+7) Calculer le salaire $w$ des chercheurs.
+
+Condition de z\'{e}ro profit.
+
+\begin{equation*}
+w=p_{A}\delta L_{A}^{\lambda -1}A^{\phi }
+\end{equation*}
+
+8) Ecrire le rendement instantan\'{e} d'une patente en fonction de $p_{A}$
+et $\pi $ et \'{e}galiser ce rendement au co\^{u}t du capital (Equation
+d'Arbitrage)
+
+\begin{equation*}
+r=\frac{\pi }{p_{A}}+\frac{\overset{\bullet }{p_{A}}}{p_{A}}
+\end{equation*}
+
+\bigskip \pagebreak
+
+\textbf{Choix de consommation}
+
+\bigskip
+
+Les pr\'{e}f\'{e}rences d'un agent repr\'{e}sentatif sont d\'{e}finies de la
+mani\`{e}res suivante:
+
+\begin{equation*}
+\max_{c}\int_{0}^{\infty }\frac{c^{1-\theta }}{1-\theta }e^{-\rho t}dt
+\end{equation*}
+
+On note $K$ la richesse agr\'{e}g\'{e}e de l'\'{e}conomie.
+
+La contrainte emploi-ressource impose l'\'{e}volution suivante pour la
+richesse agr\'{e}g\'{e}e $K$:%
+\begin{equation*}
+\overset{\bullet }{K}=rK+wL_{Y}+A\pi -C
+\end{equation*}
+
+\bigskip
+
+9) R\'{e}\'{e}crire cette loi d'\'{e}volution en variable par t\^{e}te $k=%
+\frac{K}{L}$, $c=\frac{C}{L}$ et $a=\frac{A}{L}$ o\`{u} $L=L_{A}+L_{Y}$
+
+\begin{equation*}
+\overset{\bullet }{k}=(r-n)k+w\frac{L_{Y}}{L}+a\pi -c
+\end{equation*}
+
+10) Ecrire l'Hamiltonien associ\'{e} \`{a} cette maximisation et en d\'{e}%
+duire l'\'{e}quation d'Euler associ\'{e}e.
+
+\begin{equation*}
+\frac{\overset{\bullet }{c}}{c}=\frac{1}{\theta }(r-\rho -n)
+\end{equation*}
+
+\bigskip
+
+\textbf{Sentier de croissance \'{e}quilibr\'{e}}
+
+\bigskip
+
+On note $y=\frac{Y}{L}$
+
+On suppose que le ratio $s=\frac{L_{A}}{L}$ est constant \`{a} long-terme et
+que $c$ et $y$ croissent \`{a} un taux constant $g>0$ (\textquotedblleft
+balanced growth path\textquotedblright ).
+
+\bigskip
+
+11) Calculer $r$ en fonction de $g$ sur le sentier de croissance \'{e}quilibr%
+\'{e}. Montrer que $g=g_{A}$, taux de croissance de $A.$
+
+\begin{equation*}
+g=\frac{\overset{\bullet }{c}}{c}=\frac{1}{\theta }(r-\rho -n)\Rightarrow
+r=\theta g+\rho +n
+\end{equation*}
+
+\begin{eqnarray*}
+Y &=&AL_{Y}^{\alpha }x^{1-\alpha } \\
+\frac{\overset{\bullet }{Y}}{Y} &=&g_{A}+\alpha n+\left( 1-\alpha \right) 
+\frac{\overset{\bullet }{x}}{x} \\
+&=&g_{A}+\alpha n+\left( 1-\alpha \right) \left[ n-\frac{1}{\alpha }\frac{%
+\overset{\bullet }{r}}{r}\right] \\
+&=&g_{A}+n \\
+\frac{\overset{\bullet }{y}}{y} &=&g_{A}
+\end{eqnarray*}
+
+\bigskip
+
+12) En utilisant la loi d'\'{e}volution de $A$, calculer $g_{A}$. Pourquoi
+parle t-on de croissance \textquotedblleft semi-endog\`{e}%
+ne\textquotedblright ? Quelle est la principale diff\'{e}rence avec le mod%
+\`{e}le de Romer [1990]?
+
+On log-diff\'{e}rencie la loi d'\'{e}volution de $A$%
+\begin{eqnarray*}
+\frac{\overset{\bullet }{A}}{A} &=&\delta L_{A}^{\lambda }A^{\phi
+-1}\Rightarrow 0=\lambda \frac{\overset{\bullet }{L_{A}}}{L_{A}}+\left( \phi
+-1\right) g_{A} \\
+g_{A} &=&g=\frac{\lambda n}{1-\phi }
+\end{eqnarray*}
+
+La croissance est auto-entretenue mais ne d\'{e}pend pas de variables affect%
+\'{e}es par la politique \'{e}conomique $\Rightarrow $ croissance
+\textquotedblleft semi-endog\`{e}ne\textquotedblright . Dans le mod\`{e}le
+de Romer, il y a un \textquotedblleft effet-taille\textquotedblright : plus
+il y a de chercheurs, plus le taux de croissance est \'{e}lev\'{e};
+empiriquement, un tel effet taille est tr\`{e}s contestable (cf. fig. 1).
+
+\begin{center}
+\FRAME{ihFU}{3.4056in}{3.0372in}{0in}{\Qcb{d'apr\`{e}s Jones [1995].}}{}{%
+Figure}{\special{language "Scientific Word";type
+"GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
+3.4056in;height 3.0372in;depth 0in;original-width 3.9271in;original-height
+3.4999in;cropleft "0";croptop "1";cropright "1";cropbottom "0";tempfilename
+'IRFUZF00.bmp';tempfile-properties "XPR";}}
+
+\bigskip
+\end{center}
+
+13) Calculer $\frac{\overset{\bullet }{p_{A}}}{p_{A}}$. Commenter.
+
+\begin{eqnarray*}
+\frac{wL_{A}}{wL_{Y}} &=&\frac{p_{A}\overset{\bullet }{A}}{wL_{Y}}=\frac{%
+p_{A}\overset{\bullet }{A}}{\alpha Y}=p_{A}\frac{\delta L_{A}^{\lambda
+}A^{\phi }}{\alpha Y}=\frac{L_{A}}{L_{Y}} \\
+&\Rightarrow &\frac{\overset{\bullet }{p_{A}}}{p_{A}}=-\lambda n-\phi g+g+n=n
+\end{eqnarray*}
+
+Le prix des patentes s'appr\'{e}cie au cours du temps car il devient de plus
+en plus difficile d'innover du fait des rendements d\'{e}croissants de
+l'innovation.
+
+\bigskip
+
+14) Calculer $s=\frac{L_{A}}{L}$. Commenter.
+\begin{equation*}
+r=\frac{\pi }{p_{A}}+\frac{\overset{\bullet }{p_{A}}}{p_{A}}\Rightarrow
+p_{A}=\frac{\pi }{r-\frac{\overset{\bullet }{p_{A}}}{p_{A}}}
+\end{equation*}
+
+\begin{eqnarray*}
+wL_{A} &=&p_{A}\overset{\bullet }{A}=\frac{A\pi }{r-\frac{\overset{\bullet }{%
+p_{A}}}{p_{A}}}g_{A}=\frac{\alpha (1-\alpha )Y}{r-\frac{\overset{\bullet }{%
+p_{A}}}{p_{A}}}g=\frac{(1-\alpha )wL_{Y}}{r-\frac{\overset{\bullet }{p_{A}}}{%
+p_{A}}}g \\
+\frac{s}{1-s} &=&\frac{L_{A}}{L_{Y}}=\frac{(1-\alpha )}{r-\frac{\overset{%
+\bullet }{p_{A}}}{p_{A}}}g=\frac{1-\alpha }{\theta g+\rho }g=\frac{1-\alpha 
+}{\theta +\frac{\rho }{g}} \\
+s &=&\frac{1}{1+\frac{1}{1-\alpha }\left( \theta +\frac{\rho }{g}\right) }
+\end{eqnarray*}
+
+\end{document}

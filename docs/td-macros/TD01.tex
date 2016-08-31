@@ -1,0 +1,294 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14~:35~:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15~:55~:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+		\end{flushleft}
+		\begin{center}	
+			\bigskip
+			TD {#2}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\newcounter{question}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\ques}{\addtocounter{question}{1}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+
+\begin{document}
+
+\EnTete{Séances des 3 et 6 Octobre 2006}{1}{Mod\`{e}les dynamiques de \textquotedblleft job-search\textquotedblright\ \`{a} la Mortensen-Pissarides}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Ho:90}\nocite{MoPi:94}\nocite{MoPi:98}\nocite{Pi:90}
+
+\paragraph{\large{Points techniques du TD~:}} l'optimisation sous contraintes~:
+\begin{itemize}
+	\item Lagrangien
+	\item Hamiltonien
+	\item \'Equation de Bellman
+\end{itemize}
+
+\section{Description du modèle}
+On consid\`{e}re le mod\`{e}le standard \`{a} la Mortensen-Pissarides, où les travailleurs et firmes sont neutres au risque. 
+
+\textenitalique{Les travailleurs}
+
+Les travailleurs maximisent  la fonction suivante o\`{u} $r$ d\'{e}signe le taux d'escompte et $y(s)$ le revenu net \`{a} la p\'{e}riode $s$~:
+\begin{equation*}
+V_{t}=\int_{t}^{\infty }e^{-rs}y(s)ds
+\end{equation*}
+
+Les travailleurs employ\'{e}s sont r\'{e}mun\'{e}r\'{e}s au salaire $w$. Un
+travailleur au ch\^{o}mage touche le salaire de r\'{e}serve $b$ ($b$ peut 
+\^{e}tre interpr\'{e}t\'{e} comme une allocation ch\^{o}mage ou comme le
+gain du loisir).
+
+\textenitalique{Les firmes}
+
+Il existe un large nombre d'entreprises, toutes identiques (libre-entr\'{e}e
+de firmes). Une firme qui emploie un travailleur produit $x$ ($\equiv$ productivit\'{e} du travail).
+
+
+\textenitalique{ Matching function }
+
+On d\'{e}signe par $v$ le nombre de postes vacants dans les entreprises. Le
+co\^{u}t \`{a} chaque p\'{e}riode pour une firme qui cherche \`{a} remplir
+un poste vacant est $\gamma $.
+
+On normalise \`{a} 1 la taille de la population active, de sorte que $u$\ d%
+\'{e}signe \`{a} la fois le taux de ch\^{o}mage et le nombre de ch\^{o}meurs.
+
+A chaque p\'{e}riode, un travailleur employ\'{e} a une probabilit\'{e}
+instantan\'{e}e $s$ constante de se retrouver au ch\^{o}mage.
+
+On suppose que le nombre d'embauches \`{a} une p\'{e}riode donn\'{e}e\ est
+une fonction du nombre de personnes au ch\^{o}mage $\left( u\right) $\ et du
+nombre de postes vacants $\left( v\right) $~:%
+\begin{equation*}
+m(u,v)
+\end{equation*}
+
+On supposera que\ la fonction $m$\ est \`{a} rendements constants, du type~: 
+$m(u,v)=u^{\alpha }v^{1-\alpha }$.
+
+\section{Résolution}
+
+\ques Exprimer la probabilit\'{e} instantan\'{e}e $h$ pour un ch\^{o}meur de trouver un emploi.
+
+\medskip
+
+\ques Montrer que $h$\ peut s'\'{e}crire $\theta q(\theta )$, avec $\theta
+\equiv \frac{v}{u}$ et $q$ une fonction d\'{e}croissante. Que repr\'{e}sente 
+$q$~? Les travailleurs ont-ils int\'{e}r\^{e}t \`{a} ce que $\theta $\ soit 
+\'{e}lev\'{e} ou faible~? Exprimer la dur\'{e}e moyenne de vacance d'un poste
+en fonction de $q(\theta )$.
+
+\medskip
+
+\ques Calculer le taux de ch\^{o}mage \`{a} l'\'{e}quilibre stationnaire en
+fonction de~$\left\{ s,h\right\} $.
+
+\medskip
+
+Pour toutes, les questions suivantes, on se place \`{a} l'\'{e}tat
+stationnaire.
+
+On note $J_{F}$ (resp. $J_{V}$) la valeur actualis\'{e}e des revenus pour
+une firme d'une place occup\'{e}e par un travailleur (resp. la valeur
+actualis\'{e}e des revenus pour une firme d'une place vacante).
+
+On note $J_{E}$ (resp. $J_{U}$) la valeur actualis\'{e}e des revenus pour un
+travailleur employ\'{e} (resp. la valeur actualis\'{e}e des revenus pour un
+travailleur en recherche d'emploi).
+
+\medskip
+
+\ques Expliquer pourquoi \`{a} l'\'{e}quilibre stationnaire, $J_{F}$ et $J_{V}$
+v\'{e}rifient~:
+
+\begin{equation*}
+rJ_{F}=x-w+s(J_{V}-J_{F})
+\end{equation*}
+
+On utlisera trois méthodes différentes~: (i) fonction valeur sous forme intégrale (ii) sous forme différentielle (iii) un raisonnement d'arbitrage.
+
+Exprimer de m\^{e}me $J_{V}$ en fonction $J_{F}$ et des param\`{e}tres du mod\`{e}les.
+
+\medskip
+
+\ques Interpr\'{e}ter la condition d'\'{e}quilibre suivante~:%
+\begin{equation*}
+\frac{\gamma }{q(\theta )}=\frac{x-w}{r+s}
+\end{equation*}
+
+\medskip
+
+\ques Exprimer $J_{E}$ en fonction de $J_{U}$ et des param\`{e}tres du mod\`{e}%
+les (resp. $J_{U}$ en fonction de $J_{E}$ et des param\`{e}tres du mod\`{e}%
+les).
+
+\textenitalique{Nash-Bargaining et \'{e}quation de salaire}
+
+On suppose que le salaire est d\'{e}termin\'{e} de sorte que la fonction
+suivante soit maximis\'{e}e~:%
+\begin{equation*}
+\max_{\left( w\right) }J_{F}{}^{\beta }(J_{E}-J_{U})^{1-\beta }
+\end{equation*}
+
+o\`{u} $\beta $ d\'{e}signe le pouvoir de n\'{e}gociation de la firme.
+
+On notera que le salaire d'\'{e}quilibre impacte $J_{U}$ mais que cet effet
+n'est pas internalis\'{e} par le travailleur qui n\'{e}gocie son salaire
+avec une firme donn\'{e}e (prenant le salaire d'\'{e}quilibre comme donn\'{e}%
+).
+
+\medskip
+
+\ques Montrer que~: $\beta \left( J_{E}-J_{U}\right) =\left( 1-\beta \right)
+J_{F}$.
+
+Montrer qu'\`{a} l'\'{e}quilibre, $w=\beta b+(1-\beta )(x+\gamma \theta )$.
+Commenter.
+
+\textenitalique{Equilibre sur le march\'{e} du travail et statique comparative}
+
+\ques Repr\'{e}senter graphiquement la d\'{e}termination de $(\theta ,w)$ dans
+le plan $(\theta ,w)$.
+
+D\'{e}terminer comment $\theta $, $h$ et $u$ sont affect\'{e}s par~:
+
+\begin{itemize}
+	\item une hausse de $b$,
+	\item une hausse de $\gamma $,
+	\item  une baisse de $s$.
+\end{itemize}
+
+\section{Efficience des mod\`{e}les dynamiques de search~: Condition
+d'Hosios}
+
+\medskip
+
+On cherche \`{a} d\'{e}terminer l'allocation optimale de l'emploi et \`{a}
+la comparer \`{a} l'\'{e}quilibre d\'{e}centralis\'{e}. Le planificateur
+cherche \`{a} maximiser la production sous la contrainte d'\'{e}volution de
+l'emploi.
+
+\medskip
+
+\ques Exprimer le surplus $\left( S\right) $ du planificateur \`{a} chaque p%
+\'{e}riode avec $u$ chomeurs et $v$ postes vacants.
+
+\medskip
+
+\ques Ecrire le programme du planificateur sous contrainte. Ecrire le
+Hamiltonien associ\'{e}. En d\'{e}duire les conditions du premier ordre.
+
+On introduira $\eta (\theta )=-\frac{\frac{dq}{d\theta }\theta }{q(\theta )}$
+(Indication~: il est conseill\'{e} de prendre $\theta =\frac{v}{u}$ comme
+variable de contr\^{o}le plut\^{o}t que $v$).
+
+\medskip
+
+\ques Montrer qu'\`{a} l'\'{e}quilibre stationnaire on a~:
+
+\begin{equation*}
+(1-\eta (\theta ))(x-b)-\gamma \frac{r+s+\eta (\theta )\theta\,q(\theta )}{q(\theta )}=0
+\end{equation*}
+
+\medskip
+
+\ques En utilisant les questions 4) et 6), montrer que dans le cas de l'\'{e}%
+quilibre d\'{e}centralis\'{e}, on a la relation suivante~:
+
+\begin{equation*}
+\beta (x-b)-\gamma \frac{r+s+\left( 1-\beta \right) \theta q(\theta )}{q(\theta )}=0
+\end{equation*}
+
+\medskip
+
+\ques En d\'{e}duire \`{a} quelle condition l'\'{e}quilibre d\'{e}centralis%
+\'{e} est efficient. C'est la {\bf Condition d'Hosios}. Comment s'\'{e}crit cette condition
+lorsque la fonction de matching est Cobb--Douglas. Commenter.
+
+
+\end{document}

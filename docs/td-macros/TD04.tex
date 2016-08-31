@@ -1,0 +1,305 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 17 et 20 Octobre 2006}{4}{Fiscal Theory of the Price Level}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{ChFi:00}
+
+
+\section{Introduction}
+
+Dans ce TD, on expose à travers quelques modèles simples les implications et  les limites de la théorie fiscale des prix (ou Fiscal Theory of the Price Level ou encore FTPL). 
+
+Pour faire simple, la FTPL nous dit que la dette nominale est un titre sur les surplus fiscaux futurs du gouvernement. Cochrane utilise l'analogie avec les stocks qui sont des titres sur les profits futurs des firmes.  Comme le prix d'un stock permet d'égaliser le nombre de titres et les profits futurs espérés, le niveau des prix permet d'égaliser les surplus fiscaux espérés et la valeur de la dette aujourd'hui. Ainsi si les surplus fiscaux à venir sont trop faibles, le gouvernement doit monétiser sa dette et le prix doit augmenter. 
+
+C'est donc la politique fiscale et non la politique monétaire qui permet de fixer dans ce monde le niveau de prix. La FTPL suppose ce que Cochrane appelle un {\it régime fiscal}. Le Trésor fixe les surplus et la dette, le niveau de prix en découle. La banque centrale émet `passivement' une quantité de monnaie de façon à respecter l'équation quantitative  de la  monnaie. Ce régime est à opposer au {\it régime monétaire} où la banque centrale choisit la quantité de monnaie ce qui impose le prix. Le Trésor n'a alors qu'à ajuster les surplus budgétaires de façon à assurer le respect de sa contrainte budgétaire intertemporelle. 
+
+\section{Un modèle à une période}
+
+Les agents héritent au matin du seul jour du monde d'une dette du gouvernement réelle $b$ ou nominale $B$. Pour payer cette dette, le gouvernement dispose d'un surplus fiscal $s^f$ et d'un revenu de seigneuriage $s^m$.
+
+\ques Ecrire la contrainte budgétaire du gouvernement quand il se finance par dette réelle. Retrouver l'\emph{Unpleasant Monetarist Arithmetic} de Sargent et Wallace. Rappeler les conséquences pour les politiques monétaires et fiscales.
+\medskip
+
+\ques Ecrire la contrainte budgétaire du gouvernement quand il se finance par dette nominale. En déduire le niveau de prix d'équilibre. C'est la détermination du prix par la politique fiscale. 
+\medskip
+
+\`A ce stade il y a deux interprétations possibles pour la FTPL~:
+\begin{enumerate}[(i)~]
+	\item Le gouvernement ne prend pas en compte son équilibre budgétaire intertemporel. Le prix s'ajuste toujours de façon à ce que l'équilibre budgétaire soit satisfait. Dans ces conditions, le gouvernement n'a aucun intérêt à lever des taxes distorsives et peut se contenter de se financer par dette. Il n'y a alors jamais de surplus positifs et il n'existe pas d'équilibre au sens où il n'existe pas de prix positifs assurant l'équilibre budgétaire. Cette interprétation est donc insuffisante. 
+	\item Il faut donc réconcilier la contrainte budgétaire intertemporelle avec le fait que le prix est le résultat d'un équilibre où les surplus fiscaux sont exogènes. Une interprétation possible est alors la suivante. Le gouvernement choisit les surplus en avance de façon crédible. Le marché est convaincu de ces surplus et engendre donc la valeur de prix $P$ d'équilibre assurant l'équilibre budgétaire~: c'est un régime fiscal cohérent.
+\end{enumerate}
+
+\textenitalique{ Surdétermination du prix~? }
+
+La FTPL assure que le prix est déterminé par la contrainte budgétaire intertemporelle du gouvernement. La question est maintenant de savoir si le prix est déterminé de manière unique et qu'il n'y a pas de contradiction avec la modélisation du reste de l'économie. 
+
+\medskip
+\ques Rappeler l'équation quantitative de la monnaie. Commenter la cohérence avec la FTPL.
+
+\section{Un modèle à horizon infini}
+
+L'incohérence précédente repose sur 3 hypothèses~:
+\begin{enumerate}[(i)~]
+	\item La vélocité de la monnaie est déterminée par la technologie alors qu'en réalité c'est une fonction croissante du taux d'intérêt.
+	\item L'output est déterminé de manière exogène, alors qu'au moins dans le court terme, il est influencé par le niveau de prix. 
+	\item La politique monétaire choisit la quantité de monnaie alors qu'en réalité il s'agit d'une règle sur le taux d'intérêt nominale~: la  quantité de monnaie est endogène.
+\end{enumerate}
+
+Dans ce modèle, on lève les  hypothèses (i) et (iii) et on cherche à déterminer le prix d'équilibre de l'économie. 
+
+Il y a une infinité de périodes $t= 0, 1, 2, \ldots$. L'output $Y$ est constant. À la date $t$, la monnaie $M_t$, le prix $P_t$ et le taux d'intérêt $R_t$ sont liés par la relation suivante~:
+\begin{eqnarray*}
+	&&\frac{M_t}{P_t} = A\,R_t^{-\alpha} \\
+	&&\textrm{où $A>0$ et $\alpha>0$ sont des constantes}
+\end{eqnarray*}
+
+On suppose que les ménages pondèrent le futur au taux constant $r$ qui est aussi le taux d'intérêt réel de l'économie à chaque période. 
+
+La banque centrale cible le taux d'intérêt nominal et a pour objectif de fixer celui--ci à une valeur constante $R$. Pour cela, elle émet la quantité de monnaie $M_t$ nécessaire.  
+
+Nous sommes dans un cadre de théorie fiscale des prix et le gouvernement annonce ses surplus fiscaux $s^f_t$. On suppose que ceux--ci sont constants~: $s^f_t=s^f$. 
+
+Le gouvernement peut émettre de la dette nominale de maturité 1 au taux nominal constant $R$. On note $B_{t+1}/(1+R)$ le montant émis à la date $t$. 
+
+\medskip
+\ques Rappeler l'équation de Fisher.
+\medskip
+
+\ques Exprimer les revenus de seigneuriage $s^m_t$ en fonction de $M$ et $P$. Puis montrer l'égalité suivante~:
+\begin{eqnarray*}
+	s^m_t = A\,R^{-\alpha}\,\frac{R-r}{1+R}\qquad t = 0,1,\ldots 
+\end{eqnarray*}
+\medskip
+
+\ques En déduire la contrainte budgétaire du gouvernement à la période $t$, en termes nominaux puis en termes réels.
+\medskip
+
+\ques Si l'on suppose la condition de transversalité vérifiée, en déduire le niveau de dette réelle initial. Conclure sur le niveau de prix d'équilibre et sur leur multiplicité.
+\medskip
+
+\ques {\it Un petit détour~:} l'interprétation économique de la condition de transversalité $\lim_{T\rightarrow \infty} \frac{B_T}{(1+R)^T} = 0$. Raisonnons par l'absurde et supposons que cette limite est strictement positive. On peut trouver une constante $B^\star>0$ telle que  pour tout $T$ est assez grand (plus grand que $T^\star$), $\frac{B_T}{(1+R)^T} \ge B^\star$. 
+
+\medskip
+\subques Comparer les deux situation suivantes~: (i) les agents continuent à acheter de la dette gouvernementale et (ii) ils en achètent jusqu'à $T^\star$ et plus jamais ensuite.
+\medskip
+
+\subques Conclure. 
+
+\textenitalique{ Fragilité de la FTPL~? }
+
+Comme on l'a déjà vu l'hypothèse principale de la FTPL tient à l'annonce exogène des surplus $s$. Dans cette partie on s'intéresse à la robustesse de l'existence des prix à l'hypothèse de surplus fiscaux constants. 
+\medskip
+
+\ques On suppose que $s  =\varepsilon\,b$ avec $0<\varepsilon\le1$. Peut--on trouver un prix d'équilibre~?
+
+\medskip
+\ques On suppose que la politique fiscale est la suivante~: 
+\begin{eqnarray*}
+	&& s_t = \left\{
+		\begin{array}{lr}
+			-\,\frac{\xi}{1+r} + \frac{1+r-\gamma}{1+r} \,b_t & \textrm{ if } b_t>\bar b \\
+			s & \textrm{ if } b_t \le \bar b
+		\end{array}\right. \\
+	&&\textrm{with  } 0 \le \gamma < 1 \\
+	&&\textrm{      } \frac{1+r}{r} < \bar b < \frac{\xi}{1-\gamma} \\
+\end{eqnarray*}
+Commenter cette politique fiscale. Exprimer l'équation d'évolution de la dette. Peut--on trouver un prix d'équilibre~?
+
+\textenitalique{ Une politique fiscale stochastique }
+
+Dans cette partie, on s'intéresse à l'impact des surplus fiscaux stochastiques sur les prix. On suppose que $s_{t+1} = (1-\rho) s_t + \rho s_t + \varepsilon_{t+1}$. 
+\medskip
+
+\ques \'Ecrire l'équation de Fischer avec incertitude. 
+\medskip
+
+\ques \'Ecrire la contrainte budgétaire intertemporelle de l'\'Etat à la date $t$. En déduire le choc à la date $t$ sur le niveau de dette réelle en fonction du choc sur le surplus fiscal $\varepsilon_{t+1}$. 
+\medskip
+
+\ques En déduire la \emph{Really Unpleasant Arithmetic} de Woodford~: l'instabilité fiscale se propage au niveau des prix. Quelles sont les conséquences en matière de politiques monétaire et fiscale~? Notamment qu'en est--il du niveau d'inflation moyen~?  
+
+\textenitalique{ La FTPL et le contrôle de l'inflation }
+
+Dans le cadre du modèle précédent, on abandonne l'hypothèse de peg constant du taux d'intérêt nominal et on suppose que la banque centrale suit la règle monétaire suivante~: $1+R_t = \alpha_0 + \alpha_1\,\pi_t$ où $\pi_t= P_t/P_{t-1}$ désigne l'inflation à la date $t$. %Le reste de l'économie est conforme au modèle à horizon infini avec surplus constants. 
+\medskip
+
+\ques Montrer que l'équation d'évolution de l'inflation s'écrit~:
+\begin{eqnarray*}
+	\pi_{t+1}= \frac{\alpha_0}{1+r} + \frac{\alpha_1}{1+r} \pi_{t}
+\end{eqnarray*}
+Déterminer l'inflation stationnaire $\pi^\star$.
+\medskip
+
+\ques On considère une politique monétaire agressive ($\frac{\alpha_1}{1+r}>1$). Discuter de la dynamique de l'inflation en fonction du niveau de dette initial $B_0$. On remarquera que $\pi_0= P_0/P_{-1}$ est déterminée par la donnée de $P_0$, $P_{-1}$ étant supposé connu (normalisation, historique\ldots). Commenter ce paradoxe monétaire.
+
+\textenitalique{ La FTPL et le degré optimal d'instabilité des prix }
+
+On change de modèle. On considère une économie composée de firmes, de ménages et d'un gouvernement. Le gouvernement finance des dépenses exogènes par une taxe proportionnelle sur le travail $\tau$ et par émission de dette nominale $B$. Il y a deux périodes~: pas d'incertitudes pendant la première période mais à la seconde, les dépenses gouvernementales $g$ peuvent être hautes (indice $h$) ou basses (indice $l$) avec probabilité $1/2$. Il n'y a pas de monnaie.
+
+L'objectif est de déterminer la politique optimale du gouvernement annoncée à $t=0$ (au début de la période 1). 
+
+Les firmes ont accès à une technologie de production linéaire. On note $y_i^{(e)}$ (resp. $n_i^{(e)}$) la production  des firmes (resp. le travail des agents)  à la période $i$ et éventuellement dans l'état $e$
+\begin{eqnarray*}
+	y^{(e)}_i = n^{(e)}_i
+\end{eqnarray*}
+
+Les consommateurs maximisent leur utilité intertemporelle espérée $U$ qui a la forme suivante ($c$ désigne la consommation)~:
+\begin{eqnarray*}
+	U(c,l) = c_1 - \frac{1}{2}n_1^2 + \beta\,\frac{1}{2} \left\{c^{(l)}_2 - \frac{1}{2}(n^{(l)}_2)^2 + c^{(h)}_2 - \frac{1}{2}(n^{(h)}_2)^2\right\}
+\end{eqnarray*}
+
+On note $R$ le taux d'intérêt nominal sur la dette $B$. On note $B_0$ la quantité de dette dont hérite les ménages et $B_1$ la quantité de dette qu'ils acquièrent au cours de la période 1. A la fin de la période 2, il n'y a plus de dette. 
+
+On note $P$ (resp. $\tau$) le niveau de prix (resp. les taxes). Ces grandeurs varient en fonction de l'état du monde et de la période. Ainsi $P_1$  désigne le niveau de prix à la période 1 et $\tau^{(h)}_2$ les taxes à  la période 2 dans l'état $h$.
+\medskip
+
+\ques Donner le salaire réel et le profit des firmes.  On ne parlera plus des firmes plus tard.
+\medskip
+
+\ques Donner la contrainte budgétaire des ménages de la période 1.  De même, écrire la contrainte budgétaire (contingente à l'état du monde) des ménages à la période 2.
+\medskip
+
+\ques \'Ecrire et résoudre le programme du consommateur. En déduire la relation entre travail et taxes. Commenter. \'Ecrire l'équation d'Euler. 
+\medskip
+
+\ques Exprimer les contraintes budgétaires du gouvernement aux différentes périodes. $g^{(e)}_i$ sont les dépenses gouvernementales à la date $i$ et dans l'état du monde $e$. 
+\medskip
+
+On suppose que le gouvernement est un planificateur central bénévole. Il détermine sa politique fiscale $\left\{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}\right\}$ qui maximise le bien être des agents sous contrainte budgétaire. Les autres paramètres~: consommation, travail, demande de dette sont déterminées par l'équilibre compétitif, i.e. les CPO de l'agent. 
+\medskip
+
+\ques Simplifier la contrainte budgétaire du planificateur et montrer que son programme se réduit à (préciser $\kappa$)~:
+\begin{eqnarray*}
+	&&\max_{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}, P_1} - \tau_1^2 - \frac{1}{2}\beta\left\{(\tau^{(h)}_2)^2 + (\tau^{(l)}_2)^2\right\} + \kappa \\
+	&&\textrm{s.t. }\frac{B_0}{P_1} = \tau_1(1-\tau_1) - g_1 + \frac{\beta}{2}\left\{\tau^{(h)}_2(1-\tau^{(h)}_2)- g_2^{(h)} + \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)}\right\} \\
+	&&\phantom{\textrm{s.t. }} \tau^{(h)}_2(1-\tau^{(h)}_2) - g_2^{(h)} \ge 0 \\
+	&&\phantom{\textrm{s.t. }} \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)} \ge 0 
+\end{eqnarray*}
+
+\medskip
+\ques Commencer par résoudre ce programme en $P_1$. De quel problème  s'agit--il~? On suppose désormais que $P_1=1$. Résoudre le programme en  $\left\{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}\right\}$. Montrer qu'en général les deux dernières contraintes ne mordent pas. Calculer $P_2^{(l)}$, $P_2^{(h)}$ et $R$ quand la première des deux est saturée~? Montrer que $g_2^{(h)}>g_2^{(l)}$ implique $P_2^{(h)}>P_2^{(l)}$. On retrouve alors l'assertion de Woodford.
+
+
+\end{document}

@@ -1,0 +1,611 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+\EnTete{Séances des 17 et 20 Octobre 2006}{4}{Fiscal Theory of the Price Level}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{ChFi:00}
+
+
+\section{Introduction}
+
+Dans ce TD, on expose à travers quelques modèles simples les implications et  les limites de la théorie fiscale des prix (ou Fiscal Theory of the Price Level ou encore FTPL). 
+
+Pour faire simple, la FTPL nous dit que la dette nominale est un titre sur les surplus fiscaux futurs du gouvernement. Cochrane utilise l'analogie avec les stocks qui sont des titres sur les profits futurs des firmes.  Comme le prix d'un stock permet d'égaliser le nombre de titres et les profits futurs espérés, le niveau des prix permet d'égaliser les surplus fiscaux espérés et la valeur de la dette aujourd'hui. Ainsi si les surplus fiscaux à venir sont trop faibles, le gouvernement doit monétiser sa dette et le prix doit augmenter. 
+
+C'est donc la politique fiscale et non la politique monétaire qui permet de fixer dans ce monde le niveau de prix. La FTPL suppose ce que Cochrane appelle un {\it régime fiscal}. Le Trésor fixe les surplus et la dette, le niveau de prix en découle. La banque centrale émet `passivement' une quantité de monnaie de façon à respecter l'équation quantitative  de la  monnaie. Ce régime est à opposer au {\it régime monétaire} où la banque centrale choisit la quantité de monnaie ce qui impose le prix. Le Trésor n'a alors qu'à ajuster les surplus budgétaires de façon à assurer le respect de sa contrainte budgétaire intertemporelle. 
+
+\section{Un modèle à une période}
+
+Les agents héritent au matin du seul jour du monde d'une dette du gouvernement réelle $b$ ou nominale $B$. Pour payer cette dette, le gouvernement dispose d'un surplus fiscal $s^f$ et d'un revenu de seigneuriage $s^m$.
+
+\ques Ecrire la contrainte budgétaire du gouvernement quand il se finance par dette réelle. Retrouver l'\emph{Unpleasant Monetarist Arithmetic} de Sargent et Wallace. Rappeler les conséquences pour les politiques monétaires et fiscales.
+\correction{
+Le montant de dette doit être égal à la somme des surplus~: $b = s^f +s^m$. 
+
+Si les autorités fiscales diminuent $s^f$ (tax--cut ou hausse des dépenses), la politique monétaire doit réagir en conséquence et augmenter les revenus de seigneuriage et donc l'inflation.
+
+Une solution à cet \emph{Unpleasant Monetarist Arithmetic} est de mettre en place une autorité monétaire indépendante et crédible qui fixe $s^m$ et qui ne peut donc servir de variable d'ajustement à l'autorité fiscale. C'est un argument en faveur des banques centrales indépendante et ayant pour mandat la stabilité des prix (donc de $s^m$). 
+}
+\medskip
+
+\ques Ecrire la contrainte budgétaire du gouvernement quand il se finance par dette nominale. En déduire le niveau de prix d'équilibre. C'est la détermination du prix par la politique fiscale. 
+\correction{
+La relation s'écrit maintenant $\frac{B}{P} = s^f +s^m$ où $P$ est le niveau de prix. Dans ces conditions, il n'y a pas d'\emph{Unpleasant Monetarist Arithmetic}. L'autorité monétaire peut fixer $s^m$, l'autorité fiscale peut diminuer $s^f$ et l'équilibre budgétaire est assuré tant que le niveau de prix s'ajuste (notamment tant que les agents continuent à acheter des bonds). C'est la politique fiscale qui détermine dans ces conditions le niveau de prix. 
+}
+\medskip
+
+\`A ce stade il y a deux interprétations possibles pour la FTPL~:
+\begin{enumerate}[(i)~]
+	\item Le gouvernement ne prend pas en compte son équilibre budgétaire intertemporel. Le prix s'ajuste toujours de façon à ce que l'équilibre budgétaire soit satisfait. Dans ces conditions, le gouvernement n'a aucun intérêt à lever des taxes distorsives et peut se contenter de se financer par dette. Il n'y a alors jamais de surplus positifs et il n'existe pas d'équilibre au sens où il n'existe pas de prix positifs assurant l'équilibre budgétaire. Cette interprétation est donc insuffisante. 
+	\item Il faut donc réconcilier la contrainte budgétaire intertemporelle avec le fait que le prix est le résultat d'un équilibre où les surplus fiscaux sont exogènes. Une interprétation possible est alors la suivante. Le gouvernement choisit les surplus en avance de façon crédible. Le marché est convaincu de ces surplus et engendre donc la valeur de prix $P$ d'équilibre assurant l'équilibre budgétaire~: c'est un régime fiscal cohérent.
+\end{enumerate}
+
+\textenitalique{ Surdétermination du prix~? }
+
+La FTPL assure que le prix est déterminé par la contrainte budgétaire intertemporelle du gouvernement. La question est maintenant de savoir si le prix est déterminé de manière unique et qu'il n'y a pas de contradiction avec la modélisation du reste de l'économie. 
+
+\medskip
+\ques Rappeler l'équation quantitative de la monnaie. Commenter la cohérence avec la FTPL.
+\correction{
+L'équation quantitative de la monnaie relie la masse monétaire $M$, la vélocité de la monnaie $v$, le niveau de prix $P$ et l'output $Y$ de sorte que $M\,v = P\,Y$. Si l'on fait les hypothèses suivantes~:
+\begin{enumerate}[(i)~]
+	\item $v$ est fixée par la technologie,
+	\item $Y$ est exogène,
+	\item L'autorité monétaire choisit directement $M$.	
+\end{enumerate}
+\ldots le niveau de prix $P$ est alors déterminé par la politique de la banque centrale. Il n'y a donc pas de place pour une détermination fiscale du prix.
+}
+
+\section{Un modèle à horizon infini}
+
+L'incohérence précédente repose sur 3 hypothèses~:
+\begin{enumerate}[(i)~]
+	\item La vélocité de la monnaie est déterminée par la technologie alors qu'en réalité c'est une fonction croissante du taux d'intérêt.
+	\item L'output est déterminé de manière exogène, alors qu'au moins dans le court terme, il est influencé par le niveau de prix. 
+	\item La politique monétaire choisit la quantité de monnaie alors qu'en réalité il s'agit d'une règle sur le taux d'intérêt nominale~: la  quantité de monnaie est endogène.
+\end{enumerate}
+
+Dans ce modèle, on lève les  hypothèses (i) et (iii) et on cherche à déterminer le prix d'équilibre de l'économie. 
+
+Il y a une infinité de périodes $t= 0, 1, 2, \ldots$. L'output $Y$ est constant. À la date $t$, la monnaie $M_t$, le prix $P_t$ et le taux d'intérêt $R_t$ sont liés par la relation suivante~:
+\begin{eqnarray*}
+	&&\frac{M_t}{P_t} = A\,R_t^{-\alpha} \\
+	&&\textrm{où $A>0$ et $\alpha>0$ sont des constantes}
+\end{eqnarray*}
+
+On suppose que les ménages pondèrent le futur au taux constant $r$ qui est aussi le taux d'intérêt réel de l'économie à chaque période. 
+
+La banque centrale cible le taux d'intérêt nominal et a pour objectif de fixer celui--ci à une valeur constante $R$. Pour cela, elle émet la quantité de monnaie $M_t$ nécessaire.  
+
+Nous sommes dans un cadre de théorie fiscale des prix et le gouvernement annonce ses surplus fiscaux $s^f_t$. On suppose que ceux--ci sont constants~: $s^f_t=s^f$. 
+
+Le gouvernement peut émettre de la dette nominale de maturité 1 au taux nominal constant $R$. On note $B_{t+1}/(1+R)$ le montant émis à la date $t$. 
+
+\medskip
+\ques Rappeler l'équation de Fisher.
+\correction{
+L'équation de Fischer relie taux réel $r_t$ (entre $t$ et $t+1$), taux nominal $R_t$ et inflation $\pi_{t+1}$ de la façon suivante~:
+\begin{eqnarray*}
+	1+R_t = (1+r_t)\,(1+\pi_t) = (1+r_t)\,\dfrac{P_{t+1}}{P_t}
+\end{eqnarray*}
+
+Les taux d'intérêt réel $r$ et nominal $R$ étant supposés constants (resp. hyp du modèle et politique monétaire), elle se réduit ici à~:
+\begin{eqnarray*}
+	\dfrac{P_{t+1}}{P_t} = \frac{1+R_t}{1+r_t}
+\end{eqnarray*}
+Le contrôle par la banque centrale du taux nominal lui assure le contrôle de l'inflation.(hyp. de taux réel constant).
+}
+\medskip
+
+\ques Exprimer les revenus de seigneuriage $s^m_t$ en fonction de $M$ et $P$. Puis montrer l'égalité suivante~:
+\begin{eqnarray*}
+	s^m_t = A\,R^{-\alpha}\,\frac{R-r}{1+R}\qquad t = 0,1,\ldots 
+\end{eqnarray*}
+\correction{
+Le revenu de seigneuriage est égal à la variation de la quantité de monnaie rapportée à l'indice de prix. Tout se passe comme si le gouvernement rachetait en $t$ toute la monnaie émise en $t-1$ et réémettait à nouveau une nouvelle quantité de monnaie en $t$. Il `gagne' alors la variation de la quantité de monnaie (qui n'est pas coûteuse pour lui) qu'il valorise à l'indice de prix de la période $P_t$.
+\begin{eqnarray*}
+	s^m_t = \frac{M_t - M_{t-1}}{P_t} = \frac{M_t}{P_t} - \dfrac{P_{t-1}}{P_t}\,\frac{M_{t-1}}{P_{t-1}}
+\end{eqnarray*}
+
+En utilisant la règle monétaire $M_t/P_t = A\,R^{-\alpha}$ et la règle de Fischer $ \dfrac{P_{t-1}}{P_t} = (1+r)/(1+R)$, on obtient~:
+\begin{eqnarray*}
+	s^m_t &=& A\,R^{-\alpha}\left(1-\frac{1+r}{1+R}\right)\\
+	&=& \underbrace{A\,R^{-\alpha}}_{= \textrm{encaisses réelles constantes}}\,\underbrace{\frac{R-r}{1+R}}_{=\pi/(1+\pi)=\textrm{`rendement' de la monnaie}}
+\end{eqnarray*}
+Plus l'inflation est élevée ($\equiv$ + le taux de taxe est élevée) et plus les encaisses réelles sont importantes ($\equiv$ plus l'assiette fiscale est large), plus les revenus de seigneuriage ($\equiv$ de taxe inflationniste) sont élevés. 
+}
+\medskip
+
+\ques En déduire la contrainte budgétaire du gouvernement à la période $t$, en termes nominaux puis en termes réels.
+\correction{
+On remarque que le surplus total est constant~: $s_t = s^f_t+s^m_t =s^f+s^m = s$.
+
+A la période $t$, le gouvernement rembourse sa dette nominale $B_t$ avec son surplus (réel) $s$ et en réémettant de la dette nominale $B_{t+1}$ au prix $1/(1+R)$.
+\begin{eqnarray*}
+	\frac{B_{t+1}}{1+R} + P_t\,s = B_t
+\end{eqnarray*}
+
+En exprimant la relation précédente en fonction de la dette réelle $b_t = B_t/P_t$, on obtient~:
+\begin{eqnarray*}
+	\frac{b_{t+1}\,P_{t+1}}{1+R} + P_t\,s = P_t\,b_t
+\end{eqnarray*}
+En divisant par $P_t$ et en utilisant la relation de Fisher, on obtient~: 
+\begin{eqnarray*}
+	b_{t+1} = (1+r)(b_t-s)
+\end{eqnarray*}
+
+La dette réelle croît au taux $1+r$. 
+}
+\medskip
+
+\ques Si l'on suppose la condition de transversalité vérifiée, en déduire le niveau de dette réelle initial compatible avec l'état stationnaire. Conclure sur le niveau de prix d'équilibre et sur leur multiplicité.
+\correction{
+En itérant forward  la relation précédente, on obtient~:
+\begin{eqnarray*}
+	b_{T} &=& (1+r)^T \,b^\star - \sum^{T-1}_{i=0}\frac{(1+r)^T}{(1+r)^i}\,s\\
+	\frac{b_{T}}{(1+r)^T} &=& b^\star - \sum^{T-1}_{i=0}\frac{1}{(1+r)^i}\,s
+\end{eqnarray*}
+En supposant la condition de transversalité vérifiée $\lim_{t\rightarrow \infty}\frac{b_{t+T}}{(1+r)^T} = 0$ (c'est vrai si $b$ est stationnaire par ex.), on obtient~:
+\begin{eqnarray*}
+	b^\star = \sum^{\infty}_{i=0}\frac{1}{(1+r)^i}\,s = \frac{s}{1-\frac{1}{1+r}} = \frac{1+r}{r}\,s
+\end{eqnarray*}
+
+Si $b_0 > b^\star$, la dette explose. Inversement, si $b_0 < b^\star$, la quantité de dette émise par le gouvernement devient négative à partir  d'une certaine date, ce qui viole l'hypothèse de positivité de la dette (sinon $b$ n'est plus de la `vraie' dette). Ainsi seul un niveau de dette initial égal à $b^\star$ est compatible avec le modèle. 
+
+On en déduit alors que le niveau de prix d'équilibre $P_0$ est égal à $B_0/b_0$. 
+\begin{eqnarray}
+	P_0 = \frac{r}{1+r}\,\frac{B_0}{s}
+\end{eqnarray}
+Ce prix est unique. C'est un exemple de modèle simple dans lequel le niveau de prix est entièrement déterminé par la quantité de dette nominale et la politique fiscale. 
+}
+\medskip
+
+\ques {\it Un petit détour~:} l'interprétation économique de la condition de transversalité $\lim_{T\rightarrow \infty} \frac{B_T}{(1+R)^T} = 0$. Raisonnons par l'absurde et supposons que cette limite est strictement positive. On peut trouver une constante $B^\star>0$ telle que  pour tout $T$ est assez grand (plus grand que $T^\star$), $\frac{B_T}{(1+R)^T} \ge B^\star$. 
+
+\subques Comparer les deux situation suivantes~: (i) les agents continuent à acheter de la dette gouvernementale et (ii) ils en achètent jusqu'à $T^\star$ et plus jamais ensuite.
+
+\correction{
+{\bf Cas (i)~:} les agents achètent la dette.  A chaque date, leur contrainte budgétaire est la suivante ($c^P$ et $w$ désignent resp. la conso et le salaire)~: 
+\begin{eqnarray*}
+	&&\frac{B_{t+1}}{(1+R)} + c^P_t = w_t + B_t\\
+	&&\sum^T_{t=0}\frac{c^P_t}{(1+R)^t} = \sum^T_{t=0}\frac{w_t}{(1+R)^t} +B_0 - \frac{B_{T+1}}{(1+R)^{T+1}} 	
+\end{eqnarray*}
+
+Si l'on suppose $T$ assez grand et $\frac{B_T}{(1+R)^T}\ge B^\star$. Les consommations actualisées de l'agent vérifieront~:
+\begin{eqnarray*}
+	\forall T\ge T^\star\quad\sum^T_{t=0}\frac{c^P_t}{(1+R)^t} &\le& \sum^T_{t=0}\frac{w_t}{(1+R)^t} +B_0 - B^\star 
+\end{eqnarray*}
+La limite $B^\star>0$ est un coût payé par les agents en termes de consommation.
+
+\medskip
+{\bf Cas (ii)~:} On suppose que jusqu'à la date $T^\star-1$,  le ménage achète de la dette~: tout se passe comme dans le cas précédent. Dès la date $T^\star$, l'agent refuse d'acheter de la dette. Ainsi, à la date $T^\star$, l'agent consomme son revenu $w$ et son épargne $B$. A partir de la date suivante $T^\star+1$, il  consomme tout son revenu~:
+\begin{eqnarray*}
+	\forall t\le T^\star-1\quad c_t &=& w_t + B_t - \frac{B_{t+1}}{(1+R)}\\
+	c_{T^\star} &=& w_{T^\star} + B_{T^\star} \\
+	\forall t\ge T^\star+1\quad c_t &=& w_t
+\end{eqnarray*}
+
+La consommation actualisée jusqu'à $T^\star$ s'élève à~:
+\begin{eqnarray*}
+	\sum^{T^\star}_{t=0}\frac{c_t}{(1+R)^t} &=& \sum^{T^\star}_{t=0}\frac{w_t}{(1+R)^t} +B_0  \\
+	\forall t\ge T^\star+1\quad c_t &=& w_t
+\end{eqnarray*}
+
+En conclusion, jusqu'à $T^\star-1$, les deux situations sont analogues mais  ensuite il est toujours mieux de renoncer à la dette. En effet~:
+\begin{eqnarray*}
+	\forall T\ge T^\star\quad \sum^{T}_{t=0}\frac{c_t}{(1+R)^t} &=& \sum^{T}_{t=0}\frac{w_t}{(1+R)^t} +B_0  \\
+	&>& \sum^{T}_{t=0}\frac{w_t}{(1+R)^t} +B_0  - B^\star \\
+	&>& \sum^{T}_{t=0}\frac{c^P_t}{(1+R)^t}
+\end{eqnarray*}
+
+Jusqu'à $T^\star-1$, rien ne change mais après $T^\star$, la situation est toujours strictement meilleure. L'agent a donc intérêt à renoncer à acheter la dette du gouvernement à partir d'une certaine période. 
+}
+
+\medskip
+\subques Conclure. 
+\correction{
+La condition de transversalité a donc un sens économique. On dit aussi que le ménage refuse d'entrer dans un {\it Ponzi game} avec le gouvernement. 
+}
+
+\textenitalique{ Fragilité de la FTPL~? }
+
+Comme on l'a déjà vu l'hypothèse principale de la FTPL tient à l'annonce exogène des surplus $s$. Dans cette partie on s'intéresse à la robustesse de l'existence des prix à l'hypothèse de surplus fiscaux constants. 
+\medskip
+
+\ques On suppose que $s  =\varepsilon\,b$ avec $0<\varepsilon\le1$. Peut--on trouver un prix d'équilibre~?
+\correction{
+La dynamique de la dette réelle est donnée par~:
+\begin{eqnarray*}
+	b_{t+1} = (1+r)(b_t -s) = (1+r)(1-\varepsilon)b_t
+\end{eqnarray*}
+
+On obtient alors pour tout $t$ la relation suivante~:
+\begin{eqnarray*}
+	b_t = (1+r)^t\,(1-\varepsilon)^t\,\frac{B_0}{P_0} 
+\end{eqnarray*}
+Cette relation définit la dynamique de la dette mais ne permet pas de déterminer le niveau de prix d'équilibre. Au contraire, pour tout niveau de prix initial, il existe une dynamique de dette\ldots
+
+En abandonnant l'hypothèse de surplus fiscaux constants, on a perdu la détermination du prix $\Rightarrow$ Argument en faveur de la fragilité de la FTPL.
+}
+\medskip
+\ques On suppose que la politique fiscale est la suivante~: 
+\begin{eqnarray*}
+	&& s_t = \left\{
+		\begin{array}{lr}
+			-\,\frac{\xi}{1+r} + \frac{1+r-\gamma}{1+r} \,b_t & \textrm{ if } b_t>\bar b \\
+			s & \textrm{ if } b_t \le \bar b
+		\end{array}\right. \\
+	&&\textrm{with  } 0 \le \gamma < 1 \\
+	&&\textrm{      } \frac{1+r}{r} < \bar b < \frac{\xi}{1-\gamma} \\
+\end{eqnarray*}
+Commenter cette politique fiscale. Exprimer l'équation d'évolution de la dette. Peut--on trouver un prix d'équilibre~?
+\correction{
+On fait l'hypothèse d'un surplus fiscal plus `réaliste'~:
+\begin{enumerate}[(i)~]
+	\item Pour de faibles niveaux de dettes, les surplus fiscaux sont constants,
+	\item Pour des niveaux de dette plus importants, les surplus fiscaux augmentent pour diminuer la dette (penser par ex. aux critères de Maastricht)
+\end{enumerate}
+
+Si la dette $b_t$ est supérieure à $\bar b$, la dette évolué selon la dynamique suivante~:
+\begin{eqnarray*}
+	b_{t+1} &=& (1+r)\,b_t - (-\xi + (1+r - \gamma)b_t \\
+	&=& \xi + \gamma b_t \ge \xi +\gamma \bar b \ge (1-\gamma)\bar b+\gamma \bar b\\
+\end{eqnarray*}
+
+Par conséquent si à une période la dette est supérieure à $\bar b$, elle le reste et elle évolue selon la dynamique $b_{t+1} = \xi + \gamma b_t$. Dans ce cas, elle converge vers $\tilde b = \frac{\xi}{1-\gamma}>\frac{1+r}{r}\,s$.
+
+On peut d'ailleurs remarquer que pour tout $b_0 > \frac{1+r}{r}s = b^\star$, la dette franchit $\bar b$ et converge donc vers $\tilde b$.  Tous les niveaux de dette initiaux supérieurs ou égaux à $b^\star$ sont cohérents avec la condition de transversalité puisqu'ils conduisent à des niveaux de dette stationnaires égaux à $b^\star$ ou $\tilde b$. Par conséquent, le prix $P_0$ n'est pas déterminé de manière unique. Tous les prix $P_0$ tels que $B_0/P_0 \ge b^\star$ conviennent.
+
+Même avec ce surplus plus réaliste (mais non constant), la FTPL ne fournit pas un prix unique.
+}
+
+\textenitalique{ Une politique fiscale stochastique }
+
+Dans cette partie, on s'intéresse à l'impact des surplus fiscaux stochastiques sur les prix. On suppose que $s_{t+1} = (1-\rho) s + \rho s_t + \varepsilon_{t+1}$. 
+\medskip
+
+\ques \'Ecrire l'équation de Fischer avec incertitude. 
+\correction{
+Elle s'écrit simplement~:
+\begin{eqnarray*}
+	1+r_t = (1+R_t)\,\E_t\dfrac{P_t}{P_{t+1}}
+\end{eqnarray*}
+où $\E_t$ désigne l'espérance conditionnelle à l'information disponible à la date $t$. 
+
+Dans ce modèle où les taux sont constants, l'équation de Fischer se simplifie en~: $1+r = (1+R)\,\E_t\dfrac{P_t}{P_{t+1}}$. Le contrôle du taux nominal implique donc le contrôle de inflation moyenne~:
+\begin{eqnarray*}
+	\E\dfrac{P_t}{P_{t+1}} = \E \E_t\dfrac{P_t}{P_{t+1}} = \dfrac{1+r}{1+R}
+\end{eqnarray*}
+}
+\medskip
+
+\ques \'Ecrire la contrainte budgétaire intertemporelle de l'\'Etat à la date $t$. En déduire le choc à la date $t$ sur le niveau de dette réelle en fonction du choc sur le surplus fiscal $\varepsilon_{t+1}$. 
+\correction{
+La contrainte budgétaire à la date $t$ s'écrit~:
+\begin{eqnarray*}
+	\E_t b_{t+1} &=& (1+r) \left(b_{t}-s_t\right) \\
+	b_t &=& \E_t\left[\frac{1}{1+r}b_{t+1}\right] + s_t 
+\end{eqnarray*}
+
+En itérant forward cette égalité et en supposant vérifiée la condition de transversalité, on obtient~:
+\begin{eqnarray*}
+	\frac{B_{t}}{P_{t}} = b_t = \E_t \sum^\infty_{j=0} \dfrac{s_{t+j}}{(1+r)^j}
+\end{eqnarray*}
+Comme $0<\rho<1$, le processus $(s_t)$ est stationnaire et son espérance conditionnelle est (on remarque que l'espérance de $s_t$ est $s$)~:
+\begin{eqnarray*}
+	\forall j\ge0,\:\E_t[s_{t+j+1}-s] &=& \rho \E_t\left[s_{t+j} -s\right] \\
+	&=& \rho^{j+1}\E_t\left[s_{t} -s\right] \\
+	&=& \rho^{j+1}(s_{t} -s) \\
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+	\frac{B_{t}}{P_{t}} &=& \sum^\infty_{j=0} \dfrac{s + \rho^j(s_t-s)}{(1+r)^j} = \frac{1+r}{r}\,s + \frac{1+r}{1+r-\rho}\,(s_t-r) \\
+	&=& \frac{1+r}{r}\,\frac{1-\rho}{1+r-\rho}\,s + \frac{1+r}{1+r-\rho}\,s_t
+\end{eqnarray*}
+
+L'impact d'un choc fiscal sur la dette est donc le suivant~:
+\begin{eqnarray*}
+	\frac{B_{t+1}}{P_{t+1}} - \E_{t}\frac{B_{t+1}}{P_{t+1}} &=& \frac{1+r}{1+r-\rho}\,(s_{t+1} - \E_{t} s_{t+1} ) \\
+			&=& \frac{1+r}{1+r-\rho}\bigl\{ s_{t+1} - ((1-\rho)s + \rho s_{t}) \bigr\} \\
+			&=& \frac{1+r}{1+r-\rho}\varepsilon_{t+1} \\
+\end{eqnarray*}
+En conclusion un choc fiscal à la date $t$ implique un choc contemporain (date $t+1$) sur le niveau de dette réelle. Comme le niveau de dette nominal est prédéterminé (i.e. $B_t$ est déterminée à la date $t-1$), le choc fiscal précédent se propage entièrement au niveau de prix de la période considérée~: le choc fiscal se finance complètement par monétisation de la dette nomnale et se fait donc aux dépens des détenteurs de bonds gouvernementaux. 
+}
+\medskip
+
+\ques En déduire la \emph{Really Unpleasant Arithmetic} de Woodford~: l'instabilité fiscale se propage au niveau des prix. Quelles sont les conséquences en matière de politiques monétaire et fiscale~? Notamment qu'en est--il du niveau d'inflation moyen~?  
+\correction{
+Comme on l'a vu, un choc fiscal se propage directement aux prix et il n'est pas possible pour l'autorité monétaire de stabiliser complètement l'inflation, car celle--ci dépend de la réalisation de la politique fiscale qu'elle ne contrôle pas. 
+
+En revanche, l'autorité monétaire est toujours en mesure de contrôler l'inflation moyenne~: seuls les chocs inflationnistes sont hors contrôle. 
+}
+
+\textenitalique{ La FTPL et le contrôle de l'inflation }
+
+Dans le cadre du modèle précédent, on abandonne l'hypothèse de peg constant du taux d'intérêt nominal et on suppose que la banque centrale suit la règle monétaire suivante~: $1+R_t = \alpha_0 + \alpha_1\,\pi_t$ où $\pi_t= P_t/P_{t-1}$ désigne l'inflation à la date $t$. L'environnement est certain.%Le reste de l'économie est conforme au modèle à horizon infini avec surplus constants. 
+\medskip
+
+\ques Montrer que l'équation d'évolution de l'inflation s'écrit~:
+\begin{eqnarray*}
+	\pi_{t+1}= \frac{\alpha_0}{1+r} + \frac{\alpha_1}{1+r} \pi_{t}
+\end{eqnarray*}
+Déterminer l'inflation stationnaire $\pi^\star$.
+\correction{
+En divisant la règle monétaire par $1+r$ et en utilisant la règle de Fischer (en certain, pas d'espérance), on obtient~:
+\begin{eqnarray*}
+	\pi_{t+1}= \frac{\alpha_0}{1+r} + \frac{\alpha_1}{1+r}\,\pi_t
+\end{eqnarray*}
+
+Le taux d'inflation stationnaire $\pi^\star$ vérifie $\pi^\star = \alpha_0/(1+r-\alpha_1)$.
+}
+\medskip
+
+\ques On considère une politique monétaire agressive ($\frac{\alpha_1}{1+r}>1$). Discuter de la dynamique de l'inflation en fonction du niveau de dette initial $B_0$. On remarquera que $\pi_0= P_0/P_{-1}$ est déterminée par la donnée de $P_0$, $P_{-1}$ étant supposé connu (normalisation, historique\ldots). Commenter ce paradoxe monétaire.
+\correction{
+En cas de politique monétaire agressive, si le niveau d'inflation initial est supérieur au niveau stationnaire, l'inflation va diverger (hyperinflation). Inversement si le niveau d'inflation initial est inférieur au niveau stationnaire.  
+
+Comme ce niveau d'inflation initial est fourni par le niveau de prix initial et donc la FTPL (cf. précédemment), il est fort probable que le chemin d'inflation lié à la politique monétaire agressive soit explosif. Inversement Le chemin d'inflation lié à une règle monétaire souple ($\frac{\alpha_1}{1+r}<1$) conduira à un chemin d'inflation stationnaire. L'intuition est la suivante. Rappelons pour commencer que $\frac{B_{t+1}}{(1+R)} + c_t = w_t + B_t$. Une hausse de $R$ impose que $B_{t+1}$ augmente~: le prix de la dette diminue, pour financer un même montant il faut donc emprunter davantage. Or la dette réelle $b_{t+1}$ est restée constante car elle dépend uniquement de $r$ et de $b_t$. L'inflation donc augmenter pour que $b_{t+1}$ n'évolue pas. Ce qui impose à la banque centrale de réagir et d'augmenter à nouveau $R$. Le processus boucle et comme à chaque fois l'autorité monétaire surréagit, l'inflation explose. 
+}
+
+\textenitalique{ La FTPL et le degré optimal d'instabilité des prix }
+
+On change de modèle. On considère une économie composée de firmes, de ménages et d'un gouvernement. Le gouvernement finance des dépenses exogènes par une taxe proportionnelle sur le travail $\tau$ et par émission de dette nominale $B$. Il y a deux périodes~: pas d'incertitudes pendant la première période mais à la seconde, les dépenses gouvernementales $g$ peuvent être hautes (indice $h$) ou basses (indice $l$) avec probabilité $1/2$. Il n'y a pas de monnaie.
+
+L'objectif est de déterminer la politique optimale du gouvernement annoncée à $t=0$ (au début de la période 1). 
+
+Les firmes ont accès à une technologie de production linéaire. On note $y_i^{(e)}$ (resp. $n_i^{(e)}$) la production  des firmes (resp. le travail des agents)  à la période $i$ et éventuellement dans l'état $e$
+\begin{eqnarray*}
+	y^{(e)}_i = n^{(e)}_i
+\end{eqnarray*}
+
+Les consommateurs maximisent leur utilité intertemporelle espérée $U$ qui a la forme suivante ($c$ désigne la consommation)~:
+\begin{eqnarray*}
+	U(c,l) = c_1 - \frac{1}{2}n_1^2 + \beta\,\frac{1}{2} \left\{c^{(l)}_2 - \frac{1}{2}(n^{(l)}_2)^2 + c^{(h)}_2 - \frac{1}{2}(n^{(h)}_2)^2\right\}
+\end{eqnarray*}
+
+On note $R$ le taux d'intérêt nominal sur la dette $B$. On note $B_0$ la quantité de dette dont hérite les ménages et $B_1$ la quantité de dette qu'ils acquièrent au cours de la période  1 (au prix $1/(1+R)$). A la fin de la période 2, il n'y a plus de dette. 
+
+On note $P$ (resp. $\tau$) le niveau de prix (resp. les taxes). Ces grandeurs varient en fonction de l'état du monde et de la période. Ainsi $P_1$  désigne le niveau de prix à la période 1 et $\tau^{(h)}_2$ les taxes à  la période 2 dans l'état $h$.
+\medskip
+
+\ques Donner le salaire réel et le profit des firmes.  On ne parlera plus des firmes plus tard.
+\correction{
+La technologie de production linéaire impose que $w=1$ et le profit est nul. 
+}
+\medskip
+
+\ques Donner la contrainte budgétaire des ménages de la période 1.  De même, écrire la contrainte budgétaire (contingente à l'état du monde) des ménages à la période 2.
+ \correction{
+Le ménage hérite d'un actif et reçoit un salaire 1 taxé au taux $\tau_1$. Il en consomme une partie et épargne le reste. A la période 1~: 
+\begin{eqnarray*}
+	\frac{B_1}{1+R} + P_1\,c_1 = B_0 + P_1(1-\tau_1)n_1
+\end{eqnarray*}
+
+A la période 2, il consomme tout.
+\begin{eqnarray*}
+	P^{(h)}_2\,c^{(h)}_2 &=& B_1 + P_2^{(h)}(1-\tau^{(h)}_2)n^{(h)}_2 \\
+	P^{(l)}_2\,c^{(l)}_2 &=& B_1 + P_2^{(l)}(1-\tau^{(l)}_2)n^{(l)}_2
+\end{eqnarray*}
+
+}
+
+\medskip
+
+\ques \'Ecrire et résoudre le programme du consommateur. En déduire la relation entre travail et taxes. Commenter. \'Ecrire l'équation d'Euler. 
+\correction{Le consommateur maximise son utilité sous contraintes budgétaires. 
+\begin{eqnarray*}
+	&&\max_{n_1, n_2^{(h)}, n_2^{(l)}, c_1, c_2^{(h)}, c_2^{(l)}, B_1} c_1 - \frac{1}{2}n_1^2 + \beta\,\frac{1}{2} \left\{c^{(l)}_2 - \frac{1}{2}(n^{(l)}_2)^2 + c^{(h)}_2 - \frac{1}{2}(n^{(h)}_2)^2\right\} \\
+	&&\textrm{s.t. }\frac{B_1}{1+R} + P_1\,c_1 = B_0 + P_1(1-\tau_1)n_1 \\
+	&&\phantom{\textrm{s.t. }} P^{(h)}_2\,c^{(h)}_2 = B_1 + P_2^{(h)}(1-\tau^{(h)}_2)n^{(h)}_2 \\
+	&&\phantom{\textrm{s.t. }} P^{(l)}_2\,c^{(l)}_2 = B_1 + P_2^{(l)}(1-\tau^{(l)}_2)n^{(l)}_2
+\end{eqnarray*}
+
+Le Lagrangien s'écrit~:
+\begin{eqnarray*}
+	\mathcal{L} &=& c_1 - \frac{1}{2}n_1^2 + \beta\,\frac{1}{2} \left\{c^{(l)}_2 - \frac{1}{2}(n^{(l)}_2)^2 + c^{(h)}_2 - \frac{1}{2}(n^{(h)}_2)^2\right\} \\
+	&+& \lambda_1 \left\{B_0 + P_1(1-\tau_1)n_1 - P_1\,c_1 - \frac{B_1}{1+R} \right\} \\
+	&+& \lambda_2^{(h)} \left\{B_1 + P_2^{(h)}(1-\tau^{(h)}_2)n^{(h)}_2  - P^{(h)}_2\,c^{(h)}_2 \right\} \\
+	&+& \lambda_2^{(l)} \left\{B_1 + P_2^{(l)}(1-\tau^{(l)}_2)n^{(l)}_2  - P^{(l)}_2\,c^{(l)}_2 \right\} 
+\end{eqnarray*}
+
+Les dérivées partielles fournissent~:
+\begin{eqnarray*}
+	\frac{\partial L}{\partial c_1} &=& 0 = 1 - \lambda_1 P_1 \\
+	\frac{\partial L}{\partial n_1} &=& 0 = -n_1 + \lambda_1 P_1(1-\tau_1) \\
+	\frac{\partial L}{\partial c_2^{(h)}} &=& 0 = \frac{\beta}{2} - \lambda_2^{(h)}P^{(h)}_2\\
+	\frac{\partial L}{\partial c_2^{(l)}} &=& 0 = \frac{\beta}{2} - \lambda_2^{(l)}P^{(l)}_2\\
+	\frac{\partial L}{\partial n_2^{(h)}} &=& 0 = -\frac{\beta}{2}n_2^{(h)} + \lambda_2^{(h)}P^{(h)}_2(1-\tau^{(h)}_2)\\
+	\frac{\partial L}{\partial n_2^{(l)}} &=& 0 = -\frac{\beta}{2}n_2^{(l)} + \lambda_2^{(l)}P^{(l)}_2(1-\tau^{(l)}_2) \\
+	\frac{\partial L}{\partial B_1} &=& 0 = -\frac{\lambda_1}{1+R} + \lambda_2^{(h)} + \lambda_2^{(l)}
+\end{eqnarray*}
+
+En réarrangeant on obtient~:
+\begin{eqnarray*}
+%	\lambda_1 P_1 &=&  1  \\
+	n_1 &=&  1-\tau_1 \\
+%	\lambda_2^{(h)}P^{(h)}_2 &=&  \lambda_2^{(l)}P^{(l)}_2 = \frac{\beta}{2}  \\
+	n_2^{(h)} &=& 1-\tau^{(h)}_2 \\
+	n_2^{(l)} &=& 1-\tau^{(l)}_2 \\
+	\frac{1}{(1+R)\,P_1} &=& \frac{\beta}{2}\left[\frac{1}{P^{(h)}_2}+\frac{1}{P^{(l)}_2}\right] 
+\end{eqnarray*}
+}
+\medskip
+
+\ques Exprimer les contraintes budgétaires du gouvernement aux différentes périodes. $g^{(e)}_i$ sont les dépenses gouvernementales à la date $i$ et dans l'état du monde $e$. 
+\correction{
+Le gouvernement doit payer sa dette et ses dépenses publiques en levant des taxes et de la dette (uniquement en période 1). Les contraintes du gouvernement sont~:
+\begin{eqnarray*}
+	\frac{B_1}{1+R} + P_1\tau_1 n_1 &\ge& B_0 + P_1 g_1 \\
+	P_2^{(h)}\tau_2^{(h)} n_2^{(h)} &\ge& B_1 + P_2^{(h)} g_2^{(h)} \\
+	P_2^{(l)}\tau_2^{(l)} n_2^{(l)} &\ge& B_1 + P_2^{(l)} g_2^{(l)}
+\end{eqnarray*}
+}
+\medskip
+
+On suppose que le gouvernement est un planificateur central bénévole. Il détermine sa politique fiscale $\left\{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}\right\}$ qui maximise le bien être des agents sous contrainte budgétaire. Les autres paramètres~: consommation, travail, demande de dette sont déterminées par l'équilibre compétitif, i.e. les CPO de l'agent. 
+
+\ques Simplifier la contrainte budgétaire du planificateur et montrer que son programme se réduit à (préciser $\kappa$)~:
+\begin{eqnarray*}
+	&&\max_{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}, P_1} - \tau_1^2 - \frac{1}{2}\beta\left\{(\tau^{(h)}_2)^2 + (\tau^{(l)}_2)^2)\right\} + \kappa \\
+	&&\textrm{s.t. }\frac{B_0}{P_1} = \tau_1(1-\tau_1) - g_1 + \frac{\beta}{2}\left\{\tau^{(h)}_2(1-\tau^{(h)}_2)- g_2^{(h)} + \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)}\right\} \\
+	&&\phantom{\textrm{s.t. }} \tau^{(h)}_2(1-\tau^{(h)}_2) - g_2^{(h)} \ge 0 \\
+	&&\phantom{\textrm{s.t. }} \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)} \ge 0 
+\end{eqnarray*}
+\correction{
+En utilisant les CPO précédentes, on obtient~: 
+\begin{eqnarray*}
+	B_1\frac{\beta}{2}\left[\frac{1}{P^{(h)}_2}+\frac{1}{P^{(l)}_2}\right]  + \tau_1 (1-\tau_1) &\ge& \frac{B_0}{P_1}+ g_1 \\
+	\tau_2^{(h)}(1-\tau_2^{(h)}) &\ge& \frac{B_1}{P_2^{(h)}} +  g_2^{(h)} \\
+	\tau_2^{(l)}(1-(1-\tau_2^{(l)})  &\ge& \frac{B_1}{P_2^{(l)}} + g_2^{(l)}
+\end{eqnarray*}
+
+En substituant les deux dernières équations dans la première, on obtient~:
+\begin{eqnarray*}
+	\frac{\beta}{2}\left[\tau_2^{(h)}(1-\tau_2^{(h)})  + \tau_2^{(l)}(1-\tau_2^{(l)}) \right]  + \tau_1 (1-\tau_1) &\ge& \frac{B_0}{P_1}+ g_1 + \frac{\beta}{2}(g_2^{(h)}+g_2^{(l)})
+\end{eqnarray*}
+
+Les contraintes de positivité sur $P_2^{(l)}$ et $P_2^{(h)}$ fournissent~:
+\begin{eqnarray*}
+	&&\phantom{\textrm{s.t. }} \tau^{(h)}_2(1-\tau^{(h)}_2) - g_2^{(h)} \ge 0 \\
+	&&\phantom{\textrm{s.t. }} \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)} \ge 0 
+\end{eqnarray*}
+
+Il ne reste qu'à modifier l'expression de l'utilité de l'agent. Pour cela on utilise les relations entre $n$ et $\tau$ et les contraintes de ressource de l'économie $c_i^{(e)} + g_i^{(e)} \le n_i^{(e)}$ (elles apparaissent par ex. si l'on somme les contraintes budgétaires de l'agent et du gouvernement). On déduit alors que l'utilité de l'agent s'exprime de la façon suivante~:
+\begin{eqnarray*}
+	U(c,l) &=& 1-\tau_1 - g_1 - \frac{1}{2}(1-\tau_1)^2 \\
+	&+& \frac{\beta}{2}\left[1-\tau_2^{(h)} - g_2^{(h)} - \frac{1}{2}(1-\tau_2^{(h)})^2\right] \\
+	&+& \frac{\beta}{2}\left[1-\tau_2^{(l)} - g_2^{(l)} - \frac{1}{2}(1-\tau_2^{(l)})^2\right] \\
+	&=& \frac{1}{2}(1-\tau_1^2) - g_1 \\
+	&+& \frac{\beta}{2}\left[\frac{1}{2}(1-(\tau_2^{(h)})^2) - g_2^{(h)} \right] \\
+	&+& \frac{\beta}{2}\left[\frac{1}{2}(1-(\tau_2^{(l)})^2) - g_2^{(l)} \right] \\
+	&=& -\,\frac{1}{2}\left(\tau_1^2 + \frac{\beta}{2}\left[(\tau_2^{(h)})^2+(\tau_2^{(l)})^2\right] \right) \\
+	&&\underbrace{- g_1 - \frac{\beta}{2}\left[g_2^{(h)} + g_2^{(l)} \right] +\frac{1}{2}+ \frac{\beta}{2}}_{=\kappa/2} 
+\end{eqnarray*}
+Le programme du planificateur se réduit donc bien à~:
+\begin{eqnarray*}
+	&&\max_{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}, P_1} - \tau_1^2 - \frac{1}{2}\beta\left\{(\tau^{(h)}_2)^2 + (\tau^{(l)}_2)^2)\right\} + \kappa \\
+	&&\textrm{s.t. }\frac{B_0}{P_1} = \tau_1(1-\tau_1) - g_1 + \frac{\beta}{2}\left\{\tau^{(h)}_2(1-\tau^{(h)}_2)- g_2^{(h)} + \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)}\right\} \\
+	&&\phantom{\textrm{s.t. }} \tau^{(h)}_2(1-\tau^{(h)}_2) - g_2^{(h)} \ge 0 \\
+	&&\phantom{\textrm{s.t. }} \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)} \ge 0 
+\end{eqnarray*}
+
+}
+\medskip
+
+\ques Commencer par résoudre ce programme en $P_1$. De quel problème  s'agit--il~? On suppose désormais que $P_1=1$. Résoudre le programme en  $\left\{\tau_1, \tau_2^{(l)}, \tau_2^{(h)}\right\}$. On suppose qu'en général les deux dernières contraintes ne mordent pas. Montrer que $g_2^{(h)}>g_2^{(l)}$ implique $P_2^{(h)}>P_2^{(l)}$. On retrouve alors l'assertion de Woodford.
+\correction{
+On écrit le Lagrangien associé au programme du planificateur~:
+\begin{eqnarray*}
+	&&\mathcal{L} = - \tau_1^2 - \frac{1}{2}\beta\left\{(\tau^{(h)}_2)^2 + (\tau^{(l)}_2)^2)\right\} + \kappa \\
+	&&+\lambda\left[\tau_1(1-\tau_1) - g_1 + \frac{\beta}{2}\left\{\tau^{(h)}_2(1-\tau^{(h)}_2)- g_2^{(h)} + \tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)}\right\}-\frac{B_0}{P_1} \right]\\
+	&&+ \mu^{(h)} (\tau^{(h)}_2(1-\tau^{(h)}_2) - g_2^{(h)})\\
+	&&+ \mu^{(l)} (\tau^{(l)}_2(1-\tau^{(l)}_2) - g_2^{(l)})
+\end{eqnarray*}
+
+La CPO par rapport à $P_1$ implique que $\lambda \frac{B_0}{P_1^2}=0\Rightarrow P_1 =\infty$. Comme il n'y a pas de coût à l'inflation, le gouvernement monétise complètement la dette dont il hérite~! On impose alors que $P_1=1$.   
+
+Les CPO sont~:
+\begin{eqnarray*}
+	-2\tau_1 (1+\lambda) + \lambda &=& 0\\
+	-2\tau_2^{(h)} (1+\lambda +\mu^{(h)}) + \lambda &=& 0\\
+	-2\tau_2^{(h)} (1+\lambda +\mu^{(h)}) + \lambda &=& 0
+\end{eqnarray*}
+
+\medskip
+Quand les deux dernières contraintes ne sont pas saturées, on a $\tau_1= \tau_2^{(h)}=\tau_2^{(l)}$~: {\it tax--smoothing}. Les taxes étant distorsives, le gouvernement cherche à les lisser et il les choisit constantes quel que soit l'état du monde. 
+
+\medskip
+Rappelons les contraintes budgétaires de l'agent (avec $\tau= \tau_2^{(h)}=\tau_2^{(l)}$)~:
+\begin{eqnarray*}
+	&&\phantom{\textrm{s.t. }} P^{(h)}_2\,(1-\tau-g^{(h)}_2) = B_1 + P_2^{(h)}(1-\tau)^2 \\
+	&&\phantom{\textrm{s.t. }} P^{(l)}_2\,(1-\tau-g^{(l)}_2) = B_1 + P_2^{(l)}(1-\tau)^2
+\end{eqnarray*}
+Par soustraction, on a~: 
+\begin{eqnarray*}
+	g^{(l)}_2 - g^{(h)}_2 = B_1\left[\frac{1}{P^{(h)}_2}-\frac{1}{P^{(l)}_2}\right]<0
+\end{eqnarray*}
+On en déduit alors que $P^{(h)}_2>{P^{(l)}_2}$. Le gouvernement fait plus d'inflation dans l'état du monde où les dépenses publiques sont les plus élevées. En effet, ses revenus liés aux taxes sont les mêmes et il doit financer un niveau de dette plus élevé~: il doit donc augmenter l'inflation pour lever plus d'argent à travers la taxe inflationniste (qui est  non distorsive).
+}
+
+
+\end{document}

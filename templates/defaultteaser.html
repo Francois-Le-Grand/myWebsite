@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>François - $title$</title>
+    <meta name="description" content="François Le Grand Webpage: $title$. I am an associate professor of finance at emlyon business school and an associate researcher in economics at ETH Zurich.">
+    <meta name="keywords" content="Francois Le Grand, François Le Grand, Francois Legrand, François Legrand, economics, finance, emlyon, em lyon, eth">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/core.css" />
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <link rel="alternate"
+          type="application/rss+xml"
+          title="François"
+          href="/rss.xml" />
+    <script type="text/javascript" src="js/my.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">          
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 header">            
+            <ul class="nav nav-pills ">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/cv.html">CV</a>
+              </li>
+              <li>
+                <a href="/research.html">Research</a>
+              </li>
+              <li>
+                <a href="/teaching.html">Teaching</a>
+              </li>
+              <li>
+                <a href="/misc.html">Misc.</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 content"> 
+          $if(teaser)$
+            <div id="wrap">
+              <div id="example-show">$teaser$  <a href="#" onclick="showHide('example');return false;">See the details.</a> </div>
+              <div id="example" class="more">
+                $body$
+                <p><a href="#" onclick="showHide('example');return false;">Hide the details.</a></p>
+              </div>
+            </div>
+          $else$
+            $body$
+          $endif$
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 footer">
+          <div class="bottom">
+            Generated using <a href="http://jaspervdj.be/hakyll/">Hakyll</a>. Source available on <a href="https://github.com/francois-lg/myWebsite">GitHub</a>. Content reusable under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">CC BY-SA 3.0</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-19740354-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+  </body>
+</html>

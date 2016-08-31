@@ -1,0 +1,493 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+\newcommand{\refg}[1]{({\sc Fig.}~\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue~~!40~~!black~~!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight)~;
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x}~;
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y}~;
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+
+\EnTete{Séances des 7/14 et 10/17 Novembre 2006}{9}{Endogenous growth and inequalities}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{Ac:02}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Croissance endogène,
+	\item Progrès technique biaisé.
+\end{itemize}
+
+
+\section{Set--up du modèle}
+
+L'économie est peuplée d'un agent représentatif qui consomme un bien final. Ce bien final est un agrégat de deux biens intermédiaires qui sont produits en utilisant à la fois des machines et du travail. Les deux biens se distinguent par la caractéristique des inputs~: ils sont supposés qualifiés pour l'un et peu qualifiés pour l'autre.
+
+\textenitalique{Préférences}
+
+Les préférences d'un agent représentatif sont définies de la manière suivante~:
+\begin{eqnarray*}
+\int_{0}^{\infty }\frac{C_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt
+\end{eqnarray*}
+
+o\`{u} $C_{t}$ est la consommation de bien final.
+
+\textenitalique{Bien final}
+
+Le bien de consommation final est un agrégat des deux biens intermédiaires selon une fonction CES standard~:
+\begin{eqnarray*}
+C=\left[ \gamma \left( C_{L}\right)^{\frac{\varepsilon -1}{\varepsilon }}+\left( 1-\gamma \right) \left( C_{H}\right)^{\frac{\varepsilon -1}{\varepsilon }}\right]^{\frac{\varepsilon }{\varepsilon -1}}
+\end{eqnarray*}
+
+$\varepsilon $ est l'élasticité de substitution entre les deux biens $H$ et $L$.
+
+Le prix du bien final est normalisé à 1~:
+\begin{eqnarray*}
+\left[ \gamma^{\varepsilon }\left( p_{L}\right)^{1-\varepsilon }+\left( 1-\gamma\right)^{\varepsilon }\left( p_{H}\right)^{1-\varepsilon}\right]^{\frac{1}{1-\varepsilon }}=1
+\end{eqnarray*}
+
+\ques \'Ecrire la demande relative de chacun des biens $H$ et $L.$
+\correction{
+Le consommateur cherche le panier de biens qui maximise son utilité courante (et donc simplement sa consommation). 
+\begin{eqnarray*}
+&&\max_{C_{H},C_{L}}C \\
+\textrm{s.c} &:&p_{H}C_{H}+p_{L}C_{L}\leq R
+\end{eqnarray*}
+
+En écrivant le Lagrangien et en dérivant par rapport à $C_L$ et $C_H$, on obtient~:
+\begin{eqnarray*}
+	\lambda\,p_H &=& \frac{\partial C}{\partial C_H} = (1-\gamma)^\varepsilon C_H^{-1/\varepsilon} \,C^{\varepsilon } \\
+	\lambda\,p_L &=& \frac{\partial C}{\partial C_L} = \gamma^\varepsilon C_L^{-1/\varepsilon} \,C^{\varepsilon } 
+\end{eqnarray*}
+
+Par division des deux égalités, on obtient~:
+\begin{eqnarray*}
+\frac{C_{H}}{C_{F}} =\left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{p_{H}}{p_{L}}\right)^{-\varepsilon }
+\end{eqnarray*}
+}
+
+\textenitalique{Biens intermédiaires}
+
+Il existe deux biens intermédiaires dont la production utilise des inputs différents~: le secteur $L$ et le secteur $H$.
+
+Le secteur $L$ produit à partir de travailleurs non--qualifiés $(L)$ et d'un continuum de machines $\left( x_{L}(j)\right) $ selon la fonction de production suivante~:
+\begin{eqnarray*}
+Y_{L}=\frac{1}{1-\beta }\left( \int_{0}^{N_{L}}x_{L}(j)^{1-\beta}dj\right) L^{\beta }
+\end{eqnarray*}
+
+o\`{u} $L$ désigne la quantité de travailleurs non--qualifiés employés et $N_{L}$ le nombre de machines à disposition dans le secteur $L$.
+
+Symétriquement, la fonction de production dans le secteur $H$ est~:
+\begin{eqnarray*}
+Y_{H}=\frac{1}{1-\beta }\left( \int_{0}^{N_{H}}x_{H}(j)^{1-\beta}dj\right) H^{\beta }
+\end{eqnarray*}
+
+o\`{u} $H$ désigne la quantité de travailleurs qualifiés employés et $N_{H}$ le nombre de machines à disposition dans le secteur $H$.
+
+\medskip
+
+On note $w_{L}$ le salaire d'un travailleur de type $L$ (resp. $w_{H}$ le salaire d'un travailleur de type $H$). Une machine $(j)$ de type $L$ est loué au prix $\chi _{L}(j)$ (resp. une machine $(j)$ de type $H$ est loué au prix $\chi _{H}(j)$). Les secteurs $H$ et $L$ sont parfaitement concurrentiels.
+
+\medskip
+
+\ques \'Ecrire les fonctions de demande en machines $(j)$ de type $(i)$ pour chacun des secteurs.
+\correction{
+Dans le secteur $L$, la firme maximise son profit. Elle produit $Y_L$ au prix $p_L$ et pour cela elle loue les machines au prix $\chi_L$ et embauche des travailleurs au prix $w_L$. 
+
+\begin{eqnarray*}
+&&\max_{\left\{ x_{L}(j),L\right\} }p_{L}Y_{L}-\int_{0}^{N_{L}}\chi_{L}(j)x_{L}(j)dj - w_{L}L \\
+\textrm{s.t.}&&Y_{L}=\frac{1}{1-\beta }\left( \int_{0}^{N_{L}}x_{L}(j)^{1-\beta}dj \right) L^{\beta }
+\end{eqnarray*}
+
+Les dérivées partielles du profit en $L$ et en $x_L(j)$ fournissent~:
+\begin{eqnarray*}
+\chi _{L}(j)&=& p_{L}x_{L}(j)^{-\beta }L^{\beta } \Rightarrow x_{L}(j)=\left[ \frac{p_{L}}{\chi _{L}(j)}\right]^{\frac{1}{\beta }}L \\
+w_L &=& p_L\,\frac{\beta}{1-\beta }\, \int_{0}^{N_{L}}x_{L}(j)^{1-\beta}dj\, L^{\beta-1  } \\
+&=& p_L^\frac{1}{\beta}\,\frac{\beta}{1-\beta }\, \int_{0}^{N_{L}}\chi_{L}(j)^{\frac{\beta-1}{\beta}}dj
+\end{eqnarray*}
+
+Symétriquement, dans le secteur $H$~:
+\begin{eqnarray*}
+x_{H}(j) &=& \left[ \frac{p_{H}}{\chi _{H}(j)}\right]^{\frac{1}{\beta }}H \\
+w_H &=& p_H^\frac{1}{\beta}\,\frac{\beta}{1-\beta }\, \int_{0}^{N_{H}}\chi_{H}(j)^{\frac{\beta-1}{\beta}}dj
+\end{eqnarray*}
+}
+\medskip
+
+\textenitalique{Producteurs de machines}
+
+\ques On suppose que les producteurs de machines sont des monopoles et que le coût marginal de production d'une machine est constant égale à $(1-\beta )$ unités du bien final. Calculer le prix de location fixé par chacun des producteurs de machines. En déduire le profit $\left( \pi _{i}\right) $ réalisé à chaque période par un producteur de machine de type $(i)$. 
+\correction{
+Chaque monopole $j$ détermine le niveau de prix qui maximise à fonction de demande donnée.
+\begin{eqnarray*}
+&&\max_{\left\{ \chi _{L}(j)\right\} }\chi _{L}(j)x_{L}(j)-(1-\beta )x_{L}(j) \\
+s.t &:& x_{L}(j)= p_{L}^{\frac{1}{\beta }}\,\chi _{L}(j)^{-\,\frac{1}{\beta }}\,L
+\end{eqnarray*}
+
+Par substitution et dérivation (ou en utilisant un Lagrangien), on obtient le niveau de prix suivant~:
+\begin{eqnarray*}
+\left( 1-\frac{1}{\beta }\right) \chi _{L}(j)^{-\frac{1}{\beta 
+}}=-\left(\frac{1-\beta }{\beta }\right)\chi _{L}(j)^{-\frac{1}{\beta }-1} \Rightarrow \chi _{L}(j)=\chi _{L}=1
+\end{eqnarray*}
+
+Le profit réalisé par la firme $L$ est alors constant et égal à~:
+\begin{eqnarray*}
+\pi _{L}(j) &=&\pi _{L}=\beta\,x_{L}=\beta\, p_{L}^{\frac{1}{\beta }}\,L \\
+\end{eqnarray*}
+
+La demande de machines est à élasticité constante~: les producteurs de machines tarifient au coût marginal fois un mark--up constant ($=\frac{1}{1-\beta }$).
+
+Noter que $\beta $ est l'inverse de l'élasticité de la demande~: lorsque l'élasticité de la demande est infinie $\frac{1}{\beta }\rightarrow \infty $, les producteurs perdent tout pouvoir  de monopole et le mark--up (brut) tend vers $1$.
+
+Symétriquement, pour le secteur $H$, on a~:
+\begin{eqnarray*}
+\chi _{H}(j)&=&\chi _{H}=1 \\
+\pi _{H}(j) &=&\pi _{H}=\beta\,x_{H}=\beta\, p_{H}^{\frac{1}{\beta }}\,H
+\end{eqnarray*}
+}
+\medskip
+
+\ques Calculer la valeur actualisée $V_{i}$ des profits des monopoles producteurs de machines de type $(i)$ à l'état stationnaire. On notera $r$ le taux d'actualisation. En déduire le rapport $\frac{V_{H}}{V_{L}}$. Sous quelles conditions est--il plus incitatif d'innover dans le secteur $H$ plutôt que dans le secteur $L$~?
+\correction{
+$V_i$ est la somme actualisée des profits futurs au taux $r$. Cette expression se simplifie facilement car les profits sont constants~:
+\begin{eqnarray*}
+V_{i}=\int_{0}^{\infty }\pi _{i}e^{-r t}dt=\frac{\pi _{i}}{r}
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+\left.\begin{array}{ccc}
+V_{L} &=&\frac{\beta p_{L}^{\frac{1}{\beta }}L}{r} \\
+V_{H} &=&\frac{\beta p_{H}^{\frac{1}{\beta }}H}{r} \\
+\end{array}\right\}\Longrightarrow  \frac{V_{H}}{V_{L}} =\left( \frac{p_{H}}{p_{L}}\right)^{\frac{1}{\beta }}\left( \frac{H}{L}\right)
+\end{eqnarray*}
+
+Si les profits espérés dans le secteur $H$ sont supérieurs à ceux dans le secteur $L$ (i.e.  $\frac{V_{H}}{V_{L}}\ge 1$)  alors les \textquotedblleft inventeurs\textquotedblright\ innovent plut\^{o}t dans le secteur $H$. Ce ratio dépend positivement de la part relative des travailleurs qualifiés par rapport aux non qualifiés (effet quantité) et du prix relatif des biens de chacun des secteurs (effet prix)~:
+\renewcommand{\labelitemi}{--}
+\begin{itemize}
+\item Si les travailleurs qualifiés sont très nombreux, les producteurs de machines innovent dans le secteur $H$ car la demande pour les produits de type $H$ est forte~: l'effet \textquotedblleft taille de marché\textquotedblright\ encourage l'innovation en direction du facteur abondant.
+\item Si les prix des biens $H$ sont élevés (relativement aux biens $L$),
+la production de machines de type $H$ augmente~: \textquotedblleft l'effet prix\textquotedblright\ encourage l'innovation dans le secteur o\`{u} les biens sont chers.
+\end{itemize}
+}
+\medskip
+
+\textenitalique{Equilibre sur le marché des biens}
+
+\ques En utilisant l'équilibre sur le marché des biens intermédiaires, exprimer $\frac{V_{H}}{V_{L}}$ en fonction de $\frac{H}{L}$ et $\frac{N_{H}}{N_{L}}$ et des paramètres du modèle. On introduira le paramètre $\sigma =\varepsilon \beta +(1-\beta )$
+\correction{
+L'équilibre sur le marché des biens nos dit que la demande $C_i$ est égale à l'offre $Y_i$ ~:%
+\begin{eqnarray*}
+C_{L} &=&Y_{L}=\frac{1}{1-\beta }\,N_{L}\,p_{L}^{\frac{1-\beta }{\beta }}\,L \\ %\frac{1}{1-\beta }\left( \int_{0}^{N_{L}}x_{L}(j)^{1-\beta}dj \right) L^{\beta }=
+C_{H} &=&Y_{H}=\frac{1}{1-\beta }\,N_{H}\,p_{H}^{\frac{1-\beta }{\beta }}\,H
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+\frac{C_{L}}{C_{H}} &=&\left( \frac{1-\gamma }{\gamma }\right)^{-\varepsilon }\left( \frac{p_{H}}{p_{L}}\right)^{\varepsilon } =\left( \frac{N_{L}}{N_{H}}\right) \left( \frac{p_{L}}{p_{H}}\right)^{\frac{1-\beta }{\beta }}\left( \frac{L}{H}\right)
+\end{eqnarray*}
+
+En réarrangeant les termes, on obtient l'expression suivante pour $\left( \frac{p_{H}}{p_{L}}\right)^{\frac{\sigma }{\beta }}$~:
+\begin{eqnarray*}
+\left( \frac{p_{H}}{p_{L}}\right)^{\frac{\sigma }{\beta }}=\left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{N_{L}}{N_{H}}\right) \left( \frac{L}{H}\right)
+\end{eqnarray*}
+
+Soit pour le ratio $\frac{V_{H}}{V_{L}}$~:
+\begin{eqnarray*}
+\frac{V_{H}}{V_{L}} &=&\left( \frac{p_{H}}{p_{L}}\right)^{\frac{1}{\beta }}\left( \frac{H}{L}\right) \\
+&=&\left( \frac{1-\gamma }{\gamma }\right)^{\frac{\varepsilon }{\sigma }}\left( \frac{N_{H}}{N_{L}}\right)^{-\frac{1}{\sigma }}\left( \frac{H}{L} \right)^{1-\frac{1}{\sigma }}
+\end{eqnarray*}
+}
+\medskip
+
+\ques Dans quelles circonstances une hausse de la dotation en travailleurs qualifiés relativement aux travailleurs non--qualifiés augmentent le ratio $\frac{V_{H}}{V_{L}}$~?
+\correction{
+Le ratio $\frac{V_{H}}{V_{L}}$ est croissant en $\frac{H}{L}$ si et seulement si $\sigma =\varepsilon \beta +(1-\beta )\geq 1$. En effet, \textquotedblleft l'effet prix\textquotedblright\ joue en sens opposé par rapport à l'effet \textquotedblleft taille de marché \textquotedblright\ sur les incitations à innover~: si les producteurs de biens $H$ inondent le marché de ces biens (car il y a beaucoup d'innovation dans ce secteur), alors le prix de ces biens diminue, ce qui réduit les incitations à innover dans ce secteur (relativement au secteur $L$).
+
+Noter que la condition est équivalente à $\varepsilon \geq 1$. Si les biens sont suffisamment substituables, la baisse du prix relatif $\left( \frac{p_{H}}{p_{L}}\right) $ nécessaire pour accommoder l'offre supplémentaire de biens $H$ est faible (car les consommateurs substituent facilement les deux biens) et l'effet \textquotedblleft taille de marché \textquotedblright\ domine \textquotedblleft l'effet prix\textquotedblright. Si l'élasticité de substitution est faible, la baisse du prix relatif doit être plus forte pour équilibrer le marché des biens et \textquotedblleft l'effet prix\textquotedblright\ domine l'effet \textquotedblleft taille de marché\textquotedblright .
+}
+\medskip
+
+\ques Dériver des conditions de premier ordre des firmes de biens intermédiaires, la courbe de salaires relatifs des deux facteurs $(\frac{w_{H}}{w_{L}})$ en fonction de $\left( \frac{N_{H}}{N_{L}}\right) $ et $\left( 
+\frac{H}{L}\right) $. Commenter.
+\correction{
+Rappelons que l'on avait trouvé dans les questions précédentes les expressions suivantes pour $w_H$ et $w_L$~:
+\begin{eqnarray*}
+w_L &=& p_L^\frac{1}{\beta}\,\frac{\beta}{1-\beta }\, \int_{0}^{N_{L}}\chi_{L}(j)^{\frac{\beta-1}{\beta}}dj \\
+&=& \frac{\beta}{1-\beta }\,p_L^\frac{1}{\beta}\, N_{L} \\
+w_H &=& \frac{\beta}{1-\beta }\,p_H^\frac{1}{\beta}\, N_{H} 
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+\frac{w_{H}}{w_{L}}=\left( \frac{p_{H}}{p_{L}}\right)^{\frac{1}{\beta }}\left( \frac{N_{H}}{N_{L}}\right) =\left( \frac{1-\gamma }{\gamma }\right)^{\frac{\varepsilon }{\sigma }}\left( \frac{N_{H}}{N_{L}}\right)^{1-\frac{1}{\sigma }}\left( \frac{L}{H}\right)^{\frac{1}{\sigma }}
+\end{eqnarray*}
+
+\medskip
+
+Les salaires relatifs sont (si $\sigma >1$ et inversement si $\sigma <1$)~:
+\renewcommand{\labelitemi}{--}
+\begin{itemize}
+\item décroissants de l'offre relative des facteurs,
+\item croissants de la productivité globale des facteurs dans chacun des
+secteurs.
+\end{itemize}
+
+Le terme en $\left( \frac{N_{H}}{N_{L}}\right)^{1-\frac{1}{\sigma }}$ est le terme de \emph{progrès technique biaisé}. Si la productivité augmente plus vite dans le secteur $H$ (car les inventeurs de machines sont incités à innover dans ce secteur) il se peut que les salaires relatifs ($w_H/w_L$) augmentent (dès que $\sigma >1$) m\^{e}me si l'offre de travailleurs qualifiés relativement aux travailleurs non qualifiés $\left( \frac{H}{L}\right) $ augmente. 
+\medskip 
+
+Il faut alors déterminer comment évolue l'offre de nouvelles technologies.
+}
+
+\textenitalique{Innovations technologiques}
+
+On suppose que l'innovation technologique (invention de nouvelles machines) suit dans chacun des secteurs $(i)$ la loi d'évolution suivante~:
+\begin{eqnarray*}
+\dot{N_{i}}=\eta _{i}X_{i}
+\end{eqnarray*}
+
+o\`{u} $X_{i}$ désigne les ressources allouées à l'invention de nouvelles machines de type $(i)$ (en unité de bien final, \textquotedblleft Lab--Equipment Model\textquotedblright ). On suppose qu'il y a libre--entrée dans le secteur des innovations.
+
+\medskip
+
+\ques \'Ecrire la condition d'équilibre sur le marché des innovations technologiques. En déduire la relation qui lie $V_{H}$ et $V_{L}$ à l'état stationnaire, puis le nombre relatif de machines $\left( \frac{N_{H}}{N_{L}}\right) $ en fonction de la dotation factorielle $\left( \frac{H}{L}\right) $.
+\correction{
+Le rendement proposé par l'innovation technologique doit être le même dans les deux secteurs, soit~: 
+\begin{eqnarray*}
+\eta _{L}\,V_L = \eta _{H} V_H
+\end{eqnarray*}
+
+On obtient alors~:
+\begin{eqnarray*}\frac{V_{H}}{V_{L}} &=&\left( \frac{\eta _{L}}{\eta _{H}}\right) =\left( \frac{1-\gamma }{\gamma }\right)^{\frac{\varepsilon }{\sigma }}\left( \frac{N_{H}}{N_{L}}\right)^{-\frac{1}{\sigma }}\left( \frac{H}{L}\right)^{1-\frac{1}{\sigma }} 
+\end{eqnarray*}
+
+On en déduit alors que~: 
+\begin{eqnarray*}
+\left( \frac{\eta _{L}}{\eta _{H}}\right)^\sigma &=& \left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{N_{L}}{N_{H}}\right)\left( \frac{H}{L}\right)^{\sigma-1} \\
+\Rightarrow \left( \frac{N_{H}}{N_{L}}\right) &=&\left( \frac{\eta _{H}}{\eta _{L}}\right)^{\sigma }\left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{H}{L}\right)^{\sigma -1}
+\end{eqnarray*}
+
+L'effort d'innovation dépend positivement de la productivité relative des secteurs d'innovation $\left( \frac{\eta _{H}}{\eta _{L}}\right) $ et positivement des dotations relatives de facteurs $\left( \frac{H}{L}\right) $ lorsque $\sigma >1$ (cas o\`{u} l'effet \textquotedblleft taille de marché\textquotedblright\ domine \textquotedblleft l'effet prix\textquotedblright )
+}
+\medskip
+
+\ques En déduire le ratio $\frac{w_{H}}{w_{L}}$ en fonction des dotations relatives $\left( \frac{H}{L}\right) $. Commenter.
+\correction{
+En reprenant les expressions précédentes, on a~: 
+\begin{eqnarray*}
+\frac{w_{H}}{w_{L}}&=&\left( \frac{1-\gamma }{\gamma }\right)^{\frac{\varepsilon }{\sigma }}\left( \frac{N_{H}}{N_{L}}\right)^{1-\frac{1}{\sigma }}\left( \frac{L}{H}\right)^{\frac{1}{\sigma }} \\
+&=&\left( \frac{\eta _{H}}{\eta _{L}}\right)^{\sigma-1}\left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{H}{L}\right)^{\sigma -2}
+\end{eqnarray*}
+
+Deux effets jouent en sens opposés~:
+\renewcommand{\labelitemi}{--}
+\begin{itemize}
+\item la rareté relative d'un des facteurs qui contribuent à une hausse de la rémunération relative du facteur rare,
+\item le progrès technique biaisé qui induit plus d'innovation technologique en faveur du facteur abondant.
+\end{itemize}
+
+Lorsque $\sigma >2$, l'effet \textquotedblleft progrès technique biaisé\textquotedblright\ domine l'effet standard des dotations factorielles et la courbe de salaire relative est croissante de la dotation relative.
+}
+
+\textenitalique{Programme du consommateur}
+
+\ques \'Ecrire l'Equation d'Euler du programme du consommateur. En déduire que le taux de croissance de l'économie sur le sentier de croissance  équilibré est égal à~:
+\begin{eqnarray*}
+g=\frac{1}{\theta }\left( \beta \left[ \gamma^{\varepsilon }\left( \eta_{L}L\right)^{\sigma -1}+\left( 1-\gamma \right)^{\varepsilon }\left( \eta_{H}H\right)^{\sigma -1}\right]^{\frac{1}{\sigma -1}}-\rho \right)
+\end{eqnarray*}
+Commenter. Pourquoi parle--t--on \textquotedblleft d'effet taille\textquotedblright\ lorsque $\sigma >1$~?
+On supposera qu'il y a libre--entrée sur le marché de l'innovation. Expliquer pourquoi cela implique $\eta_{L}V_{L}=1=\eta_{H}V_{H}$.  
+
+\correction{
+Commençons par dériver l'équation d'Euler. Le consommateur maximise son utilité intertemporelle sous une contrainte de revenu. On note $a_t$ l'épargne au taux $r$ à la date $t$ et $w_t$ le flux de  revenus à la date $t$.
+\begin{eqnarray*}
+&&\max_{\{C_t\}}\int_{0}^{\infty }\frac{C_{t}^{1-\theta }}{1-\theta }e^{-\rho t}dt \\
+\textrm{s.t.}&& \dot{a}_t = w_t + r\,a_t - C_t
+\end{eqnarray*}
+
+Ecrivons le Lagrangien (pour retrouver l'hamiltonien)~en notant $e^{-\rho t}\,\mu_t$ le multiplicateur de Lagrange~:
+\begin{eqnarray*}
+	\mathcal{L} &=& \int_{0}^{\infty } \left(\frac{C_{t}^{1-\theta }}{1-\theta }+\mu_t (w_t + r\,a_t - C_t)\right)e^{-\rho t}dt  - \int_{0}^{\infty } \mu_t\,\dot{a}_t\,e^{-\rho t}dt 	\\
+	&=& \int_{0}^{\infty } \left(\frac{C_{t}^{1-\theta }}{1-\theta }-\mu_t\,(C_t - w_t)  +  \bigl(\dot{\mu}_t -(\rho - r)\mu_t\bigr)\,a_t \right)e^{-\rho t}dt 	\\
+\end{eqnarray*}
+
+Les CPO par rapport à $C_t$ et à $a_t$ fournissent~: 
+\begin{eqnarray*}
+	C_{t}^{-\theta } &=& \mu_t \\
+	\dot{\mu}_t &=& (\rho-r)\mu_t
+\end{eqnarray*}
+En pluggant la première équation dans la deuxième, on obtient~:
+\begin{eqnarray*}
+	-\theta\,\dot{C}_t\,C_{t}^{-\theta-1} =(\rho - r)\, C_{t}^{-\theta } \Rightarrow \frac{\dot{C}_t}{C_t} = g_t  =\frac{1}{\theta }(r-\rho )
+\end{eqnarray*}
+
+On en déduit que le taux de croissance $g$ est égal à~:
+\begin{eqnarray*}
+g =\frac{1}{\theta }(r-\rho )
+\end{eqnarray*}
+
+On cherche maintenant à exprimer le taux d'intérêt $r$. Du fait de la libre--entrée dans le secteur de l'innovation~:
+\begin{eqnarray*}
+\eta _{L}V_{L}=1\Rightarrow \eta _{L}\,\beta\,p_{L}^{\frac{1}{\beta }}\,L=r
+\end{eqnarray*}
+La condition de libre entrée implique que tant que $\eta _{L}V_{L}>1$, on a  $\eta _{L}\pi_{L}>r$. Un nouvel entrant peut diminuer son profit et récupérer toute la demande. Observer que l'on doit avoir $\eta _{L}\pi_{L}\ge r$, sinon le sans risque est plus intéressant que le risqué. 
+
+Exprimons maintenant $p_L$. On a les égalités suivantes~:
+\begin{eqnarray*}
+1 &=& p_{L}\left[ \gamma^{\varepsilon }+\left( 1-\gamma \right)^{\varepsilon }\left( \frac{p_{H}}{p_{L}}\right)^{1-\varepsilon }\right]^{\frac{1}{1-\varepsilon }}	\\
+\left( \frac{p_{H}}{p_{L}}\right)^{\frac{\sigma }{\beta }} &=& \left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{N_{L}}{N_{H}}\right)\left( \frac{L}{H}\right) \\
+\left( \frac{N_{H}}{N_{L}}\right) &=& \left( \frac{\eta _{H}}{\eta _{L}}\right)^{\sigma }\left( \frac{1-\gamma }{\gamma }\right)^{\varepsilon }\left( \frac{H}{L}\right)^{\sigma -1}
+\end{eqnarray*}
+
+On en déduit~:
+\begin{eqnarray*}
+\left( \frac{p_{H}}{p_{L}}\right)^{\frac{\sigma }{\beta }} &=& \left( \frac{\eta _{H}}{\eta _{L}}\right)^{-\sigma} \left( \frac{L}{H}\right)^{\sigma} \\
+\textrm{puis~}&&\\
+p_{L} &=&\left[ \gamma^{\varepsilon }+\left( 1-\gamma \right)^{\varepsilon }\left[ \left( \frac{\eta _{H}}{\eta _{L}}\right)^{-\beta }\left( \frac{L}{H} \right)^{\beta }\right]^{1-\varepsilon }\right]^{\frac{-1}{1-\varepsilon }} \\
+\textrm{Soit pour $r$~:}&&\\
+r &=&\eta _{L}\beta L\left[ \gamma^{\varepsilon }+\left( 1-\gamma \right)^{\varepsilon }\left[ \left( \frac{\eta _{H}}{\eta _{L}}\right)^{\beta }\left( 
+\frac{H}{L}\right)^{\beta }\right]^{\varepsilon -1}\right]^{\frac{1}{\beta(\varepsilon -1)}} \\
+&=&\beta \left[ \gamma^{\varepsilon }\left( \eta _{L}L\right)^{\beta(\varepsilon -1)}+\left( 1-\gamma \right)^{\varepsilon }\left( \eta _{H}H\right)
+^{\beta (\varepsilon -1)}\right]^{\frac{1}{\beta (\varepsilon -1)}}
+\end{eqnarray*}
+
+En remarquant que $\sigma -1=\varepsilon \beta +(1-\beta )-1=\beta \left( \varepsilon-1\right) $, on obtient finalement l'expression de $g$ suivante~:
+\begin{eqnarray*}
+g &=&\frac{1}{\theta }(r-\rho ) \\
+	&=&\frac{1}{\theta }\left( \beta \left[ \gamma^{\varepsilon }\left( \eta_{L}L\right)^{\sigma -1}+\left( 1-\gamma \right)^{\varepsilon }\left( \eta_{H}H\right)^{\sigma -1}\right]^{\frac{1}{\sigma -1}}-\rho \right)
+\end{eqnarray*}
+
+\medskip
+
+Le taux de croissance de l'économie augmente avec la dotation de l'économie en travailleurs qualifiés et non qualifiés lorsque $\sigma >1$. En effet, dans ce cas, plus la taille du marché est grande, plus les producteurs sont incités à innover~: on parle donc \textquotedblleft d'effet taille\textquotedblright . Cette conséquence des modèles de croissance endogène à la Romer est fortement contestée (cf. TD 10).
+}
+\medskip
+
+\textenitalique{Application~: \textquotedblleft Skill Premium\textquotedblright }
+
+La figure \refg{fig:TD9} représente l'évolution du salaire relatif des travailleurs qualifiés par rapport aux travailleurs non--qualifiés en fonction de l'offre relative de qualifiés et de non--qualifiés aux US.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 12cm]{TD9image.jpg}	
+	\caption{Evolution de la \textquotedblleft skill--premium\textquotedblright\ en fonction de l'offre relative des qualifiés et non--qualifiés.}
+	\label{fig:TD9}
+\end{figure}
+
+\medskip
+
+\ques Pourquoi l'évolution du salaire relatif des qualifiés par rapport aux non--qualifiés peut apparaître paradoxale~? Comment le modèle étudié permet--il de répondre à ce paradoxe~? Quelles autres explications pouvez--vous avancer~?
+\correction{
+Il est à priori surprenant que le gap de salaire entre qualifiés et non--qualifiés s'élargisse alors que l'offre de travailleurs qualifiés relativement au non--qualifiés augmente.
+
+La réponse apportée par ce modèle est l'existence de \textbf{progrès technique biaisé}~: l'augmentation de l'offre de travailleurs qualifiés induit de l'inno\-vation technologique dans les secteurs qui utilisent intensivement les travailleurs qualifiés, ce qui accroître leur productivité et donc leurs salaires.
+\medskip
+
+Une autre réponse est apportée par la théorie du commerce international (Hecksher--Ohlin--Samuelson). La globalisation commerciale depuis l'après--guerre induit une spécialisation des économies dans les secteurs qui utili\-sent intensivement le facteur abondant, i.e. aux US le travail qualifié. Ce bien est exporté contre des biens qui utilisent intensivement des travailleurs peu--qualifiés en provenance de pays où la main d'oeuvre peu qualifiée est abondante. Cela augmente ainsi la demande de travailleurs qualifiés aux US et donc leurs salaires relativement aux peu qualifiés. 
+
+Néanmoins, le commerce Nord--Sud ne représente qu'une faible part du commerce mondial, ce qui conduit à privilégier l'hypothèse du progrès technique biaisé.
+}
+
+\end{document}

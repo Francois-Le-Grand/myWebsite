@@ -1,0 +1,557 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 6--13 Octobre 2006}{3}{Equivalence ricardienne et d\'{e}mographie}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Bu:88}
+
+Il y a \'{e}quivalence ricardienne dans une \'{e}conomie si la mani\`{e}re
+dont l'Etat finance ses d\'{e}penses n'a pas d'effet réel. Il est équivalent que l'\'Etat se finance par impôt ou par dette. L'argument est le suivant. Si l'\'Etat se finance par émission de dette, les agents anticipent parfaitement l'augmentation de taxes futures et ce faisant diminuent leur consommation de la même façon.   \bigskip
+Les hypothèses sous--jacentes à la validité de l'équivalence ricardienne sont les suivantes~:
+\begin{enumerate}[(i)~]
+	\item Horizon de vie infini : sinon ce sont d'autres agents qui rembourseront la dette\ldots
+	\item Taxes {\it lump--sum} : sinon les taxes créent des distorsions sur le comportement des agents et cela implique que le timing des taxes comptent.
+	\item Pas d'environnment stochastique : sinon l'anticipation des agents diffère de la réalisation.
+\end{enumerate}
+
+Ainsi, le mod\`{e}le avec agent repr\'{e}sentatif \`{a} horizon de vie
+infini et le mod\`{e}le \`{a} g\'{e}n\'{e}rations imbriqu\'{e}es avec agents
+vivant deux p\'{e}riodes ont des implications tr\`{e}s diff\'{e}rentes : l'%
+\'{e}quivalence ricardienne tient dans le premier cadre mais le "timing" des
+imp\^{o}ts n'est pas indiff\'{e}rent dans le second.
+
+Une mani\`{e}re de retrouver l'\'{e}quivalence dans un mod\`{e}le \`{a} g%
+\'{e}n\'{e}rations est de consid\'{e}rer altruisme, leg et comportement
+dynastique. Les agents qui ont contracté la dette doivent se sentir `responsables' de son remboursement. 
+\bigskip
+
+Dans cemodèle, les individus ne sont pas altruistes et ont une probabilité de cdécès exogène, indépendante de leur âge. 
+
+\bigskip
+
+\section{D\'{e}mographie}
+
+\ques Calculer $n$ le taux de croissance de la population.
+
+\correction{
+\begin{equation*}
+N_{t+1}=(1+n)N_{t}=(1-p)N_{t}+bN_{t+1}
+\end{equation*}%
+\begin{equation*}
+\Rightarrow 1+n=1-p+b(1+n)
+\end{equation*}%
+\begin{equation*}
+\Rightarrow 1+n=\frac{1-p}{1-b}
+\end{equation*}%
+\medskip
+}
+
+2. Donner la probabilit\'{e} pour un agent n\'{e} \`{a} la p\'{e}riode $s$
+meure avant le d\'{e}but de la p\'{e}riode $t$ $>s$.
+
+\correction{La probabilit\'{e} pour un agent n\'{e} en p\'{e}riode $s$ d'\^{e}tre en
+vie \`{a} la p\'{e}riode $s+1$ est $(1-p)$ et par r\'{e}currence, sa
+probabilit\'{e} d'\^{e}tre en vie \`{a} la p\'{e}riode $t>s$ est est $%
+(1-p)^{t-s}$. On suppose que la loi des grands nombres s'applique de sorte
+que $(1-p)^{t-s}$ est aussi la part de la cohorte de la p\'{e}riode $s$
+encore en vie au d\'{e}but de la p\'{e}riode $t$.}
+
+\section{Dotations, syst\`{e}me viager et \'{e}volution de la richesse
+financi\`{e}re }
+
+On note $a_{s,t}$\ la richesse financi\`{e}re \`{a} la p\'{e}riode $t$ d'un
+agent n\'{e} \`{a} la p\'{e}riode $s$. Un agent commence avec une richesse
+financi\`{e}re $a_{s,s}=0$. A chaque p\'{e}riode, il re\c{c}oit un salaire $%
+w_{t}$ et paie un montant d'imp\^{o}ts $\tau _{t}$. A la p\'{e}riode $t$, un
+agent dispose d'un montant $a_{s,t}+w_{t}-\tau _{t}$\ qu'il peut soit
+consommer, soit placer.
+
+Le placement de la p\'{e}riode $t$ est doublement r\'{e}mun\'{e}r\'{e} \`{a}
+la p\'{e}riode $t+1$ :
+
+\begin{itemize}
+	\item au taux d'int\'{e}r\^{e}t r\'{e}el $r$, constant au cours du temps,
+	\item via une prime proportionnelle \`{a} son \'{e}pargne.
+\end{itemize}
+
+\medskip
+
+On suppose en effet qu'il existe un syst\`{e}me viager parfaitement
+concurrentiel (i.e. profit nul) dont le principe est le suivant : \`{a}
+chaque p\'{e}riode un agent re\c{c}oit une prime proportionnelle \`{a} son 
+\'{e}pargne; en \'{e}change, il r\'{e}troc\`{e}de l'int\'{e}gralit\'{e} de
+sa richesse financi\`{e}re au jour de sa mort.\bigskip
+
+\ques Ecrire la loi d'\'{e}volution de la richesse financi\`{e}re d'un individu
+n\'{e} \`{a} la p\'{e}riode $s$ pendant la dur\'{e}e de sa vie, \`{a} taux
+assurantiel $\Pi $\ donn\'{e}.\medskip
+
+\begin{eqnarray*}
+a_{s,t+1} &=&(1+r)(a_{s,t}+w_{t}-\tau _{t}-c_{t})+\Pi (a_{s,t}+w_{t}-\tau
+_{t}-c_{t}) \\
+&=&(1+r+\Pi )(a_{s,t}+w_{t}-\tau _{t}-c_{t})
+\end{eqnarray*}
+
+2. \ques Ecrire l'ensemble des d\'{e}penses et des recettes pour le syst\`{e}me
+viager et d\'{e}terminer le taux $\Pi $ v\'{e}rifiant la condition de profit
+nul.\medskip
+\correction{
+On suppose que le syst\`{e}me viager est concurrentiel (hypothèse libre entrée).
+
+-- d\'{e}penses en p\'{e}riode $t$ : 
+\begin{equation*}
+\sum_{s<t}(1-p)^{t-s}\Pi (a_{s,t-1}+w_{t-1}-\tau _{t-1}-c_{t-1})bN_{s}
+\end{equation*}
+
+-- recettes en p\'{e}riode $t$ : 
+\begin{equation*}
+\sum_{s<t}p(1-p)^{t-1-s}(1+r)(a_{s,t-1}+w_{t-1}-\tau _{t-1}-c_{t-1})bN_{s}
+\end{equation*}
+
+Condition de profit nul implique : 
+\begin{equation*}
+(1-p)\Pi =p(1+r)
+\end{equation*}
+\begin{equation*}
+\Rightarrow \Pi =(1+r)\frac{p}{1-p}
+\end{equation*}
+}
+3. R\'{e}mun\'{e}ration totale de l'\'{e}pargne%
+\begin{eqnarray*}
+1+r_{h} &=&1+r+\Pi =1+r+(1+r)\frac{p}{1-p} \\
+&=&\frac{1+r}{1-p}
+\end{eqnarray*}
+
+\bigskip
+
+\textbf{III -- Choix optimal de consommation\medskip }
+
+Cette partie introduit \`{a} la th\'{e}orie du revenu permanent dans le cas o%
+\`{u} la dur\'{e}e de vie est incertaine.
+
+\bigskip
+
+1. Programme :%
+\begin{equation*}
+\max \quad \sum_{t=s}^{\infty }[{(1-p)\beta ]^{t-s}\log (c_{s,t})}
+\end{equation*}%
+\begin{equation*}
+s.c.\quad a_{s,t+1}=(1+r_{h})(a_{s,t}+w_{t}-\tau _{t}-c_{t})
+\end{equation*}%
+\begin{equation*}
+\lim_{t\rightarrow \infty }\quad \frac{a_{s,t}}{(1+r_{h})^{t}}=0
+\end{equation*}%
+\begin{equation*}
+a_{s,s}=0
+\end{equation*}
+
+On normalise les multiplicateurs de Lagrange de sorte que 
+\begin{equation*}
+\pounds =\sum_{t=s}^{\infty }[{(1-p)\beta ]^{t-s}\{\log (c_{s,t})+\lambda }%
+_{s,t}[(1+r_{h})(a_{s,t}+w_{t}-\tau _{t}-c_{s,t})-a_{s,t+1}]\}
+\end{equation*}%
+\medskip
+
+2. Conditions du premier ordre par rapport \`{a} $c_{s,t}$\ et \`{a} $%
+a_{s,t+1}$\ : 
+\begin{equation*}
+u^{\prime }(c_{s,t})=\lambda _{s,t}.(1+r_{h})
+\end{equation*}
+
+\begin{equation*}
+\lambda _{s,t+1}(1+r_{h})\beta (1-p)=\lambda _{s,t}
+\end{equation*}
+
+D'o\`{u} 
+\begin{equation*}
+\frac{c_{s,t+1}}{c_{s,t}}=\frac{u^{\prime }(c_{s,t})}{u^{\prime }(c_{s,t+1})}%
+=\frac{\lambda _{s,t}}{\lambda _{s,t+1}}=(1+r_{h})\beta (1-p)=\beta (1+r)
+\end{equation*}%
+\medskip
+
+3. Contrainte budg\'{e}taire intertemporelle 
+\begin{equation*}
+a_{s,t+1}=(1+r_{h})(a_{s,t}+w_{t}-\tau _{t}-c_{s,t})
+\end{equation*}%
+\begin{equation*}
+\underset{s.c.\;Ponzi}{\Rightarrow }\sum_{i=0}^{\infty }\frac{c_{s,t+i}}{%
+(1+r_{h})^{i}}=a_{s,t}+\sum_{i=0}^{\infty }\frac{(w_{t+i}-\tau _{t+i})}{%
+(1+r_{h})^{i}}=a_{s,t}+h_{t}
+\end{equation*}%
+\medskip
+
+4. Fonction de consommation \bigskip
+
+L'\'{e}quation d'Euler implique :
+
+\begin{equation*}
+c_{s,t+i}=[\beta (1+r)]^{i}c_{s,t}
+\end{equation*}
+
+(NB : dans le cas g\'{e}n\'{e}ral, lorsqu'on suppose que la condition du
+premier ordre est v\'{e}rifi\'{e}e, cela veut dire qu'on fait implicitement
+l'hypoth\`{e}se que les march\'{e}s financiers sont parfaits et qu'il n'y a
+pas de contraintes de liquidit\'{e}).\medskip
+
+Donc la contrainte budg\'{e}taire s'\'{e}crit :%
+\begin{equation*}
+c_{s,t}\sum_{i=0}^{\infty }\left( \frac{\beta (1+r)}{1+r_{h}}\right)
+^{i}=a_{s,t}+h_{t}
+\end{equation*}%
+\medskip
+
+La consommation de la p\'{e}riode $t$ d'un agent n\'{e} \`{a} la p\'{e}riode 
+$s$ est donc :
+
+\begin{equation*}
+c_{s,t}=\Omega (a_{s,t}+h_{t})
+\end{equation*}
+
+avec 
+\begin{equation*}
+\Omega =1-\beta (1-p)
+\end{equation*}
+
+Dans le cas standard d'un agent avec horizon infini sans mortalit\'{e}, on a
+une propension marginale \`{a} consommer la richesse totale (i.e. humaine +
+financi\`{e}re) \'{e}gale \`{a} $1-\beta $. Cette fonction de consommation
+n'a rien \`{a} voir avec la fonction de consommation "keyn\'{e}sienne" selon
+laquelle les agents consomment \`{a} proportion de leur revenu disponible
+courant. Ici consommation et revenu courant sont possiblement compl\'{e}%
+tement d\'{e}connect\'{e}s.\medskip
+
+\bigskip
+
+5. Consommation agr\'{e}g\'{e}e
+
+Pour calculer la consommation agr\'{e}g\'{e}e de la date $t$, on doit agr%
+\'{e}ger sur les diff\'{e}rentes cohortes pass\'{e}es, en prenant en compte
+le fait qu'elles ont diminu\'{e} de taille depuis leur apparition.
+
+Il est imm\'{e}diat que la taille en $t$ de la cohorte n\'{e}e \`{a} la p%
+\'{e}riode $s$ est $(1-p)^{t-s}bN_{s}$. Donc :
+
+\begin{eqnarray*}
+C_{t} &=&\sum_{s\leq t}c_{s,t}(1-p)^{t-s}bN_{s} \\
+&=&\Omega \sum_{s\leq t}(a_{s,t}+h_{t})(1-p)^{t-s}bN_{s} \\
+&=&\Omega \sum_{s\leq t}a_{s,t}(1-p)^{t-s}bN_{s}+\Omega \sum_{s\leq
+t}h_{t}(1-p)^{t-s}bN_{s}
+\end{eqnarray*}
+
+\bigskip \bigskip
+
+\textbf{IV -- Finances publiques}
+
+\bigskip
+
+1. Evolution de la valeur de la dette 
+\begin{equation*}
+\frac{D_{t+1}}{1+r}=D_{t}+G_{t}-T_{t}
+\end{equation*}%
+\medskip
+
+2. Equilibre des finances publiques \`{a} long terme\medskip
+
+La loi d'\'{e}volution de la dette entre $t$ et $T$ implique :%
+\begin{equation*}
+D_{T}=(1+r)^{T}D_{t}+\sum_{i=0}^{T-t}(1+r)^{T-i}(G_{t+i}-T_{t+i})
+\end{equation*}%
+\begin{equation*}
+\frac{D_{T}}{(1+r)^{T}}=D_{t}+\sum_{i=0}^{T-t}\frac{G_{t+i}-T_{t+i}}{%
+(1+r)^{i}}
+\end{equation*}%
+\bigskip
+
+\begin{eqnarray*}
+\lim_{T\rightarrow \infty }\frac{D_{T}}{(1+r)^{T}} &=&0\quad \Rightarrow
+\sum_{i=0}^{\infty }\frac{T_{t+i}}{(1+r)^{i}}=D_{t}+\sum_{i=0}^{\infty }%
+\frac{G_{t+i}}{(1+r)^{i}} \\
+&\Rightarrow &D_{t}=\sum_{i=0}^{\infty }\frac{(T_{t+i}-G_{t+i})}{(1+r)^{i}}
+\end{eqnarray*}
+
+\bigskip
+
+\textbf{V -- Equilibre et condition pour la neutralit\'{e} du chemin fiscal}
+
+\bigskip
+
+1. La contre-partie de la richesse financi\`{e}re agr\'{e}g\'{e}e sur tous
+les agents priv\'{e}s, c'est n\'{e}cessairement la dette de l'Etat.%
+\begin{equation*}
+A_{t}=D_{t}
+\end{equation*}%
+\begin{eqnarray*}
+C_{t} &=&\Omega (A_{t}+H_{t}) \\
+&=&\Omega (D_{t}+H_{t})
+\end{eqnarray*}%
+\medskip
+
+2. Prise en compte de la contrainte budg\'{e}taire intertemporelle de l'Etat
+dans la consommation agr\'{e}g\'{e}e\medskip
+
+On a :
+
+\begin{equation*}
+D_{t}=\sum_{i=0}^{\infty }\frac{(T_{t+i}-G_{t+i})}{(1+r)^{i}}
+\end{equation*}
+
+Donc : 
+\begin{equation*}
+C_{t}=\Omega \left( \sum_{i=0}^{\infty }\frac{(T_{t+i}-G_{t+i})}{(1+r)^{i}}%
++H_{t}\right)
+\end{equation*}%
+\medskip
+
+3. On fait appara\^{\i}tre dans la richesse humaine les imp\^{o}ts futurs
+:\smallskip
+
+\begin{eqnarray*}
+H_{t} &=&h_{t}N_{t} \\
+&=&\sum_{i=0}^{\infty }\frac{w_{t+i}}{(1+r_{h})^{i}}N_{t}-\sum_{i=0}^{\infty
+}\frac{\tau _{t+i}}{(1+r_{h})^{i}}N_{t} \\
+&=&\sum_{i=0}^{\infty }\frac{w_{t+i}}{(1+r_{h})^{i}}N_{t}-\sum_{i=0}^{\infty
+}\frac{\tau _{t+i}N_{t+i}}{(1+r_{h})^{i}}\frac{N_{t}}{N_{t+i}} \\
+&=&\sum_{i=0}^{\infty }\frac{w_{t+i}}{(1+r_{h})^{i}}N_{t}-\sum_{i=0}^{\infty
+}\frac{T_{t+i}}{[(1+r_{h})(1+n)]^{i}}
+\end{eqnarray*}
+
+Dans la consommation agr\'{e}g\'{e}e, les imp\^{o}ts futurs agr\'{e}g\'{e}s
+sont escompt\'{e}s au taux :
+
+\begin{equation*}
+(1+r_{h})(1+n)=\frac{1+r}{1-p}\frac{1-p}{1-b}=\frac{1+r}{1-b}
+\end{equation*}
+
+Nota bene : pour $b>0$, ce taux d'escompte est inf\'{e}rieur \`{a} $r$.
+
+\newpage
+
+La consommation agr\'{e}g\'{e}e peut donc s'\'{e}crire :\smallskip
+
+\begin{equation*}
+C_{t}=\Omega \left\{ \sum_{i=0}^{\infty }\frac{(T_{t+i}-G_{t+i})}{(1+r)^{i}}%
++\sum_{i=0}^{\infty }\frac{w_{t+i}N_{t}}{(1+r_{h})^{i}}-\sum_{i=0}^{\infty }%
+\frac{T_{t+i}}{[(1+r_{h})(1+n)]^{i}}\right\} 
+\end{equation*}%
+soit :%
+\begin{equation*}
+C_{t}=\Omega \left\{ -\sum_{i=0}^{\infty }\frac{G_{t+i}}{(1+r)^{i}}%
++\sum_{i=0}^{\infty }\frac{w_{t+i}N_{t}}{(1+r_{h})^{i}}+\sum_{i=0}^{\infty }%
+\left[ \frac{1}{(1+r)^{i}}-\frac{1}{(\frac{1+r}{1-b})^{i}}\right]
+T_{t+i}\right\} 
+\end{equation*}
+
+\bigskip
+
+Si on compare deux sentiers de taxation $\{T_{t+i}^{1}\}_{i\geq t}$\ et $%
+\{T_{t+i}^{2}\}_{i\geq t}$\ qui permettent de financer un m\^{e}me sentier
+de d\'{e}penses $\{G_{t+i}\}_{i\geq t}$, les sentiers de consommation
+correspondants sont identiques si et seulement si $b=0$. \bigskip
+
+3. Ici, ce qui compte, ce sont les naissances futures, qui \'{e}largissent
+la base fiscale. La probabilit\'{e} de mort laisse intacte la contrainte budg%
+\'{e}taire intertemporelle des agents : car si je ne meurs pas d'ici demain,
+la mort ayant frapp\'{e} d'autres que moi, le fardeau fiscal par t\^{e}te
+est plus \'{e}lev\'{e}. En revanche, quand l'horizon des agents est fini de
+mani\`{e}re certaine, l'argument reste valable.\bigskip \bigskip
+
+\textbf{Bouclage du mod\`{e}le :\medskip }
+
+Offre de travail in\'{e}lastique et technologie transformant une unit\'{e}
+de travail en une unit\'{e} de bien, de sorte que $w_{t}=1$ $\forall t$. Le
+march\'{e} des biens est \'{e}quilibr\'{e} lorsque $C_{t}+G_{t}=N_{t}$.
+\bigskip
+
+Un \'{e}quilibre, c'est un taux $r$, et des quantit\'{e}s $\{c_{s,t}\}$, $%
+\{a_{s,t}\}$, $\{G_{t}\}$, $\{T_{t}\}$, et $\{D_{t}\}$\ qui v\'{e}rifient
+:\medskip
+
+-- optimisation individuelle :
+
+\begin{equation*}
+c_{s,t}=\Omega (a_{s,t}+h_{t})
+\end{equation*}
+
+-- \'{e}quilibre au niveau agr\'{e}g\'{e} sur le march\'{e} des biens et sur
+les titres \'{e}mis par l'Etat%
+\begin{equation*}
+C_{t}+G_{t}=N_{t}
+\end{equation*}
+
+\begin{equation*}
+A_{t}=D_{t}
+\end{equation*}
+
+-- absence de d\'{e}rive des finances publiques
+
+\begin{equation*}
+\sum_{i=0}^{\infty }\frac{T_{t+i}}{(1+r)^{i}}=D_{t}+\sum_{i=0}^{\infty }%
+\frac{G_{t+i}}{(1+r)^{i}}
+\end{equation*}%
+\newpage
+
+\bigskip
+
+\textbf{Mise en perspective de la litt\'{e}rature :}\bigskip
+
+-- Robert Barro, "Are Government Bonds Net Wealth?", JPE 1974
+
+cas o\`{u} $p=b=n=0$.
+
+Il y a \'{e}quivalence ricardienne.\bigskip
+
+-- Olivier Blanchard, "Debt, Deficits and Finite Horizons", JPE 1985
+
+cas o\`{u} $p=b>0$ et $n=0$.
+
+Non-neutralit\'{e} de la dette.
+
+Erreur d'interpr\'{e}tation : croire que la non-neutralit\'{e} vient de $p>0$%
+.\bigskip
+
+-- Philippe Weil, Harvard PhD Thesis, 1985
+
+cas o\`{u} $p=0$, $b=n>0$.
+
+Non-neutralit\'{e} de la dette.
+
+\bigskip
+
+\bigskip
+
+Tous ces papiers supposent que la consommation est correctement pr\'{e}dite
+par la th\'{e}orie du revenu permanent. N\'{e}anmoins, \textbf{la pr\'{e}%
+sence de contraintes de liquidit\'{e}} est une bonne raison de penser que le
+mode de financement des d\'{e}ficits n'est pas neutre, ind\'{e}pendamment
+des consid\'{e}rations d\'{e}mographiques. \textbf{\medskip }
+
+Si les contraintes de liquidit\'{e} mordent pour certains agents (i.e. leur
+niveau de consommation optimal -- celui pr\'{e}dit par la th\'{e}orie du
+revenu permanent -- est plus \'{e}lev\'{e} que ce que le niveau de liquidit%
+\'{e} dont ils disposent), ils utilisent l'augmentation de leur revenu
+disponible (suite au choix fait par l'Etat d'\'{e}mettre de la dette plut%
+\^{o}t que de pr\'{e}lever des imp\^{o}ts) pour consommer plus et non pas
+pour \'{e}pargner en vue des imp\^{o}ts futurs.
+
+\end{document}

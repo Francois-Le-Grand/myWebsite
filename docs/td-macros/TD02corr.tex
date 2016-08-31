@@ -1,0 +1,776 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+%\pdfoptionpdfminorversion = 5
+
+\usepackage[english]{babel} %,francais
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+%usepackage{url}
+%usepackage{wasysym}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+%usepackage{lscape}
+%usepackage{manfnt}
+%usepackage{mathbbol}
+%usepackage{eurosym}
+\usepackage{color}
+%\usepackage{bbding}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+
+%\usepackage{aertt}
+\usepackage{harvard}
+\usepackage{cje}
+
+%\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.10.0.2345}
+%TCIDATA{Created=Thursday, August 25, 2005 14:35:37}
+%TCIDATA{LastRevised=Tuesday, October 18, 2005 15:55:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+%\noindent
+\renewcommand{\thesection}{\Alph{section}}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+\EnTete{Séances des 3--10 et 6--13 Octobre 2006}{2}{Architecture Optimale de la Protection de l'Emploi}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{BlTi:04}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item Aléa moral,
+	\item Cohérence temporelle. 
+\end{itemize}
+
+\section{Set-up du mod\`{e}le}
+
+\textenitalique{Hypoth\`{e}ses}
+
+\begin{itemize}
+\item L'\'{e}conomie est constitu\'{e}e d'un continuum de travailleurs de
+masse $1$ et d'un continuum d'entrepreneurs de masse $1$.
+
+\item Les entrepreneurs sont neutres au risque. Chaque entrepreneur peut
+mener un projet (cr\'{e}er une entreprise). Il y a un co\^{u}t fixe au
+lancement d'un projet $I$, identique pour tous les entrepreneurs. Si un
+projet est lanc\'{e}, un travailleur est employ\'{e} et la productivit\'{e}
+du \textquotedblleft match\textquotedblright\ entrepreneur-travailleur $(y)$
+est r\'{e}v\'{e}l\'{e}e. La productivit\'{e} $(y)$ d'un match est tir\'{e}e
+d'une fonction de distribution dont la fonction de r\'{e}partition est $G(y)$
+continue et diff\'{e}rentiable (on note $g(y)$ dans $[0,1]$ la densit\'{e}
+associ\'{e}e). Une fois la productivit\'{e} r\'{e}v\'{e}l\'{e}e,
+l'entreprise peut soit produire et r\'{e}mun\'{e}rer le travailleur, soit le
+licencier (lequel se retrouve au ch\^{o}mage).
+
+\item Les travailleurs sont averses au risque~: leur fonction d'utilit\'{e}
+est $U(x)$ concave, o\`{u} $x$ est le revenu du travailleur. En l'absence
+d'allocation ch\^{o}mage, le revenu de r\'{e}serve d'un travailleur sans
+emploi est $b$.
+
+\item Le dernier agent de cet \'{e}conomie est l'Etat~: l'Etat finance les
+allocations-ch\^{o}mage $(\mu )$ \`{a} budget \'{e}quilibr\'{e}.\ Pour
+financer la caisse d'allocations, il peut avoir recours \`{a} deux
+instruments~: taxe au licenciement d'un travailleur $\left( f\right) $ pay%
+\'{e}es \`{a} chaque licenciement ou cotisations sociales $\left( \tau
+\right) $ pay\'{e}es par la firme pour chaque travailleur employ\'{e}.
+\end{itemize}
+
+\textenitalique{Timing}
+
+\begin{itemize}
+\item P\'{e}riode 0~: L'Etat choisit le triplet $\left\{ f,\tau ,\mu \right\} 
+$ sous-contrainte de budget \'{e}quilibr\'{e}.
+
+\item P\'{e}riode 1~: Les entrepreneurs d\'{e}cident de lancer un projet,
+paient le co\^{u}t fixe $(I)$ et emploient des travailleurs.\ Les
+entrepreneurs offrent un contrat $\left( w,y^{\ast }\right) $ qui stipule un
+niveau de salaire fix\'{e} \textit{ex-ante} $w$ et un niveau minimum de
+productivit\'{e} $(y^{\ast })$ en de\c{c}a duquel le travailleur est licenci%
+\'{e}. Noter que les firmes ne proposent pas de salaires contingents \`{a}
+la r\'{e}alisation $(w(y))$ du fait de l'aversion au risque des
+travailleurs. Noter aussi que comme les entrepreneurs font face au m\^{e}me
+co\^{u}t fixe et \`{a} la m\^{e}me distribution de productivit\'{e}, \`{a} l'%
+\'{e}quilibre, ils chercheront tous \`{a} lancer un projet.
+
+\item P\'{e}riode 2~: L'incertitude sur la productivit\'{e} est r\'{e}v\'{e}l%
+\'{e}e~: si $y>y^{\ast }$, la production est r\'{e}alis\'{e}e et le salaire $%
+\left( w\right) $ est pay\'{e} au travailleur et la cotisation sociale $%
+\left( \tau \right) $ est pay\'{e} \`{a} l'Etat; si $y<y^{\ast }$, la firme
+paie la taxe $\left( f\right) $ et le travailleur est licenci\'{e} et touche 
+$\left( \mu \right) $ de l'Etat.
+\end{itemize}
+
+\medskip
+
+L'objet du TD est de trouver l'architecture optimale de la protection de
+l'emploi, \textit{i.e }le triplet $\left\{ f,\tau ,\mu \right\} $ optimal
+dans divers cas de figure.
+
+\section{Benchmark}
+
+\ques Ecrire l'utilit\'{e} esp\'{e}r\'{e} d'un travailleur $(V_{W})$
+conditionnellement au contrat $\left( w,y^{\ast }\right) $.
+
+\correction{
+On a~: $V_{W}=G(y^{\ast })U(b+\mu )+\left( 1-G(y^{\ast })\right) U(w)$.
+}
+
+\medskip
+
+\ques Ecrire le gain esp\'{e}r\'{e} d'un entrepreneur $(V_{F})$
+conditionnellement au contrat $\left( w,y^{\ast }\right) $. A quelle
+condition, les entrepreneurs lancent un projet~?
+
+\correction{
+Le gain espéré s'écrit~:
+\begin{eqnarray*} 
+	V_{F} &=& -G(y^{\ast })f+\int_{y^{\ast }}^{\infty }(y-(w+\tau ))dG(y) \\
+				&=& -G(y^{\ast})f+\int_{y^{\ast }}^{\infty }ydG(y)-\left( 1-G(y^{\ast })\right) (w+\tau )
+\end{eqnarray*}
+
+Contrainte de participation (ou \'{e}quation de libre entr\'{e}e)~:%
+\begin{equation*}
+V_{F}\geq I
+\end{equation*}
+}
+
+\medskip
+
+\ques Ecrire la contrainte budg\'{e}taire du gouvernement.
+
+\correction{
+Le budget du gouvernement est équilibré donc~:
+\begin{equation*}
+G(y^{\ast })\mu =G(y^{\ast })f+\left( 1-G(y^{\ast })\right) \tau
+\end{equation*}
+}
+
+\medskip
+
+\textenitalique{Programme de la firme}
+
+\ques Ecrire le programme de maximisation de la firme (N'oubliez pas la
+contrainte de participation des travailleurs~!). Donner les conditions du
+premier-ordre. En d\'{e}duire que~:%
+\begin{equation*}
+y^{\ast }=w+\tau -f-\left( \frac{U(w)-U(b+\mu )}{U^{\prime }(w)}\right)
+\end{equation*}
+
+Commenter.
+
+\correction{
+La firme propose le contrat qui maximise son profit sous la contrainte que les
+travailleurs acceptent de participer au march\'{e} du travail (en gagnant au
+moins leur utilit\'{e} de r\'{e}serve $\overline{U}$). 
+
+Si l'on note $\lambda _{1}$ le multiplicateur de Lagrange de la contrainte de
+participation des travailleurs, on a les CPO suivantes~:%
+\begin{eqnarray*}
+/y^{\ast }\qquad 0 &=&\frac{\partial V_{F}}{\partial y^{\ast }%
+}+\lambda _{1}\frac{\partial V_{W}}{\partial y^{\ast }}\\
+	&=& g(y^{\ast })(w+\tau
+-f-y^{\ast })+\lambda _{1}g(y^{\ast })\left( U(b+\mu )-U(w)\right)  \\
+/w\qquad 0 &=&\frac{\partial V_{F}}{\partial w}+\lambda _{1}%
+\frac{\partial V_{W}}{\partial w} \\
+	&=& -\left( 1-G(y^{\ast })\right) +\lambda
+_{1}\left( 1-G(y^{\ast })\right) U^{\prime }(w)
+\end{eqnarray*}%
+
+On en déduit~:
+\begin{eqnarray*}
+\lambda _{1} &=& \frac{1}{U^{\prime }(w)} \\
+w+\tau -f-y^{\ast } &=& -\frac{U(b+\mu )-U(w)}{U^{\prime}(w)}
+\end{eqnarray*}
+}
+
+\medskip
+
+\ques Pourquoi cette solution n'est pas coh\'{e}rente temporellement~? Donner la
+solution du programme pr\'{e}c\'{e}dent coh\'{e}rente temporellement.
+
+\correction{
+Le seuil de productivité se compose de deux termes~:
+\begin{itemize}
+	\item Le coût net de productivité : $w+\tau -f$.
+	\item Un terme d'assurance: $\frac{U(b+\mu )-U(w)}{U^{\prime }(w)}<0$: la firme étant risque neutre et l'agent adverse au risque, c'est la firme qui supporte tout le risque et assure l'agent contre le chômage : elle ``paie'' le coût en termes d'utilité du non--emploi. Ce terme est nul en cas d'assurance complète : il n'y a alors pas de coût au chômage pour l'agent. 
+\end{itemize}
+
+Cette valeur seuil correspond au cas où l'entreprise peut s'engager \emph{ex--ante} sur son niveau de productivité seuil. Au contraire, dès que le travailleur est employé , la firme à intérêt à choisir un seuil de productivité plus élévé, égal à $w+\tau -f$ (plus de contrainte de participation à payer). Il y a donc une différence entre les niveaux de productivité seuil \emph{ex--ante} et \emph{ex--post} : c'est ce que l'on appelle l'incohérence temporelle. 
+
+\'Etant donné que le seuil \emph{ex--ante} ne repose sur aucun mécanimse, on retient le seuil ex--post qui est cohérent temporellement. De plus, c'est également la valeur du seuil ex--ante en cas d'assurance complète (ce qui est le cas dans le benchmark case).
+}
+\medskip
+
+On supposera par la suite que le contrat $\left( w,y^{\ast }\right) $ est coh\'{e}rent temporellement.
+
+\medskip
+
+\textenitalique{Optimum social}
+
+Un planificateur bienveillant cherche \`{a} maximiser l'utilit\'{e} esp\'{e}r%
+\'{e}e des travailleurs sous les contraintes suivantes~:
+\begin{itemize}
+	\item contrainte budg\'{e}taire du gouvernement,
+	\item contrainte de participation des entrepreneurs,
+	\item seuil de productivit\'{e} choisi par les entreprises (et coh\'{e}rent temporellement).
+\end{itemize}
+
+\medskip
+
+\ques Montrer que les contraintes de participation des entrepreneurs et d'\'{e}%
+quilibre budg\'{e}taire impliquent la contrainte suivante~:
+\begin{equation*}
+	-G(y^{\ast }) \mu + \int_{y^{\ast }}^{\infty} ydG(y)-\left( 1-G(y^{\ast})\right) w\ge I
+\end{equation*}
+
+On suppose que le planificateur choisit d'abord $\{w,\mu ,y^{\ast }\}$ de
+sorte \`{a} maximiser~:
+\begin{eqnarray*}
+&&\max_{\{w,\mu ,y^{\ast }\}}\left\{ G(y^{\ast })U(b+\mu )+\left(
+1-G(y^{\ast })\right) U(w)\right\} \\
+s.c &~:&\text{ }-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left(
+1-G(y^{\ast })\right) w\geq I
+\end{eqnarray*}
+
+(En effet, le planificateur pourra toujours fixer le couple $\{f,\tau \}$
+tel que $y^{\ast }$ corresponde au seuil choisi par les entreprises et tel
+que la contrainte budg\'{e}taire de l'Etat est \'{e}quilibr\'{e}e).
+
+En d\'{e}duire le niveau d'allocations-ch\^{o}mage vers\'{e}es par le
+gouvernement et le seuil de productivit\'{e} \`{a} l'optimum social en
+fonction de $w$ et $b$. Commenter.
+
+\correction{
+Les deux contraintes sont~:
+\begin{eqnarray*}
+&&-G(y^{\ast })f-\left( 1-G(y^{\ast })\right) \tau +\int_{y^{\ast }}^{\infty}ydG(y)-\left( 1-G(y^{\ast })\right) w\geq I \\
+&& G(y^{\ast })\mu =G(y^{\ast })f+\left( 1-G(y^{\ast })\right) \tau
+\end{eqnarray*}
+
+d'o\`{u}~:
+
+\begin{equation*}
+-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left( 1-G(y^{\ast})\right) w\geq I
+\end{equation*}
+
+Cette contrainte globale ne dépend ni de $\tau$ ni de $f$ mais seulement de $\mu$~:du fait de la contrainte budgétaire, la structure de financement des allocations ch\^{o}mage ne modifie pas la contrainte de participation des
+entrepreneurs. Seul compte alors le niveau d'allocations vers\'{e}es. Tout se passe comme si les firmes payaient le salaire $w$ aux employés et l'allocation $w$ aux chômeurs. 
+
+\bigskip
+
+On suppose que le planificateur choisit d'abord $\{w,\mu ,y^{\ast }\}$ de
+sorte \`{a} maximiser~:
+\begin{eqnarray*}
+&&\max_{\{w,\mu ,y^{\ast }\}}\left\{ G(y^{\ast })U(b+\mu )+\left(
+1-G(y^{\ast })\right) U(w)\right\} \\
+s.c &~:&\text{ }-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left(
+1-G(y^{\ast })\right) w\geq I
+\end{eqnarray*}
+
+(En effet, le planificateur pourra toujours fixer le couple $\{f,\tau \}$
+tel que $y^{\ast }$ corresponde au seuil choisi par les entreprises et tel
+que la contrainte budg\'{e}taire de l'Etat est \'{e}quilibr\'{e}e).
+
+\bigskip
+
+Soit $\lambda _{2}$ le multiplicateur de Lagrange associ\'{e} \`{a} ce
+programme. Les FOC sont~:
+
+\begin{eqnarray*}
+&&/y^{\ast}\qquad 0 = g(y^{\ast })\left( U(b+\mu )-U(w)\right)
++\lambda _{2}g(y^{\ast })\left[ -\mu -y^{\ast }+w\right] \\
+&&/w \:\qquad 0 = \left(
+1-G(y^{\ast })\right) U^{^{\prime }}(w)-\lambda _{2}\left( 1-G(y^{\ast
+})\right)  \\
+&&/\mu \:\,\qquad 0 = G(y^{\ast })U^{^{\prime }}(b+\mu )-\lambda _{2}G(y^{\ast }) 
+\end{eqnarray*}
+
+Elles se simplifient en~:
+\begin{eqnarray*}
+U(b+\mu )-U(w)+\lambda _{2}\left( -\mu -y^{\ast }+w\right) &=&0 \\
+U^{^{\prime }}(w) &=&\lambda _{2} \\
+U^{^{\prime }}(b+\mu ) &=&\lambda _{2}
+\end{eqnarray*}
+
+soit~:
+\begin{eqnarray*}
+w &=&b+\mu \\
+y^{\ast } &=&b
+\end{eqnarray*}
+
+{\bf Première condition = assurance complète}. Puisqu'il n'y a pas d'aléa moral (le comportement  des agents est identiques quel que soit le salaire) dans ce monde et que les agents sont averses au risque, il est optimal de les assurer complètement contre le risque de chômage. Le niveau d'utilité employé ou non--employé est le même et donc le salaire aussi~: $w =b+\mu$. 
+
+{\bf Deuxième condition = efficacité}. Tant que produire pour la production des firmes raporte davantage que le non--emploi, il est efficace de produire. Inversement, la firme ne doit pas employer quelqu'un dont la productivité est inférieure au non--emploi.
+
+Dans le cas contraire,  $y^{\ast}<b$, le salaire versé à l'employé serait toujours égal à $b$ (revenu sans emploi). L'assurance complète impose $\mu = 0$ et la condition sur la productivité impose $\tau<f$. La contrainte budgétaire du gouvernement donne : $\tau<0<f$ : les cotisations sociales serveraient alors de subventionner l'emploi non efficace~!
+}
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social. Commenter.
+
+\correction{
+Le design optimal vérifie $y^{\ast }=w+\tau -f$ et la contrainte budgétaire du gouvernement. 
+Donc, \`{a} l'optimum, on a pour $y^{\ast}$~:%
+\begin{eqnarray*}
+\mu &=& f - \tau
+\end{eqnarray*}
+
+Contrairement \`{a} l'intution, les taxes aux licenciements et les
+cotisations sociales sont compl\'{e}mentaires (et non substituts). Si $\tau$ augmente, les firmes sont davantage incitées à licencier car le côut net d'un emploi augmente ($(y^{\ast }\uparrow )$). Il faut alors augmenter de façon analogue les coûts de licenciement $f$ pour neutraliser le premier effet. 
+
+La contrainte budgétaire du gouvernment donne :
+\begin{eqnarray*}
+\mu &=& f  \\
+\tau &=& 0
+\end{eqnarray*}
+
+Le coût social d'un chômeur ($\mu$) est égal au coût privé du licenciement $f$~: le coût du chômage est parfaitement internalisé par l'entreprise. Dans ces conditions on a à la fois assurance complète et efficacité. 
+
+On remarquera (cf. question 6.) que cet optimum peut être décentralisé et que l'\'Etat n'a pas vraiment de rôle ici. On obtiendrait exactement le même résultat si les firmes payaient directement $\mu$ aux chômeurs.  
+}
+
+\section{Limites de l'assurance compl\`{e}te~: al\'{e}a moral}
+
+\correction{
+Dans le mod\`{e}le benchmark, les travailleurs sont parfaitement assur\'{e}s. Ce cas est peu r\'{e}aliste car une  assurance complète d\'{e}sincite les travailleurs \`{a} fournir l'effort maximal pour chercher un emploi et/ou garder leur emploi (al\'{e}a moral). Nous allons voir dans cette deuxi\`{e}me partie comment ces questions d'incitations modifient le design de la protection de l'emploi.}
+
+\medskip
+
+Nous supposons que la contrainte d'incitation des travailleurs (\`{a}
+fournir un effort lorsqu'ils sont employ\'{e}s) peut se r\'{e}\'{e}crire de
+la mani\`{e}re suivante~:%
+\begin{equation*}
+\qquad\qquad\left( 1-G(y^{\ast })\right) \left( U(w)-U(b+\mu )\right) \geq B \qquad\qquad (IW)
+\end{equation*}
+
+o\`{u} $B$ d\'{e}signe les b\'{e}n\'{e}fices priv\'{e}s d'un travailleur
+lorsque celui--ci ne fournit pas d'effort.
+
+\medskip
+
+\ques Interpr\'{e}ter la condition $(IW)$
+
+\correction{
+La condition se réécrit $(IW)$~:
+\begin{equation*}
+V_W\geq B + U(b+\mu ) \qquad\qquad (IW)
+\end{equation*}
+
+Lorsque le travailleur fournit un effort, il reçoit l'utilité $V_W$. \`A l'opposé, ne pas fournir d'effort lui rapporte $B$ (bénéfice privé) augementé de l'utilité liée aux indemnisations. Si la contrainte précéndete n'est pas vérifié, le travailleur ne fournira jamais d'effort.
+\bigskip
+Une autre interpr\'{e}tation possible consiste à dire que $B$ est le co\^{u}t (privé) \`{a}
+l'effort de recherche d'emploi (effort non--observable). Si l'utilité en cas d'effort ($V_W$) est inférieure au coût de la recherche d'emploi (+les indemnités chômage), le travailleur pr\'{e}f\`{e}re rester au ch\^{o}mage et ne pas
+fournir d'effort.
+\bigskip
+$B$ est une sorte de mesure de l'intensité de laléa moral dans ce modèle~: plus $B$ est élevé, plus il est coûteux d'inciter l'agent. 
+}
+
+\medskip
+
+\textenitalique{Optimum social}
+
+\ques R\'{e}\'{e}crire le programme du planificateur social. Montrer que
+
+\subques l'assurance n'est plus compl\`{e}te
+
+\subques la valeur seuil v\'{e}rifie $y^{\ast }=b+\left[ w-(b+\mu )-\frac{%
+U(w)-U(b+\mu )}{U^{\prime }(w)}\right]$. 
+
+Commenter.
+
+\correction{
+Le planificateur maximise l'utilité de l'agent sous ses contraintes de participation et d'incitation:
+\begin{eqnarray*}
+&&\max_{\{w,\mu ,y^{\ast }\}}\left\{ G(y^{\ast })U(b+\mu )+\left(
+1-G(y^{\ast })\right) U(w)\right\} \\
+s.c &~:&\text{ }-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left(
+1-G(y^{\ast })\right) w\geq I \\
+s.c &~:&\left( 1-G(y^{\ast })\right) \left( U(w)-U(b+\mu )\right) \geq B
+\end{eqnarray*}
+
+La question a. est triviale d'apr\`{e}s la deuxième contrainte~: $\left( U(w)-U(b+\mu
+)\right) \geq \frac{B}{\left( 1-G(y^{\ast })\right) }>0$ donc $w>b+\mu $ et
+l'assurance n'est plus compl\`{e}te.
+\bigskip
+On note $\Delta _{1}$ et $\Delta _{2}$ les multiplicateurs associ\'{e}s
+aux deux contraintes~:%
+\begin{eqnarray*}
+0 &=& g(y^{\ast })\left( U(b+\mu )-U(w)\right) +\Delta _{1}g(y^{\ast })\left[ -\mu
+-y^{\ast }+w\right] \\
+	&&\qquad -\Delta _{2}g(y^{\ast })\left( U(w)-U(b+\mu )\right) \\
+0 &=& \left( 1-G(y^{\ast })\right) U^{^{\prime }}(w)-\Delta _{1}\left( 1-G(y^{\ast
+})\right) +\Delta _{2}\left( 1-G(y^{\ast })\right) U^{\prime }(w) \\
+0 &=& G(y^{\ast })U^{^{\prime }}(b+\mu )-\Delta _{1}G(y^{\ast })-\Delta _{2}\left(
+1-G(y^{\ast })\right) U^{^{\prime }}(b+\mu ) 
+\end{eqnarray*}
+
+En combinant la deuxi\`{e}me et la troisi\`{e}me FOC, on a~:%
+\begin{eqnarray*}
+U^{^{\prime }}(w)(1+\Delta _{2}) &=&\Delta _{1} > 0\\
+G(y^{\ast })\left( \frac{U^{^{\prime }}(b+\mu )-U^{^{\prime }}(w)}{%
+U^{^{\prime }}(b+\mu )}\right) &=&\frac{\Delta _{2}}{1+\Delta _{2}}>0 
+\end{eqnarray*}
+
+Les deux contraintes sont donc satur\'{e}es.
+
+En particulier, le niveau d'assurance est donn\'{e} par~:%
+\begin{equation*}
+U(w)-U(b+\mu )=\frac{B}{\left( 1-G(y^{\ast })\right) }
+\end{equation*}
+
+Plus l'al\'{e}a moral est important $(B\uparrow )$, moins les travailleurs
+sont assur\'{e}s ($\mu \downarrow $)~: on maintient les travailleurs sous risque. 
+
+En substituant les valeurs des multiplicateurs, la premi\`{e}re FOC donne~:%
+\begin{eqnarray*}
+-\mu -y^{\ast }+w &=&\frac{1+\Delta _{2}}{\Delta _{1}}\left(
+U(w)-U(b+\mu )\right) \\
+&=&\frac{U(w)-U(b+\mu )}{U^{^{\prime }}(w)}
+\end{eqnarray*}
+
+d'o\`{u}~:%
+\begin{eqnarray*}
+y^{\ast } &=&w-\mu -\frac{U(w)-U(b+\mu )}{U^{^{\prime }}(w)} \\
+&=&b+\left[ w-(b+\mu )-\frac{U(w)-U(b+\mu )}{U^{\prime }(w)}\right]
+\end{eqnarray*}
+
+Pour toute utilit\'{e} concave, le terme entre parenth\`{e}se est n\'{e}gatif%
+\footnote{%
+Plus la curvature est forte, \textit{i.e }plus les travailleurs sont
+risque-averses, plus ce terme est n\'{e}gatif} d\`{e}s lors que les
+travailleurs ne sont pas parfaitement assur\'{e}s (pour le voir faire un développement de Taylor). Le seuil  optimal de productivité est inf\'{e}rieur \`{a} celui calcul\'{e} dans le cas benchmark. 
+\bigskip
+A l'optimum social, les entreprises gardent des travailleurs alors m\^{e}me que leur
+productivit\'{e} est inf\'{e}rieure \`{a} l'\'{e}quivalent salaire
+lorsqu'ils ne sont pas employ\'{e}s (moindre efficience). C'est une conséquence directe du trade--off standard en aléa moral entre assurance et efficacité. L'al\'{e}a moral impose de moins assurer les tarvailleurs pour les inciter à fournir un effort. Du fait de cette moindre assurance, il
+est optimal que les firmes licencient moins, ce qui se traduit par une efficacité moindre. La baisse du taux de licenciement servant du substitut partiel à la baisse d'assurance lié à l'aléa moral.
+}
+
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social en fonction de $w$ et des param\`{e}tres du mod%
+\`{e}le. Commenter.
+
+\correction{
+Comme pr\'{e}c\'{e}demment, le gouvernement choisit le couple $\{f,\tau \}$
+tel que $y^{\ast }$ corresponde au choix des entrepreneurs et du
+planificateur social et tel que le budget du gouvernement soit \'{e}quilibr\'{e}~:%
+\begin{eqnarray*}
+b+\left[ w-(b+\mu )-\frac{U(w)-U(b+\mu )}{U^{\prime }(w)}\right] &=&w+\tau -f
+\\
+G(y^{\ast })f+\left( 1-G(y^{\ast })\right) \tau &=&G(y^{\ast })\mu
+\end{eqnarray*}
+
+donc (en utilisant la contrainte d'incitation des travailleurs)~:%
+\begin{eqnarray*}
+f-\mu &=&\tau +\frac{B}{U^{\prime }(w)\left( 1-G(y^{\ast })\right) } \\
+\tau &=&-\frac{G(y^{\ast })B}{\left( 1-G(y^{\ast })\right) U^{\prime }(w)}
+\end{eqnarray*}
+
+ou encore~:%
+\begin{eqnarray*}
+f-\mu &=&\frac{B}{U^{\prime }(w)} \\
+\tau &=&-\frac{G(y^{\ast })B}{\left( 1-G(y^{\ast })\right) U^{\prime }(w)}
+\end{eqnarray*}
+
+D\`{e}s que $B>0$, $f>\mu $ et $\tau <0$. Le rapport entre le taux de taxe
+aux licenciements et le niveau d'allocation ch\^{o}mage est d\'{e}sormais sup%
+\'{e}rieur \`{a} 1~: en effet, du fait de l'assurance partielle des ch\^{o}%
+meurs, l'optimum exige que les licenciements soient r\'{e}duits, ce qui est r%
+\'{e}alis\'{e} en augmentant la taxe aux licenciements. Pour qu'une telle
+mesure ne se traduise pas par moins d'emploi qu'\`{a} l'optimum (et que le
+budget de l'Etat reste \'{e}quilibr\'{e}), l'Etat subventionne le travail
+par une cotisation salariale n\'{e}gative.
+
+En d'autre termes, l'al\'{e}a moral r\'{e}duit l'assurance pour les
+travailleurs et pour compenser cette perte d'assurance, l'Etat favorise
+l'emploi en taxant les licenciements (et en subventionnant les travailleurs).
+
+Noter que la pr\'{e}sence de $B$ implique que assurance et protection de
+l'emploi sont substituts~: une hausse de $B$ r\'{e}duit l'assurance des
+travailleurs (baisse des allocations $\mu $) du fait de l'al\'{e}a moral et n%
+\'{e}cessite donc une meilleure protection de l'emploi (hausse de $f$). Une
+mesure visant \`{a} contr\^{o}ler l'effort de recherche des ch\^{o}meurs
+(par exemple en organisant un suivi des ch\^{o}meurs afin de les pousser 
+\`{a} accepter une offre d'emploi \textquotedblleft
+raisonnable\textquotedblright ) peut \^{e}tre vue comme une baisse de $B$~: 
+\`{a} l'optimum, une telle mesure doit s'accompagner d'une meilleur
+assurance des travailleurs (hausse des allocations) et d'une baisse de la
+protection de l'emploi (baisse de $f$) afin d'augmenter l'efficacit\'{e} de
+l'\'{e}conomie (meilleure productivit\'{e} des \textquotedblleft
+match\textquotedblright\ par une hausse de $y^{\ast }$).
+}
+
+\section{Shallow Pockets}
+
+Jusqu'alors, nous avons suppos\'{e} que les firmes peuvent toujours financer
+les taxes de licenciements (pas de contraintes financi\`{e}res,
+\textquotedblleft Deep Pockets\textquotedblright ). Nous \'{e}tudions
+maintenant le design optimal de la protection de l'emploi lorsque les firmes
+sont contraintes financi\`{e}rement.
+
+Nous supposons que la richesse d'un entrepreneur $(W_{E})$ avant de cr\'{e}%
+er sa firme est born\'{e}e~:
+
+\begin{equation*}
+W_{E}\leq I+f^{\ast }
+\end{equation*}
+
+\medskip
+
+\ques Quelle est la limite impos\'{e}e \`{a} $f$ dans ce cas~? On supposera que
+cette contrainte est satur\'{e}e\footnote{%
+Dans le cas contraire, le probl\`{e}me est \'{e}quivalent \`{a} la partie A.}%
+. En d\'{e}duire que le choix de $\mu $ de l'Etat est contraint par~:
+\begin{equation*}
+G(y^{\ast })\mu \leq f^{\ast }+\left( 1-G(y^{\ast })\right) (y^{\ast }-w)
+\end{equation*}
+\correction{
+En cas de mauvais \textquotedblleft match\textquotedblright , la firme devra
+payer la taxe de licenciement $f$. Elle ne dipose que de $f^{\ast }$ (le co%
+\^{u}t fixe \'{e}tant investi). Donc~:%
+\begin{equation*}
+f\leq f^{\ast }
+\end{equation*}
+
+Compte-tenu de cette nouvelle contrainte, la contrainte budg\'{e}taire de
+l'Etat s'\'{e}crit~:%
+\begin{eqnarray*}
+G(y^{\ast })\mu &\leq &G(y^{\ast })f+\left( 1-G(y^{\ast })\right) \tau \\
+&\leq &G(y^{\ast })f^{\ast }+\left( 1-G(y^{\ast })\right) \tau
+\end{eqnarray*}
+
+L'Etat cherche \`{a} maximiser le bien-\^{e}tre des travailleurs en tenant
+compte du seuil optimal choisi par les entreprises~: $y^{\ast }=w+\tau
+-f^{\ast }$
+
+Donc le choix de $\mu $ du gouvernement est contraint par~:
+\begin{eqnarray*}
+G(y^{\ast })\mu &\leq &G(y^{\ast })f^{\ast }+\left( 1-G(y^{\ast })\right)
+(y^{\ast }+f^{\ast }-w) \\
+&\leq &f^{\ast }+\left( 1-G(y^{\ast })\right) (y^{\ast }-w)
+\end{eqnarray*}
+}
+
+\medskip
+
+\textenitalique{Optimum social}
+
+\ques Ecrire le programme de maximisation du planificateur social en tenant
+compte de cette nouvelle contrainte sur le niveau d'allocations-ch\^{o}mage
+et d\'{e}river les conditions du premier ordre (on ne demande pas de r\'{e}%
+soudre).\ Montrer que~:
+
+\subques \`{a} l'optimum, il y a assurance compl\`{e}te
+
+\subques le seuil de productivit\'{e} en de\c{c}a duquel il y a licenciement est
+plus \'{e}lev\'{e} qu'en~A.
+
+\correction{
+Le programme s'écrit (il n'y a plus de contrainte de participation)~:
+\begin{eqnarray*}
+&&\max_{\{w,\mu ,y^{\ast }\}}\left\{ G(y^{\ast })U(b+\mu )+\left(
+1-G(y^{\ast })\right) U(w)\right\} \\
+s.c &~:&\text{ }-G(y^{\ast })\mu +\int_{y^{\ast }}^{\infty }ydG(y)-\left(
+1-G(y^{\ast })\right) w\geq I \\
+s.c &~:&f^{\ast }+\left( 1-G(y^{\ast })\right) (y^{\ast }-w)\geq G(y^{\ast
+})\mu
+\end{eqnarray*}
+
+En notant $\Lambda _{1}$ et $\Lambda _{2}$ les multiplicateurs associ\'{e}s
+aux deux contraintes~:%
+\begin{eqnarray*}
+0 &=& g(y^{\ast })\left( U(b+\mu )-U(w)\right) +\Lambda _{1}g(y^{\ast })\left[
+-\mu -y^{\ast }+w\right] \\
+	&&\qquad -\Lambda_{2}g(y^{\ast })(y^{\ast }-w+\mu )+\Lambda_{2}(1-G(y^{\ast }))  \\
+0 &=& \left( 1-G(y^{\ast })\right) U^{^{\prime }}(w)-\Lambda _{1}\left(
+1-G(y^{\ast })\right) -\Lambda _{2}\left( 1-G(y^{\ast })\right) \\
+0 &=& G(y^{\ast })U^{^{\prime }}(b+\mu )-\Lambda _{1}G(y^{\ast })-\Lambda_{2}G(y^{\ast }) 
+\end{eqnarray*}
+
+La deuxi\`{e}me et troisi\`{e}me ligne des CPO donnent~:%
+\begin{eqnarray*}
+U^{^{\prime }}(w) &=&\Lambda _{1}+\Lambda _{2}=U^{^{\prime }}(b+\mu ) \\
+&\Rightarrow &w=b+\mu
+\end{eqnarray*}
+
+et les travailleurs sont parfaitement assur\'{e}s.
+
+La premi\`{e}re CPO donne~:%
+\begin{equation*}
+-\mu -y^{\ast }+w =-\frac{\Lambda _{2}}{\Lambda _{1}+\Lambda
+_{2}}\frac{1-G(y^{\ast })}{g(y^{\ast })}
+\end{equation*}
+
+donc~:%
+\begin{equation*}
+y^{\ast }=b+\frac{\Lambda _{2}}{\Lambda _{1}+\Lambda _{2}}\frac{1-G(y^{\ast
+})}{g(y^{\ast })}
+\end{equation*}
+
+donc $y^{\ast }>b$ si la contrainte de budget est \textquotedblleft
+mordante\textquotedblright\ (noter que cette \'{e}quation fixe $y^{\ast }$
+de mani\`{e}re implicite).
+}
+
+\medskip
+
+\ques En d\'{e}duire le design $\{f,\tau \}$ choisi par le gouvernement pour r%
+\'{e}aliser l'optimum social en fonction de $y^{\ast }$ et des param\`{e}%
+tres du mod\`{e}le. Commenter.
+
+\correction{
+L'Etat souhaiterait faire $f=\mu =w-b$ comme dans la partie A.\ Mais du fait
+de la contrainte financi\`{e}re qui p\`{e}se sur les entreprises, il doit r%
+\'{e}duire $f$ \`{a} $f^{\ast }$. Comme il souhaite tout de m\^{e}me assurer
+parfaitement les travailleurs, il est contraint d'utiliser les cotisations
+sociales pour financer les allocations ch\^{o}mage et fixe $\tau >0$~:%
+\begin{eqnarray*}
+f^{\ast }-\tau &=&w-y^{\ast }=\mu -\frac{\Lambda _{2}}{\Lambda _{1}+\Lambda
+_{2}}\frac{1-G(y^{\ast })}{g(y^{\ast })} \\
+G(y^{\ast })\mu &\leq &G(y^{\ast })\left( f^{\ast }-\tau \right) +\tau
+\end{eqnarray*}
+
+donc~:%
+\begin{equation*}
+\tau =G(y^{\ast })(\mu -f^{\ast }+\tau )=G(y^{\ast })\frac{\Lambda _{2}}{%
+\Lambda _{1}+\Lambda _{2}}\frac{1-G(y^{\ast })}{g(y^{\ast })}>0
+\end{equation*}
+
+Pour comprendre l'intuition, supposons que les travailleurs ne sont pas compl%
+\`{e}tement assur\'{e}s, en fixant $f=f^{\ast }$ et $\tau =0$ (dans le cas
+contraire nous sommes ramen\'{e}s \`{a} la partie A.), \textit{i.e }$w>b+\mu 
+$. Pourquoi, le gouvernement est-il incit\'{e} \`{a} lever des cotisations
+sociales pour assurer pleinement les travailleurs au d\'{e}triment de
+l'emploi? Si le salaire diminue de $\Delta \tau $ et l'Etat pr\'{e}l\`{e}ve $%
+\Delta \tau $ comme cotisations sociales, la contrainte de participation des
+entreprises n'est pas modifi\'{e} (co\^{u}t du travail identique).
+
+Le budget \'{e}quilibr\'{e} de l'Etat implique que $\mu $ augmente de $%
+\Delta \mu =\frac{1-G(y^{\ast })}{G(y^{\ast })}\Delta \tau $ (puisqu'il y a $%
+G(y^{\ast })$ ch\^{o}meurs pour $\left( 1-G(y^{\ast })\right) $
+travailleurs).
+
+L'utilit\'{e} des ch\^{o}meurs augmente de $U^{^{\prime }}(b+\mu )\Delta \mu
+=U^{^{\prime }}(b+\mu )\frac{1-G(y^{\ast })}{G(y^{\ast })}\Delta \tau $.
+Celle des travailleurs diminue du fait de la baisse de salaire de $U^{\prime
+}(w)\Delta \tau $.
+
+Donc la diff\'{e}rence de bien-\^{e}tre des travailleurs est (en pond\'{e}%
+rant par les masses respectives des ch\^{o}meurs et des travailleurs)~:%
+\begin{eqnarray*}
+\Delta V_{W} &=&\left[ G(y^{\ast })U^{^{\prime }}(b+\mu )\frac{1-G(y^{\ast })%
+}{G(y^{\ast })}-\left( 1-G(y^{\ast })\right) U^{\prime }(w)\right] \Delta
+\tau \\
+&=&\left( 1-G(y^{\ast })\right) (U^{^{\prime }}(b+\mu )-U^{\prime
+}(w))\Delta \tau >0
+\end{eqnarray*}
+
+L'Etat est donc bien inciter \`{a} redistribuer du pouvoir d'achat des
+travailleurs vers les ch\^{o}meurs tant que ceux-ci ont des revenus inf\'{e}%
+rieurs~: la raison est simple, l'utilit\'{e} marginale du revenu des ch\^{o}%
+meurs est sup\'{e}rieur \`{a} l'utilit\'{e} marginale du revenu des
+travailleurs tant que les ch\^{o}meurs ont des revenus inf\'{e}rieurs (\`{a}
+la limite, il y a parfaite assurance, les deux effets se compensent). L'Etat
+augmente donc les allocations-ch\^{o}mages jusqu\`{a} ce que les
+travailleurs soient parfaitement assur\'{e}s.
+
+Noter qu'augmenter $\tau $ augmente le nombre de ch\^{o}meurs mais cela n'a
+pas d'impact en terme de bien-\^{e}tre puisque ceux-ci sont parfaitement
+assur\'{e}s (et qu'il n'y a pas d'autres b\'{e}n\'{e}fices que ceux du
+revenus \`{a} avoir un travail).
+}
+
+\end{document}
+

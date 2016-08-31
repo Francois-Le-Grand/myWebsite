@@ -1,0 +1,200 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 17/24 et 20/27 Octobre 2006}{5}{Nominal debt and time--inconsistency}
+
+\bibliographystyle{cje}
+\bibliography{Biblio_TD}
+\nocite{Maal:06}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item La cohérence temporelle,
+	\item L'équilibre récursif et la fonction valeur,
+	\item Le Lagrangien intertemporel.
+\end{itemize}
+
+\section{Introduction}
+
+Dans ce TD, on s'intéresse à l'impact de la dette sur la politique monétaire. En particulier, on regarde l'impact de l'émission de dette nominale, dette réelle et enfin l'impact de la capacité d'engagement (crédibilité) du gouvernement. 
+
+\section{Présentation de l'économie}
+
+L'économie est peuplée d'un ménage représentatif, d'un gouvernement bénévole et d'une firme. 
+
+\textenitalique{Le gouvernement}
+
+A chaque date $t = 0, 1, \ldots$, le gouvernement finance des dépenses publiques $g$ exogènes et constantes par l'émission de monnaie $M_{t+1}^g$ et de dette nominale $B_{t+1}^g$. La dette émise à la date $t-1$ paie à la date $t$ le taux d'intérêt nominal $i_t$. On note $p_t$ le prix d'une unité de consommation agrégée en unités monétaires. 
+
+On suppose que le gouvernement hérite à la date 0 du paiement d'un stock de monnaie $M_0$ donné ainsi que d'un remboursement de dette nominale  $(1+i_0)B_0$ également donné. 
+
+La politique du gouverniment est déterminée par le choix des quantités de monnaie, de dette et de dépenses publiques, que l'on note $\bigl\{M_{t+1}^g, B^g_{t+1}, g\bigr\}_{t\ge 0}$
+
+\textenitalique{Le ménage}
+
+A chaque date $t$, le ménage consomme $c_t$ et travaille $n_t$. Il valorise sa consommation et son travail par l'utilité intertemporelle suivante~:
+\begin{eqnarray*}
+	U(c,n) = \sum^\infty_{t=0} \beta^t\bigl\{u(c_t) - \alpha\,n_t\bigr\}
+\end{eqnarray*}
+
+On suppose que $u$ est croissante, concave et dans la plupart de l'article on supposera que cette utilité sera log. 
+
+A chaque date $t$, le ménage consomme une partie de ses revenus totaux~: revenus du travail, revenus de ses placements en monnaie et dette nominale. Il épargne l'autre partie de ses revenus en détenant de la monnaie $M_{t+1}$ et de la dette nominale $B_{t+1}$. 
+
+En termes de rendement la monnaie est un actif strictement dominé par la dette nominale. Pour `forcer' la détention de monnaie par le ménage, on impose une contrainte de cash--in--advance à la Svensson. Le ménage ne peut pas consommer plus que les encaisses réelles qu'il détenait à la fin de la période précédente. La contrainte de cash--in--advance à la Lucas dit que le ménage ne peut pas consommer plus que ses encaisses réelles en période courante\footnote{La contrainte à la Svensson fait plus de sens quand la période est courte, de l'ordre de la semaine.}. Ainsi~:
+\begin{eqnarray*}
+	c_t \le \dfrac{M_t}{P_t}
+\end{eqnarray*}
+
+\textenitalique{La firme}
+
+La firme produit à l'aide d'une technologie linéaire $y = n$ des biens à partir du travail. Ces biens peuvent être consommés indifféremment par le ménage ou par le gouvernement.
+
+\ques Ecrire la contrainte budgétaire du gouvernement.
+\medskip
+
+\ques Calculer le salaire réel et écrire la contrainte budgétaire du ménage.
+\medskip
+
+\ques Ecrire la contrainte de ressource de l'économie
+\medskip
+
+\ques Ecrire le programme du ménage, le résoudre et exprimer le taux nominal $i_{t+1}$ en fonction d'une part de la consommation $c_t$ et des prix d'autre part. 
+\medskip
+
+\ques Ecrire l'égalité de l'offre et de la demande sur les marchés de la monnaie et de la dette. En déduire, ainsi que de la question précédente, que la contrainte budgétaire du gouvernement peut s'écrire sous la forme suivante~:
+\begin{eqnarray*}
+	&&c_{t+1}\,u'(c_{t+1})\frac{\beta}{\alpha} + \beta \,z_{t+1}\,c_{t+1} = c_t +z_t\,c_t +g \\
+	&&\textrm{with~:}\quad z_t = \frac{B_t(1+i_t)}{M_t}
+\end{eqnarray*}
+
+\ques On suppose que la condition de transversalité $\lim_{T\rightarrow \infty} \beta^T\,\dfrac{M_{T+1}+B_{T+1}}{p_T}=0$ est vérifiée. Montrer alors que la contrainte budgétaire intertemporelle du gouvernement se réduit à~:
+\begin{eqnarray}
+	\sum^\infty_{t=0} \beta^t\left(c_{t+1}\,u'(c_{t+1}) \frac{\beta}{\alpha} - (c_t+g)\right) = z_0\,c_0 \label{eq:implem}
+\end{eqnarray}
+
+\section{Engagement crédible du gouvernement}
+
+Dans cette partie, nous supposons que le gouvernement est en mesure de s'engager de façon crédible à $t=0$ sur l'ensemble des politiques futures. On suppose que le gouvernement cherche à déterminer l'optimum de Ramsey~: il maximise l'utilité du ménage sous la contrainte d'implémentabilité \reff{eq:implem}.
+\medskip
+
+\ques Résoudre le programme de Ramsey dans le cas où $u = \ln$. En particulier faire attention aux cas où $t=0$ et $\ge 1$. Montrer notamment que $c_0^F<c_1^F = c_{t+1}^F$ pour tout $t\ge 0$.
+\medskip
+
+\ques Commenter le résultat précédent. Que penser des conséquences de l'engagement crédible du gouvernement~?
+
+\section{Pas d'engagement crédible du gouvernement}
+Dans cette section, on lève l'hypothèse d'engagement crédible de la part du gouvernement. En conséquence, la particularité de la période 0 de l'exemple précédent se répète à chaque période et le programme de Ramsey souffre d'un problème de cohérence temporelle.
+
+On propose deux solutions pour résoudre le cas d'absence d'engagement~: la première repose sur un calcul de Lagrangien intertemporel et la seconde sur un calcul de fonction valeur.
+\medskip
+
+\ques Pour la première méthode, on cherche à déterminer quel est l'équilibre de Ramsey qui est cohérent temporellement\footnote{NB~: cet équilibre de Ramsey cohérent temporellement n'existe pas toujours.}. 
+
+\subques Déterminer l'équilibre de Ramsey pour le gouvernement de la date 0. On note $\lambda^{(0)}$ le multiplicateur de Lagrange associé.
+
+\subques Déterminer l'équilibre de Ramsey pour le gouvernement de la date 1. On note $\lambda^{(1)}$ le multiplicateur de Lagrange associé.
+
+\subques En déduire l'équilibre de Ramsey cohérent temporellement. 
+\medskip
+
+\ques La seconde méthode repose sur l'optimisation de la fonction valeur. L'hypothèse importante est que les fonctions de réponse à la date $t+1$ ne dépendent pas de l'ensemble de l'histoire mais uniquement de la valeur de la variable d'état à la date $t$. 
+
+\subques Expliquer pourquoi cet équilibre est cohérent temporellement.
+
+\subques Ecrire le programme du gouvernement. Déterminer les conditions du premier ordre et appliquer le théorème de l'enveloppe. 
+
+\subques Caractériser l'optimum et conclure. Comparer notamment avec le cas où l'engagement du gouvernement est crédible.
+
+\section{Dette indexée}
+
+Dans cette section on suppose que le gouvernement n'émet plus de dette nominale mais émet de la dette réelle notée $b_t$.
+
+\ques Montrer que la contrainte d'implémentabilité du gouvernement est la suivante.
+\begin{eqnarray*}
+	c_{t+1}\,u'(c_{t+1})\frac{\beta}{\alpha} + \beta b_{t+1} = c_t + g + b_t
+\end{eqnarray*}
+
+\ques Ecrire le programme du gouvernement sous forme récursive et le résoudre dans le cas log. Montrer que la consommation et le niveau de dette restent constants au cours du temps.
+\medskip 
+
+\ques Montrer que si $b_0 = \frac{B_0(1+i_0)}{p_0^F}$, le bien--être est plus élevé dans l'économie avec de la dette indexée que de la dette nominale.
+\end{document}

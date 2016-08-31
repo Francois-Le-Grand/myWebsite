@@ -1,0 +1,245 @@
+% partie d‚clarative
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[english]{babel} %,francais
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[colorlinks=true,urlcolor=blue,pdfstartview=FitH]{hyperref} 
+\usepackage{color}
+\usepackage[cyr]{aeguill}     % Police vectorielle TrueType, guillemets fran‡ais
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+
+\usepackage{harvard}
+\usepackage{cje}
+
+\usepackage[pdftex]{graphicx} % Pour l'insertion d'images
+\DeclareGraphicsExtensions{.jpg,.mps,.pdf,.png,.bmp}%TCIDATA{OutputFilter=LATEX.DLL}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\reff}[1]{(\ref{#1})}
+
+\newcommand{\EnTete}[3]{
+		\begin{flushleft}
+			Fran\c{c}ois Le Grand \hfill #1
+			
+			legrand@pse.ens.fr
+			
+			Cours de Macroéconomie 4 (Prof. Daniel Cohen)
+			\url{http://www.pse.ens.fr/junior/legrand/cours.html}
+		\end{flushleft}
+		\begin{center}	
+			\medskip
+			\textbf{TD {#2}}
+			
+			\bigskip
+			\textbf{#3} 
+		\end{center}
+
+\hrule\vspace{\baselineskip} 
+}
+
+%\usepackage{wasysym}
+%\usepackage{graphics}
+%\usepackage{pgflibraryarrows}
+%\usepackage{tikz}
+%\usepackage[absolute,overlay]{textpos}
+%\usepackage[clock]{ifsym}
+%\usepackage{colortbl}
+%\usepackage{pgf}
+%\usepackage{color}
+
+%\newcommand{\makegrid}[0]{
+%\begin{textblock}{1}(0,0.25) % width of block, origin at top left corner of page
+%\uncover#1{
+%\begin{tikzpicture}[color=blue!40!black!30,very thin]
+%\draw[step=.5cm,draw opacity=.5] (0,0) grid (\the\paperwidth,\the\paperheight);
+%\foreach \x in {1,2,...,12}
+%   \draw[text=black] (\x,.15) node {\footnotesize \x};
+%\foreach \y in {1,2,...,9}
+%   \draw[text=black] (.2,\y) node {\footnotesize \y};
+%\end{tikzpicture}  }
+%\end{textblock}
+%}
+%
+%\newcommand{\btx}{\begin{textblock}{1}(0,0)}
+%\newcommand{\etx}{\end{textblock}}
+
+\renewcommand{\thesection}{\Alph{section}.}
+\setlength{\parindent}{0pt}
+
+\makeatletter
+\newcounter{question}
+\newcounter{subquestion}
+\newcommand{\thenumq}{\arabic{question}}
+\newcommand{\thenumsq}{\alph{subquestion}}
+\newcommand{\ques}{\stepcounter{question}{\hskip.4cm{\thenumq.~\,}}}
+\newcommand{\subques}{\stepcounter{subquestion}{\hskip.8cm{\thenumsq.~}}}
+\@addtoreset{subquestion}{question}
+\makeatother
+
+\newcommand{\textenitalique}[1]{
+\bigskip
+\textit{#1} \\\nopagebreak
+}
+
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newcommand{\correction}[1]{
+\begin{changemargin}{1cm}{0cm}
+   \it #1
+\end{changemargin} }
+
+\begin{document}
+
+\EnTete{Séances des 31 Octobre et 3 Novembre 2006}{7}{International lending and Endogenous punishment}
+
+\bibliographystyle{cje}
+%\bibliographystyle{plain}
+\bibliography{Biblio_TD}
+\nocite{EaGe:81}
+
+\paragraph{\large{Points techniques du TD~:}} 
+\begin{itemize}
+	\item International lending,
+	\item Endogeneous punishment.
+\end{itemize}
+
+\section{Introduction}
+
+Le thème de ce TD est l'accès d'un pays souverain au marché du crédit international. Pour un agent individuel (individu ou firme), les cadres légaux sont tels qu'ils permettent au préteur de recouvrer un montant égal aux actifs de l'emprunteur. Pour des prêts internationaux à des souverains, la situation est différente et il n'existe pas de mécanisme explicite pour forcer l'emprunteur à ne pas répudier sa dette. 
+
+Dans ce TD, le mécanisme étudié est un mécanisme d'exclusion endogène du marché du crédit. \`A partir du moment où l'emprunteur a répudié sa dette, il n'a plus la possibilité de revenir sur le marché du crédit.
+
+Nous étudierons deux sets--up particuliers~: (i) le premier est déterministe et conduit à un équilibre unique sans répudiation et (ii) le second est incertain où plusieurs types d'équilibres sont possibles.
+
+\section{Présentation de l'économie}
+
+L'économie est peuplée d'un emprunteur et de préteurs. Il existe un actif de maturité une période qui est acheté par l'emprunteur au préteur pour lisser ses chocs de revenus.
+
+\textenitalique{L'emprunteur}
+
+\`A chaque date $t$, l'emprunteur reçoit un revenu aléatoire $y_t$. Ce revenu est complété par le montant de l'emprunt $b_t$ réalisé à la date $t$. Ce revenu total est utilisé soit pour consommer $c_t$, soit pour repayer le montant $d_t$ de dette contracté à la période précédente. On suppose que le montant repayé $d_t$ est fonction du montant emprunté $b_t$: $d_t = R(b_t)$.
+
+L'objectif de l'agent est de maximiser son utilité intertemporelle espérée sous sa contrainte budgétaire. 
+
+\textenitalique{Les préteurs}
+Les préteurs sont supposés comme neutres au risque. Ils peuvent prêter au maximum un montant $W_t < \infty$. Hormis l'emprunteur que l'on considère dans ce modèle, on suppose que les emprunteurs ont aussi accès à un autre marché leur offrant au moins le taux d'intérêt $\overline{r}>0$.  
+
+\bigskip
+\ques \'Ecrire la contrainte budgétaire de l'emprunteur.
+\medskip
+\section{Un modèle déterministe d'emprunt}
+On suppose que le revenu moyen de l'emprunteur croît au taux $g>0$ (on note $G=1+g$). On note $y$ le revenu moyen initial. \`A chaque date, l'emprunteur reçoit alternativement un revenu bas ou un revenu haut par rapport à la moyenne. On note $\sigma$ la déviation, constante à chaque période, par rapport à la moyenne. Ainsi les revenus haut et bas sont~:
+\begin{eqnarray*}
+	y_t &=& (1-\sigma)y\,G^t \qquad t = 1, 3, 5, \ldots \\
+	y_t &=& (1+\sigma)y\,G^t \qquad t = 0, 2, 4, \ldots 
+\end{eqnarray*}
+
+On suppose qu'à chaque date, l'emprunteur qui a toujours accès au marché (et donc qui n'a jamais fait défaut) peut emprunter ou épargner une part constante de l'écart de son revenu par rapport à la moyenne. Dans les états du monde où ses revenus sont élevés, il épargne au taux brut $R'$ une part $s$ constante du surplus par rapport à la moyenne et repaie son emprunt de la période précédente. Dans les états du monde où le revenu est bas, il reçoit les revenus de son épargne de la période précédente et emprunte au taux $R$ un pourcentage constant $b$ du `déficit' de son revenu  par rapport à la moyenne. 
+\medskip
+
+\ques Exprimer en fonction de $b$, $s$, $R$, $R'$, $G$, $y$ et $\sigma$ les consommations de l'emprunteur dans les états de revenus hauts et bas que l'on notera respectivement $c^h$ et $c^l$.
+\medskip
+
+On suppose que l'utilité de l'emprunteur à chaque période est caractérisée par une aversion au risque relative constante.
+\begin{eqnarray*}
+	U(X) = \left\{\begin{array}{l}
+						\dfrac{X^{1-\gamma}}{1-\gamma}\quad \gamma>0 \textrm{ et } \gamma\neq 1 \\
+						\\
+						\ln(X)
+				\end{array}\right.
+\end{eqnarray*}
+On définit l'utilité discountée de deux périodes, notée $W^h$ et $W^l$ selon l'état du monde à la première période~:
+\begin{eqnarray*}
+	W^h_t(s, b) &=& U\bigl(c^h(s,b,t)\bigr) + \beta\,U\bigl(c^l(s,b,t)\bigr) \\
+	W^l_t(s, b) &=& U\bigl(c^l(s,b,t)\bigr) + \beta\,U\bigl(c^h(s,b,t)\bigr)
+\end{eqnarray*}
+On suppose pour l'instant que l'agent se comporte comme s'il n'y avait que deux périodes. Ainsi, quand l'état du monde est $h$, l'emprunteur maximise $W^h$ en fonction de $s$ à $b$ donné. Inversement,  quand l'état du monde est $l$, l'emprunteur maximise $W^l$ en fonction de $b$ à $s$ donné. 
+
+\medskip
+\ques \'Ecrire le programme de l'emprunteur dans les deux états du monde et montrer qu'il existe un niveau de croissance des revenus $\overline{G}$ tel que~:
+\begin{itemize}
+	\item Si $G>\overline{G}$, il y a emprunt mais pas d'épargne.
+	\item Si $G<\overline{G}$, il y a épargne mais pas d'emprunt.
+	\item Si $G=\overline{G}$, il y a indifférence entre épargne et d'emprunt.
+\end{itemize}
+
+\medskip
+\ques En déduire le niveau optimal d'emprunt $\sigma\,b^\star$. On notera $\kappa = \bigl(\beta R\bigr)^{-1/\gamma}$. Commenter le rôle du taux de croissance des revenus $G$ et de l'écart--type $\sigma$.
+
+\medskip
+On cherche maintenant à déterminer le niveau de dette soutenable. C'est le niveau maximal de dette que l'emprunteur, dans un horizon infini, peut emprunter dans les périodes basses et repayer dans les périodes hautes. 
+\medskip
+
+\ques Exprimer l'utilité intertemporelle de l'emprunteur qui prend la décision de repayer $R\,b$ dans les périodes hautes et se garde la possibilité d'emprunter $b$ dans les périodes basses. 
+\medskip
+
+\ques On cherche à montrer que l'ensemble des dettes soutenables est un segment.
+
+\medskip
+\subques Montrer que pour les $b>0$ vérifiant $V^R(b)=V^R(0)$ ou $V'^R(b)=0$, le niveau optimal d'épargne est nul (On supposera que $V^R$ est continu).
+
+\medskip
+\subques Montrer qu'il existe au plus un $\tilde b$ tel que $V^R(\tilde b) = V^R(0)$.
+
+\medskip
+\subques Utiliser les deux questions précédentes pour montrer que l'ensemble des niveaux de dette soutenables est un segment du type $\bigl[\,0\,;\,\bar b\,\bigr]$, avec $\bar b = \min(\hat b, \tilde b)$. On note $\hat b$ le niveau de dette maximal assurant que  $c^h\ge 0$ et $s\ge 0$.
+
+\medskip
+\ques On veut  maintenant montrer que le niveau maximal de dette est une fonction croissante de la variance des revenus $\sigma$.
+\medskip
+ 
+\subques \emph{Premier cas~:} $\bar b =\hat b$.
+\medskip
+
+\subques \emph{Deuxième cas~:} $\bar b =\tilde b$. Commencer par trouver deux conditions nécessaires qui assurent l'existence de $\tilde b$. Trouver ensuite une condition suffisante qui  nous assure que $\frac{\partial \sigma\,\bar b}{\partial \sigma}>0$. Conclure en observant que $V^R$ doit être décroissante en $\bar b$ et croissante en 0.
+
+\medskip
+%\ques Montrer que l'effet du taux de croissance $G$ est ambigu.
+
+\textenitalique{Un modèle stochastique}
+On fait désormais l'hypothèse que le revenu de l'emprunteur est iid et prend à chaque période avec la même probabilité les valeurs $y^h = 1+\sigma$ et $y^l = 1-\sigma$.
+\medskip
+
+On fait deux hypothèses supplémentaires liées à l'emprunt avec incertitude~:
+\begin{enumerate}[(i)~]
+	\item Il ne peut y avoir un emprunt à la période $t$ que (i) si l'emprunteur se trouve dans un état bas ($y_t=y^l$), (ii) s'il n'a pas emprunté à la période précédente ($y_{t-1}=0 $) et (iii) s'il n' a jamais fait défaut dans le passé. 
+	\item Les remboursements du prêt sont dus une période plus tard quel que soit l'état du monde à cette période (pas de remboursement contingent). 
+\end{enumerate}
+\medskip
+
+\ques Considérons un emprunteur susceptible d'emprunter qui a décidé de rembourser son prêt. Son horizon est pour l'instant de deux périodes. Quelle utilité va--t--il maximiser~?
+\medskip
+
+\ques Utiliser une approximation de Taylor au second ordre pour exprimer la quantité optimale de dette $\sigma\,b^\star$ que l'emprunteur souhaite emprunter.
+
+\medskip
+\ques On définit $V^R(b)$ comme l'utilité intertemporelle d'un agent à horizon infini qui emprunte $b$ quand c'est possible ($y=y^l$ et pas de dette passée) et qui repaie toujours. Exprimer $V^R(b)$. 		
+\medskip
+	
+\ques On définit $V^D(b)$ comme l'utilité intertemporelle d'un agent à horizon infini qui vit en autarcie et n'emprunte jamais. Exprimer $V^D(b)$. 		
+\medskip
+
+\ques On cherche à déterminer un niveau maximal de dette $\bar b$ au dessous duquel, il est optimal pour l'agent d'emprunter et de toujours repayer sa dette.
+\medskip
+
+\subques Utiliser les deux questions précédentes pour trouver une condition sous laquelle il est optimal pour l'agent de ne pas répudier sa dette. Pour cela, on se placera à une date où l'état du monde est mauvais et où l'agent a le choix entre repayer une dette $b$ et la répudier. S'il la répudie, il est exclu des marchés financiers et s'il la paie, il continuera d'emprunter et de payer. 
+\medskip
+
+\subques Utiliser un développement limité à l'ordre 2 de la condition précédente pour déterminer $\bar b$.
+
+\end{document}
